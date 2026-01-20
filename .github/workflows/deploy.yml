@@ -1,0 +1,69 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # 或者是你代码所在的主分支
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install mkdocs mkdocs-material
+
+      - name: Build Tech Notes
+        run: |
+          cd notes/tech
+          mkdocs build -d ../../site/tech
+
+      - name: Build Business Notes
+        run: |
+          if [ -d "notes/business" ]; then
+            cd notes/business
+            mkdocs build -d ../../site/business
+            cd ../..
+          fi
+
+      - name: Build Art Notes
+        run: |
+          if [ -d "notes/art" ]; then
+            cd notes/art
+            mkdocs build -d ../../site/art
+            cd ../..
+          fi
+
+      - name: Prepare main site
+        run: |
+          # 创建 site 目录（如果还没有）
+          mkdir -p site
+          # 将根目录的静态文件复制到 site 目录
+          cp *.html site/ 2>/dev/null || true
+          cp *.js site/ 2>/dev/null || true
+          cp *.css site/ 2>/dev/null || true
+          cp *.jpg site/ 2>/dev/null || true
+          cp *.png site/ 2>/dev/null || true
+          # 如果有其他静态资源文件夹，也需要复制
+          # cp -r assets site/ 2>/dev/null || true
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          publish_branch: gh-pages  # 部署到 gh-pages 分支

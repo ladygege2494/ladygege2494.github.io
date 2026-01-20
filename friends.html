@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>友链 - 不拘一格</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: #000;
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+            font-family: 'Arial', 'Helvetica', 'Microsoft YaHei', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .friends-container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 100px auto 40px;
+            padding: 20px;
+            background: #fff;
+            border: 8px solid #000;
+        }
+        
+        .friends-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-auto-rows: 150px;
+            gap: 12px;
+            background: #000;
+            padding: 12px;
+            border: 4px solid #000;
+        }
+        
+        .friend-card {
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            overflow: hidden;
+            position: relative;
+            border: 4px solid #000;
+        }
+        
+        .friend-card:hover {
+            z-index: 10;
+            transform: translate(-4px, -4px);
+            box-shadow: 8px 8px 0 #000;
+        }
+        
+        /* 蒙德里安颜色类 */
+        .friend-red { background-color: #e30512; color: #fff; }
+        .friend-blue { background-color: #044ea2; color: #fff; }
+        .friend-yellow { background-color: #facd01; color: #000; }
+        .friend-white { background-color: #ffffff; color: #000; }
+        
+        /* 不同尺寸的卡片 */
+        .friend-card.size-lg { grid-column: span 2; grid-row: span 2; }
+        .friend-card.size-wide { grid-column: span 2; grid-row: span 1; }
+        .friend-card.size-tall { grid-column: span 1; grid-row: span 2; }
+        .friend-card.size-sm { grid-column: span 1; grid-row: span 1; }
+        
+        .friend-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid #000;
+            margin-bottom: 10px;
+            overflow: hidden;
+            background: #fff;
+        }
+        
+        .friend-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .friend-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .friend-desc {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+        
+        /* 评论区样式 */
+        .comments-section {
+            margin-top: 60px;
+            padding: 40px;
+            background: #f8f9fa;
+            border-top: 8px solid #000;
+        }
+        
+        .comments-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: #000;
+        }
+        
+        .comments-stats {
+            margin-bottom: 30px;
+            text-align: center;
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .comment-input-box {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background: #fff;
+            overflow: hidden;
+        }
+        
+        .comment-tabs {
+            display: flex;
+            border-bottom: 1px solid #eee;
+            background: #fafafa;
+        }
+        
+        .comment-tab {
+            padding: 12px 24px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border-right: 1px solid #eee;
+        }
+        
+        .comment-tab.active {
+            background: #fff;
+            font-weight: bold;
+            border-bottom: 2px solid #000;
+        }
+        
+        .comment-textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 20px;
+            border: none;
+            resize: vertical;
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        .comment-footer {
+            padding: 15px 20px;
+            background: #fafafa;
+            display: flex;
+            justify-content: flex-end;
+            border-top: 1px solid #eee;
+        }
+        
+        .btn-github {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background: #2ea44f;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        
+        .btn-github:hover {
+            background: #2c974b;
+        }
+        
+        @media (max-width: 1024px) {
+            .friends-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .friends-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .friends-container {
+                width: 95%;
+                margin-top: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 全局导航栏 -->
+    <div class="nav-hover-zone" id="navHoverZone"></div>
+    <nav class="top-nav collapsed" id="globalNav">
+        <div class="nav-left">
+            <span class="nav-logo">GegeNook</span>
+        </div>
+        <div class="nav-center">
+            <div class="nav-item" id="searchBtn">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </span>
+                <span class="nav-text">搜索</span>
+            </div>
+            <div class="nav-item" onclick="window.location.href='index.html#section2'">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                </span>
+                <span class="nav-text">主页</span>
+            </div>
+            <div class="nav-item" onclick="window.location.href='friends.html'">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                </span>
+                <span class="nav-text">友链</span>
+            </div>
+            <div class="nav-item" onclick="window.location.href='index.html#section3'">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </span>
+                <span class="nav-text">关于</span>
+            </div>
+        </div>
+        <button class="nav-toggle" id="navToggle" aria-label="折叠导航" style="display: none;">﹀</button>
+    </nav>
+
+    <div class="search-box" id="searchBox">
+        <input type="text" placeholder="搜索站内文章..." id="searchInput">
+        <button class="search-close" id="searchClose">&times;</button>
+    </div>
+    
+    <div class="friends-container">
+        <div class="friends-grid">
+            <a href="#" class="friend-card friend-red size-lg">
+                <div class="friend-avatar">
+                    <div style="background: #fff; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #e30512; font-weight: bold;">B</div>
+                </div>
+                <div class="friend-name">Bixing's Note</div>
+                <div class="friend-desc">个人博客</div>
+            </a>
+            
+            <a href="#" class="friend-card friend-blue size-wide">
+                <div class="friend-name">Jiepeng's Note</div>
+                <div class="friend-desc">技术分享</div>
+            </a>
+            
+            <a href="#" class="friend-card friend-white size-sm">
+                <div class="friend-name">Tstum</div>
+            </a>
+            
+            <a href="#" class="friend-card friend-yellow size-tall">
+                <div class="friend-avatar">
+                    <div style="background: #000; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #facd01; font-weight: bold;">J</div>
+                </div>
+                <div class="friend-name">BruceJin</div>
+                <div class="friend-desc">前端开发</div>
+            </a>
+            
+            <a href="#" class="friend-card friend-white size-wide">
+                <div class="friend-name">末茶Mo_Tu</div>
+                <div class="friend-desc">设计思考</div>
+            </a>
+            
+            <a href="#" class="friend-card friend-red size-sm">
+                <div class="friend-name">zzw4257</div>
+            </a>
+            
+            <a href="#" class="friend-card friend-blue size-tall">
+                <div class="friend-name">Aurora0Lian</div>
+                <div class="friend-desc">个人网站</div>
+            </a>
+            
+            <a href="#" class="friend-card friend-white size-lg">
+                <div class="friend-avatar">
+                    <div style="background: #facd01; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #000; font-weight: bold;">W</div>
+                </div>
+                <div class="friend-name">Withflow</div>
+                <div class="friend-desc">创意分享</div>
+            </a>
+        </div>
+
+        <!-- 评论区 -->
+        <div class="comments-section">
+            <h2 class="comments-title">Comments</h2>
+            
+            <div class="comments-stats" id="commentsStats">
+                <p>0 条评论</p>
+                <div style="font-size: 2rem; margin-top: 10px;">😊</div>
+            </div>
+
+            <div class="comment-input-box">
+                <div class="comment-tabs">
+                    <div class="comment-tab active">输入</div>
+                    <div class="comment-tab">预览</div>
+                </div>
+                <textarea class="comment-textarea" id="commentTextarea" placeholder="登录后可发表评论" disabled></textarea>
+                <div class="comment-footer">
+                    <button id="commentSubmit" class="btn-github" style="border: none; cursor: pointer; display: none;">发表评论</button>
+                    <a href="javascript:void(0)" id="githubLoginBtn" class="btn-github">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg>
+                        使用 GitHub 登录
+                    </a>
+                </div>
+            </div>
+            
+            <div id="commentsList" style="margin-top: 30px;">
+                <!-- 评论将在这里动态生成 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 页面切换加载动画 -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-square">
+            <div class="loader-inner-square red"></div>
+            <div class="loader-inner-square yellow"></div>
+            <div class="loader-inner-square blue"></div>
+            <div class="loader-inner-square white"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

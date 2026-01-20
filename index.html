@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>不拘一格 - 个人主页</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="home-body">
+    <!-- 全局导航栏 -->
+    <div class="nav-hover-zone" id="navHoverZone"></div>
+    <nav class="top-nav collapsed" id="globalNav">
+        <div class="nav-left">
+            <span class="nav-logo">GegeNook</span>
+        </div>
+        <div class="nav-center">
+            <div class="nav-item" id="searchBtn">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </span>
+                <span class="nav-text">搜索</span>
+            </div>
+            <div class="nav-item" onclick="scrollToSection(2)">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                </span>
+                <span class="nav-text">主页</span>
+            </div>
+            <div class="nav-item" onclick="window.location.href='friends.html'">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                </span>
+                <span class="nav-text">友链</span>
+            </div>
+            <div class="nav-item" onclick="scrollToSection(3)">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </span>
+                <span class="nav-text">关于</span>
+            </div>
+        </div>
+        <button class="nav-toggle" id="navToggle" aria-label="折叠导航" style="display: none;">﹀</button>
+    </nav>
+
+    <!-- 搜索框（默认隐藏） -->
+    <div class="search-box" id="searchBox">
+        <input type="text" placeholder="搜索站内文章..." id="searchInput">
+        <button class="search-close" id="searchClose">&times;</button>
+    </div>
+
+    <!-- 第一部分：首页 -->
+    <section class="section section-1" id="section1">
+        <div class="hero-background"></div>
+        <div class="hero-content">
+            <h1 class="main-title">不拘一格</h1>
+            <div class="typing-text" id="typingText"></div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="arrow-down"></div>
+        </div>
+    </section>
+
+    <!-- 第二部分：蒙德里安风格导航 -->
+    <section class="section section-2" id="section2">
+        <div class="mondrian-container">
+            <!-- 左侧大块 - 文艺笔记 -->
+            <div class="mondrian-block red-block block-art" data-block="art">
+                <div class="block-content">
+                    <h2>文艺笔记</h2>
+                </div>
+            </div>
+
+            <!-- 左侧下方 - 作品集 -->
+            <div class="mondrian-block white-block block-portfolio" data-block="portfolio">
+                <div class="block-content">
+                    <h2>作品集</h2>
+                </div>
+            </div>
+
+            <!-- 中间列 -->
+            <div class="mondrian-block white-block block-center-thin-1"></div>
+            <div class="mondrian-block white-block block-center-thin-2"></div>
+            
+            <div class="mondrian-block yellow-block block-media" data-block="media">
+                <div class="block-content">
+                    <h2>自媒体</h2>
+                </div>
+            </div>
+
+            <div class="mondrian-block red-block block-business" data-block="business">
+                <div class="block-content">
+                    <h2>商业笔记</h2>
+                </div>
+            </div>
+
+            <!-- 右侧大块 - 技术笔记 -->
+            <div class="mondrian-block blue-block block-tech" data-block="tech">
+                <div class="block-content">
+                    <h2>技术笔记</h2>
+                </div>
+            </div>
+
+            <!-- 右侧下方 - 网站资讯 -->
+            <div class="mondrian-block white-block block-info" data-block="info">
+                <div class="block-content info-content">
+                    <div class="info-list">
+                        <div class="info-item">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                            <span class="info-text">1 文章</span>
+                        </div>
+                        <div class="info-item">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+                            <span class="info-text">1 访客</span>
+                        </div>
+                        <div class="info-item">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                            <span class="info-text">1 访问量</span>
+                        </div>
+                        <div class="info-item">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            <span class="info-text">1天 运行</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 装饰性小色块 (按照图示位置) -->
+            <div class="mondrian-block white-block block-divider-left-top"></div>
+            <div class="mondrian-block black-block block-divider-left-bottom"></div>
+            <div class="mondrian-block white-block block-divider-right-2"></div>
+        </div>
+
+        <!-- 卡片翻转效果容器 -->
+        <div class="card-flip-container" id="cardFlipContainer">
+            <div class="flip-card" id="flipCard">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front"></div>
+                    <div class="flip-card-back">
+                        <button class="close-btn" id="closeCardBtn">&times;</button>
+                        <div class="card-detail-text" id="cardDetailText"></div>
+                        <a href="#" class="card-detail-link" id="cardDetailLink">
+                            <span>进入</span>
+                            <span class="arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 第三部分：自我介绍 -->
+    <section class="section section-3" id="section3">
+        <div class="about-background"></div>
+        <div class="about-content">
+            <div class="avatar-container">
+                <div class="avatar-circle">
+                    <img src="image3.jpg" alt="头像" class="avatar-img">
+                </div>
+                <!-- 联系方式卡片 -->
+                <div class="contact-card">
+                    <h3>联系方式</h3>
+                    <div class="contact-info">
+                        <p>📧 email@example.com</p>
+                        <p>📱 +86 138 0000 0000</p>
+                        <div class="social-links">
+                            <a href="#" class="social-link">GitHub</a>
+                            <a href="#" class="social-link">LinkedIn</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bubbles-container" id="bubblesContainer"></div>
+        </div>
+    </section>
+
+    <!-- 留言气泡输入框 -->
+    <div class="bubble-modal" id="bubbleModal">
+        <div class="bubble-modal-content">
+            <button class="bubble-modal-close" id="bubbleModalClose">&times;</button>
+            <h3>写点什么</h3>
+            <textarea id="bubbleInput" placeholder="点击漂浮的空白气泡来留言..."></textarea>
+            <div class="bubble-modal-actions">
+                <button id="bubbleSave">保存</button>
+                <button id="bubbleCancel">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页面切换加载动画 -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-square">
+            <div class="loader-inner-square red"></div>
+            <div class="loader-inner-square yellow"></div>
+            <div class="loader-inner-square blue"></div>
+            <div class="loader-inner-square white"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+site_name: 文艺笔记
+theme:
+  name: material
+  language: zh
+  palette:
+    primary: red
+    accent: red
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - search.suggest
+    - search.highlight
+nav:
+  - 首页: index.md
