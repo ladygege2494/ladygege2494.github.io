@@ -29,6 +29,10 @@ const blockDetails = {
     portfolio: {
         text: '作品集展示我的项目作品，包括设计、开发、创意等多个方面的实践成果。',
         link: 'portfolio.html'
+    },
+    journey: {
+        text: '记录个人生活与成长感悟，分享一路走来的点滴。',
+        link: 'journey/index.html'
     }
 };
 
@@ -184,72 +188,101 @@ function animateBubbles() {
 
 // ========== 评论区功能 ==========
 function initComments() {
-    const loginBtn = document.getElementById('githubLoginBtn');
-    const submitBtn = document.getElementById('commentSubmit');
+    const submitBtn = document.getElementById('commentSubmitBtn');
     const textarea = document.getElementById('commentTextarea');
     const commentsList = document.getElementById('commentsList');
-    const stats = document.getElementById('commentsStats');
+    const countEl = document.getElementById('commentCount');
+    const nameModal = document.getElementById('nameModal');
+    const nameInput = document.getElementById('nameInput');
+    const nameConfirm = document.getElementById('nameConfirm');
+    const nameCancel = document.getElementById('nameCancel');
 
-    if (!loginBtn || !commentsList) return;
+    if (!submitBtn || !commentsList) return;
+
+    let pendingComment = ''; // 待发表的评论
 
     // 加载已有评论
     const loadComments = () => {
         const comments = JSON.parse(localStorage.getItem('siteComments') || '[]');
         commentsList.innerHTML = comments.map(c => `
-            <div style="background: #fff; border: 4px solid #000; padding: 20px; margin-bottom: 20px; position: relative;">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-                    <div style="width: 40px; height: 40px; background: #000; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; border-radius: 4px;">${c.user[0]}</div>
-                    <span style="font-weight: bold;">${c.user}</span>
-                    <span style="font-size: 0.8rem; color: #666;">${c.time}</span>
+            <div class="comment-item">
+                <div class="comment-header">
+                    <div class="comment-avatar">${c.author[0].toUpperCase()}</div>
+                    <span class="comment-author">${c.author}</span>
+                    <span class="comment-time">${c.time}</span>
                 </div>
-                <div style="line-height: 1.6;">${c.content}</div>
+                <div class="comment-content">${c.content}</div>
             </div>
         `).join('');
         
-        if (stats) {
-            stats.querySelector('p').textContent = `${comments.length} 条评论`;
+        if (countEl) {
+            countEl.textContent = `${comments.length} 条评论`;
         }
     };
 
     loadComments();
 
-    // 模拟登录
-    loginBtn.addEventListener('click', () => {
-        const username = prompt('请输入你的 GitHub 用户名（演示模拟）：');
-        if (username) {
-            localStorage.setItem('currentUser', username);
-            loginBtn.style.display = 'none';
-            submitBtn.style.display = 'flex';
-            textarea.disabled = false;
-            textarea.placeholder = `欢迎，${username}！写下你的评论...`;
-        }
-    });
-
-    // 检查登录状态
-    const currentUser = localStorage.getItem('currentUser');
-    if (currentUser) {
-        loginBtn.style.display = 'none';
-        submitBtn.style.display = 'flex';
-        textarea.disabled = false;
-        textarea.placeholder = `欢迎，${currentUser}！写下你的评论...`;
-    }
-
-    // 发表评论
+    // 点击发表评论按钮
     submitBtn.addEventListener('click', () => {
         const content = textarea.value.trim();
-        const user = localStorage.getItem('currentUser');
-        if (!content || !user) return;
+        if (!content) {
+            alert('请输入评论内容');
+            return;
+        }
+        
+        pendingComment = content;
+        nameModal.classList.add('active');
+        nameInput.value = '';
+        nameInput.focus();
+    });
+
+    // 确认署名
+    nameConfirm.addEventListener('click', () => {
+        const author = nameInput.value.trim();
+        if (!author) {
+            alert('请输入你的署名');
+            return;
+        }
 
         const comments = JSON.parse(localStorage.getItem('siteComments') || '[]');
         comments.unshift({
-            user: user,
-            content: content,
-            time: new Date().toLocaleString()
+            author: author,
+            content: pendingComment,
+            time: new Date().toLocaleString('zh-CN', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            })
         });
         localStorage.setItem('siteComments', JSON.stringify(comments));
         
         textarea.value = '';
+        pendingComment = '';
+        nameModal.classList.remove('active');
         loadComments();
+    });
+
+    // 取消署名
+    nameCancel.addEventListener('click', () => {
+        nameModal.classList.remove('active');
+        pendingComment = '';
+    });
+
+    // 点击外部关闭弹窗
+    nameModal.addEventListener('click', (e) => {
+        if (e.target === nameModal) {
+            nameModal.classList.remove('active');
+            pendingComment = '';
+        }
+    });
+
+    // 回车键确认
+    nameInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            nameConfirm.click();
+        }
     });
 }
 

@@ -1,0 +1,50 @@
+site_name: 一路走来
+site_description: 记录个人生活与成长感悟
+site_author: LadyGege
+
+theme:
+  name: material
+  language: zh
+  palette:
+    primary: green
+    accent: light green
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+
+nav:
+  - 首页: index.md
+  - 生活记录:
+    - 日常随笔: life/daily.md
+  - 成长感悟:
+    - 人生思考: growth/thoughts.md
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex
+  - pymdownx.betterem
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist
+  - pymdownx.tabbed
+
+plugins:
+  - search

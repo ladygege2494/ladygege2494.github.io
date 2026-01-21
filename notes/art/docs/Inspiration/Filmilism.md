@@ -1,0 +1,21 @@
+
+Over the past century, human's average life has been extended by 40 years.What has contributed to this?The medical advancement,the science revolution,the humanitarian aid.But these are not my answer.
+My answer is movie.There is a dialogue in Yang dechang's《a one and a one》,''the invention of movie has tripled human lifespan.''You may be confused?Why movie?Relax,you will figure it out soon.
+You see,I am a movie-lover.Our love story started from Disney anime.It colored my  kaleidoscopic childhood ,as I jumped into the rabbit hole with Alice,played Quiddich with Harry and sailed among the clouds riding the flying house.As I grow up,my movie world opened up simultaneously.I started to dip my toe into more diverse and bold subjects and forms.The overdue canned pineapple,the nonsensical improvised swing jazz-a dance in order to dance,the Indian footless bird that keeps flying in the sky until his death,the legendary pianist 1900 who born and live and die on the Virginia ship.
+I bet you've found some of these familiar.You may not be a movie-lover ,but you must have been a movie-goer.Every vacation,friends and families,lovers and bachelors,the young and old,swam into the cinema for various reasons.
+
+How can films speak to us so universally that rival music?Together ,the gripping plots,fascinating audio-visuals and lively characters,stitch by stitch,sew a web of dream,taking me through the ebbs and flows of love and hate ,and catapulted me to a whole new world.And among them,the most important quality ,I think, is story.It is story ,that breathe life to the mundane objects.The rose become irreplaceable because of the time you invested.And  behind everything in a movie lies a story,a story written by the on-screen and the off-screen.The thoughts of the director and the experience of the characters,intertwine with the lifestory of the viewers.That's why my heart flipped every time the rhythm of like,California Dreaming sounded.It reminds me of that crazy night  escape when I rushed through the streets of HongKong ,feeling spiritually free like those in Chongqing Forest.
+I felt as if the time stood still,and I am enjoying the present ,just like I am enjoying a movie.The difference is ,this time ,I am the actor myself.I give this sense a name ,that is Filmilism,which means live your life like a movie ,by discovering and recording the scenes of drama or happiness.And that's exactly the lifestyle I am trying to lead.Here is my WeChat Moments.A spectacular sky, a funny joke ,an odd habit,a  spark of inspiration.Ordinary,yes,but without  these small blessings our life will be a dry ,arid desert.
+Threat said,''Most men lead lives of quiet desperation.''Don't resigned to that .Break it out.I tell my self.
+
+How?The movies  have  shown a way out .Between the lines ,there are life lessons like''Life is like a box of chocolate and you never know what you are going to get ''or''Life is not about waiting for the storm to pass ,but about singing in the rain.''or''Life is measured not by the numbers of breaths we take ,but by the moments that take our breath away.''Movie is the moments.
+So again,why movie?Why elixir?The answer is clear now,I guess.
+We don't film because its cute ,we film because we're members of the human race.Indeed,medicine,law,business,engineering,these are noble pursuits and necessary to sustain life.But imagination,poetry and romance ,these are what we stay alive for.
+
+Before the end ,I'd like to share with you a line that has tugged my heart string and saved my day millions of times.It's a quotation of 《Walden》in the Dead Poets Society.
+I went into the woods ,because I wanted to live deliberately.
+I wanted to live dee pand suck out all the marrow of life .
+To put to rout all that was not life.
+And not when I came to die ,discover that I had not lived.
+Gather ye rosebuds while you may. Carpe diem.
+Live your life moviely. Because your life is the best movie itself.

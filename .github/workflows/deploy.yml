@@ -48,6 +48,14 @@ jobs:
             cd ../..
           fi
 
+      - name: Build Journey Notes
+        run: |
+          if [ -d "notes/journey" ]; then
+            cd notes/journey
+            mkdocs build -d ../../site/journey
+            cd ../..
+          fi
+
       - name: Prepare main site
         run: |
           # 创建 site 目录（如果还没有）
