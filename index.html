@@ -33,7 +33,7 @@
                 </span>
                 <span class="nav-text">友链</span>
             </div>
-            <div class="nav-item" onclick="scrollToSection(3)">
+            <div class="nav-item" onclick="window.location.href='about.html'">
                 <span class="nav-icon">
                     <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                 </span>
@@ -132,43 +132,9 @@
         </div>
     </section>
 
-    <!-- 第三部分：自我介绍 -->
-    <section class="section section-3" id="section3">
-        <div class="about-background"></div>
-        <div class="about-content">
-            <div class="avatar-container">
-                <div class="avatar-circle">
-                    <img src="image3.jpg" alt="头像" class="avatar-img">
-                </div>
-                <!-- 联系方式卡片 -->
-                <div class="contact-card">
-                    <h3>Contact LadyGege</h3>
-                    <div class="contact-info">
-                        <p>email: 2045775501@qq.com</p>
-                        <p>wechat: au1924ro1994ra</p>
-                        <div class="social-links">
-                            <a href="https://github.com/ladygege2494/ladygege2494.github.io.git" class="social-link">GitHub</a>
-                            <a href="https://space.bilibili.com/508676760" class="social-link">bilibili</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="bubbles-container" id="bubblesContainer"></div>
-        </div>
-    </section>
 
-    <!-- 留言气泡输入框 -->
-    <div class="bubble-modal" id="bubbleModal">
-        <div class="bubble-modal-content">
-            <button class="bubble-modal-close" id="bubbleModalClose">&times;</button>
-            <h3>写点什么</h3>
-            <textarea id="bubbleInput" placeholder="点击漂浮的空白气泡来留言..."></textarea>
-            <div class="bubble-modal-actions">
-                <button id="bubbleSave">保存</button>
-                <button id="bubbleCancel">取消</button>
-            </div>
-        </div>
-    </div>
+    <!-- 蒙德里安风格页面切换动画 -->
+    <div class="page-transition" id="pageTransition"></div>
 
     <!-- 页面切换加载动画 -->
     <div class="page-loader" id="pageLoader">

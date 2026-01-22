@@ -364,8 +364,8 @@ function handleWheel(e) {
     clearTimeout(scrollTimeout);
     scrollTimeout = setTimeout(() => {
         if (e.deltaY > 0) {
-            // 向下滚动
-            scrollToSection(currentSection + 1);
+            // 向下滚动 - 使用瀑布流动画
+            scrollToSectionWithAnimation(currentSection + 1);
         } else {
             // 向上滚动
             scrollToSection(currentSection - 1);
@@ -803,4 +803,74 @@ function openBubbleModal(bubbleEl) {
     input.value = bubbleEl.textContent === '+' ? '' : bubbleEl.textContent;
     modal.classList.add('active');
     input.focus();
+}
+
+// ========== 蒙德里安风格瀑布流页面切换动画 ==========
+function scrollToSectionWithAnimation(sectionNum) {
+    if (sectionNum < 1 || sectionNum > 2) {
+        scrollToSection(sectionNum);
+        return;
+    }
+
+    const pageTransition = document.getElementById('pageTransition');
+    if (!pageTransition) {
+        scrollToSection(sectionNum);
+        return;
+    }
+
+    isScrolling = true;
+
+    // 清空之前的方格
+    pageTransition.innerHTML = '';
+    pageTransition.classList.add('active');
+
+    // 生成蒙德里安风格方格
+    const colors = ['#e30512', '#facd01', '#044ea2', '#fff'];
+    const blockCount = 40; // 方格数量
+    const screenWidth = window.innerWidth;
+
+    for (let i = 0; i < blockCount; i++) {
+        const block = document.createElement('div');
+        block.className = 'mondrian-block-anim';
+        
+        // 随机尺寸
+        const width = 60 + Math.random() * 120;
+        const height = 80 + Math.random() * 150;
+        
+        // 随机水平位置
+        const left = Math.random() * (screenWidth - width);
+        
+        // 随机颜色
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        
+        block.style.width = width + 'px';
+        block.style.height = height + 'px';
+        block.style.left = left + 'px';
+        block.style.background = color;
+        if (color === '#fff') {
+            block.style.background = '#fff';
+        }
+        
+        // 随机旋转
+        const rotate = -15 + Math.random() * 30;
+        block.style.setProperty('--rotate', rotate + 'deg');
+        
+        // 延迟下落
+        const delay = Math.random() * 0.4;
+        block.style.animationDelay = delay + 's';
+        
+        pageTransition.appendChild(block);
+        
+        // 触发动画
+        setTimeout(() => {
+            block.classList.add('falling');
+        }, 10);
+    }
+
+    // 动画结束后执行切换
+    setTimeout(() => {
+        scrollToSection(sectionNum);
+        pageTransition.classList.remove('active');
+        pageTransition.innerHTML = '';
+    }, 1200);
 }

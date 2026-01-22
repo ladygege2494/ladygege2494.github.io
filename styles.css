@@ -841,6 +841,46 @@ body {
     100% { transform: translateY(0) rotate(360deg); }
 }
 
+/* ========== 蒙德里安风格页面切换动画 ========== */
+.page-transition {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    display: none;
+    overflow: hidden;
+    pointer-events: none;
+    background: transparent;
+}
+
+.page-transition.active {
+    display: block;
+}
+
+.mondrian-block-anim {
+    position: absolute;
+    border: 3px solid #000;
+    opacity: 0;
+    transform: translateY(-100%);
+}
+
+@keyframes mondrianFall {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%) rotate(0deg);
+    }
+    5% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(110vh) rotate(var(--rotate));
+    }
+}
+
+.mondrian-block-anim.falling {
+    animation: mondrianFall 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
 /* 鼠标点击特效粒子 */
 .click-particle {
     position: fixed;
