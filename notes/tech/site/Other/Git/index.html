@@ -1,0 +1,553 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Git - 技术笔记</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="技术笔记" class="md-header__button md-logo" aria-label="技术笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            技术笔记
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Git
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.md" class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="技术笔记" class="md-nav__button md-logo" aria-label="技术笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    技术笔记
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><a href="https://slides.tonycrane.cc/PracticalSkillsTutorial/2023-spring-cs/lec2/#/0/3">lec2 - 2023春夏实用技能拾遗</a>
+从 ACEE 实践面 pre task，到 hhgg 的讲座，到自己抽空玩了一下子再到科创史项目，我离最开始接触Git 也过去好久了，陆陆续续学了些，一直没有真正的应用场景，到了该用的时候，每次都要重新查一遍 x
+因此自己再写一篇文章整理一下，目的是达成真正内化，加强记忆，理解本质。</p>
+<h1 id="_1">版本的存储方式</h1>
+<ul>
+<li>全量存储</li>
+<li>增量存储</li>
+<li>快照存储，git 属于这种</li>
+</ul>
+<h1 id="_2">三大区域&amp;四种状态</h1>
+<p>三大区域：
+- 工作区 modified
+- 暂存区 staged
+- 仓库 committed/unmodified
+❗注意 untracked 不属于三大区域
+![[3-RESOURCE/知识/理/工具/asserts/Git/image.png]]</p>
+<h1 id="_3">前期准备</h1>
+<h2 id="_4">安装</h2>
+<p>https://git-scm.com/downloads/win (for Windows)
+验证 <code>git -v</code></p>
+<h2 id="_5">配置</h2>
+<p>全局变量/本地
+<code>git config [--global/local] user. name &lt;Your Name&gt;</code>git config [--global/local] user. email <YourEmail>``</p>
+<h2 id="git">获取 git 仓库</h2>
+<ul>
+<li>将尚未进行版本控制的本地目录转换为 Git 仓库 <code>git init</code></li>
+<li>从其它服务器克隆一个已存在的Git仓库<code>git clone &lt;URL&gt; &lt;DirName&gt;</code></li>
+</ul>
+<h1 id="_6">基本操作</h1>
+<h2 id="_7">检查文件状态</h2>
+<p>详细输出 <code>git status</code>
+简洁输出 <code>git status [-s]</code> 
+- ? : 未追踪 
+- A (DD) : 新追踪 
+- M (ODIFY) : 已修改 
+- D (ELETE) : 已删除
+- R (ENAME) : 重命名 
+- U (NMERGED) : 未合并
+输出中有两栏，左栏指明了暂存区的状态，右栏指明了工作区的状态。</p>
+<h2 id="stagetrack">暂存和追踪 stage/track</h2>
+<p>暂存已修改文件/开始追踪新文件 <code>git add &lt;FileName/DirName/RegExp&gt;</code>
+取消暂存文件 
+<code>git reset HEAD &lt;FileName/DirName/RegExp&gt;</code>
+不再追踪文件 
+<code>git rm &lt;file&gt;</code> 停止追踪+从工作目录中移除
+<code>git rm --cached &lt;FileName/DirName/RegExp&gt;</code> 只停止追踪回到 untracked 状态
+文件目录下的<code>.gitignore</code>用于声明不希望被 Git 追踪的文件名。</p>
+<h2 id="diff">比较 diff</h2>
+<p>比较文件差异
+- 工作区和暂存区<code>git diff</code>
+- 暂存区和最后一次提交 <code>git diff --staged</code></p>
+<h2 id="modify">修改 modify</h2>
+<p>撤销对文件的修改 <code>git checkout -- &lt;FileName&gt;</code></p>
+<h2 id="commit">提交 commit</h2>
+<p>提交 （存档点）
+<code>git commit</code> 先 add 后 commit，需在编辑器内输入提交信息，按 q 退出
+<code>git commit [-a] [-m] "&lt;Commit Message&gt;"</code> 自动将 tracked 并且 modified 的文件 add，直接标注提交信息
+<code>git commit --amend</code> 修订上次提交</p>
+<p>提交日志
+<code>git log []默认/[-p]最详细/[--stat]历史+更改/[--oneline]简洁版</code> 
+签出到某次提交
+<code>git checkout &lt;HashAbstract&gt;</code></p>
+<h1 id="git_1">Git 分支</h1>
+<p>本质上仅仅是指向提交对象的可变指针。
+默认分支名字是 master, HEAD 指向工作区当前所在的提交。</p>
+<p>查看分支 <code>git branch []/[-v]详细/[-vv]非常详细</code>
+创建分支 <code>git branch &lt;BranchName&gt;</code>
+签出到分支
+<code>git checkout &lt;BranchName&gt; [&lt;SrcBranchName&gt;]</code>
+<code>git checkout -b &lt;BranchName&gt; [&lt;SrcBranchName&gt;]</code> 创建并切换 
+<code>git checkout &lt;BranchName&gt; -f</code> 丢弃所有修改，强制切换
+删除分支 <code>git branch -d &lt;BranchName&gt;</code></p>
+<p>从分支合并 <code>git merge &lt;SrcBranchName&gt;</code>
+两种情况：
+- FastForward：无冲突自然合并
+- CONFLICT：手动解决冲突 </p>
+<h1 id="git_2">Git 远程</h1>
+<p>远程是指托管在网络中的你的项目的版本库。</p>
+<p>查看远程 <code>git remote [-v]</code>
+添加远程 <code>git remote add &lt;RemoteName&gt; &lt;RemoteURL&gt;</code> 使用git clone克隆的 Git 仓库会自动添加origin远程。
+删除远程 <code>git remote remove &lt;RemoteName&gt;</code></p>
+<p>远程分支形如 <code>&lt;RemoteName&gt;/&lt;BranchName&gt;</code> 的形式，只读
+从远程抓取 
+<code>git fetch &lt;RemoteName&gt;</code>
+推送到远程
+<code>git push &lt;RemoteName&gt; &lt;BranchName&gt;</code>git push <RemoteName> <LocalBranchName>:<RemoteBranchName>` 指定分支</p>
+<p>追踪远程分支
+<code>git checkout -b &lt;BranchName&gt; &lt;RemoteName&gt;/&lt;RemoteBranchName&gt;</code>使用git clone克隆的 Git 仓库会自动添加origin/master追踪
+设置追踪
+<code>git branch -u &lt;RemoteName&gt;/&lt;RemoteBranchName&gt;</code>
+从远程拉取
+<code>git pull</code>
+<code>git pull &lt;RemoteName&gt; &lt;RemoteBranchName&gt;:&lt;LocalBranchName&gt;</code> 指定分支</p>
+<h1 id="vim">vim 编辑器</h1>
+<p>输入 <code>:q(退出vim编辑器)</code> 即可，或者输入 <code>:q!(强制退出不保存)</code>、<code>:[wq](保存后退出)</code>、<code>:wq!(强制保存后退出)</code> 也可以退出编辑器。</p>
+<h1 id="git-gui">Git GUI</h1>
+<p>Git for VSCode
+GitHub Desktop</p>
+<h1 id="_8">命令行语法</h1>
+<p><code>.</code> 当前目录
+<code>..</code> 上一级目录
+<code>~</code> 当前用户的家目录
+<code>-</code> 上一个所在目录
+<code>/</code> 路径分隔符</p>
+<h1 id="git-commit">Git Commit 的规范</h1>
+<p>以中文为主，参考国际通用的 <strong>Conventional Commits（约定式提交）</strong> 结构。以下为你制定的“小白友好型”个人规范：</p>
+<h3 id="_9">一、核心格式</h3>
+<p>推荐采用以下结构：</p>
+<pre><code class="language-text">&lt;类型&gt;: &lt;简短描述&gt;
+
+[可选：详细描述，解释为什么要这么改]
+</code></pre>
+<h3 id="type">二、常用类型（Type）</h3>
+<p>这是规范的灵魂。你可以直接在代码中使用这些<strong>英文关键词</strong>（因为它们是行业黑话，且能让 IDE 插件自动识别生成图标），后面跟<strong>中文描述</strong>。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">关键词</th>
+<th style="text-align: left;">使用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>功能</strong></td>
+<td style="text-align: left;"><code>feat</code></td>
+<td style="text-align: left;">新增了功能（Feature）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>修复</strong></td>
+<td style="text-align: left;"><code>fix</code></td>
+<td style="text-align: left;">修复了 Bug</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>文档</strong></td>
+<td style="text-align: left;"><code>docs</code></td>
+<td style="text-align: left;">修改了 README、注释、项目文档等</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>样式</strong></td>
+<td style="text-align: left;"><code>style</code></td>
+<td style="text-align: left;">不影响逻辑的修改（如空格、格式化、修错别字）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>重构</strong></td>
+<td style="text-align: left;"><code>refactor</code></td>
+<td style="text-align: left;">代码逻辑优化（不是增功能也不是改 Bug）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>性能</strong></td>
+<td style="text-align: left;"><code>perf</code></td>
+<td style="text-align: left;">提升性能、运行速度的改动</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>测试</strong></td>
+<td style="text-align: left;"><code>test</code></td>
+<td style="text-align: left;">增加或修改测试用例</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>杂务</strong></td>
+<td style="text-align: left;"><code>chore</code></td>
+<td style="text-align: left;">构建过程、依赖库更新、辅助工具改动</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_10">三、具体的书写示例</h3>
+<h4 id="1">1. 新增功能</h4>
+<blockquote>
+<p><code>feat: 增加用户登录界面的手机号验证功能</code></p>
+</blockquote>
+<h4 id="2-bug">2. 修复 Bug</h4>
+<blockquote>
+<p><code>fix: 修复了在 iOS 浏览器下按钮点击无效的问题</code></p>
+</blockquote>
+<h4 id="3">3. 改进代码（重构）</h4>
+<blockquote>
+<p><code>refactor: 提取公共组件中的冗余逻辑，优化代码结构</code></p>
+</blockquote>
+<h4 id="4">4. 更新文档</h4>
+<blockquote>
+<p><code>docs: 修改项目安装说明，补充环境变量配置步骤</code></p>
+</blockquote>
+<h4 id="5">5. 杂务（如更新包）</h4>
+<blockquote>
+<p><code>chore: 升级 axios 依赖版本到 1.x</code></p>
+</blockquote>
+<h3 id="_11">四、几条实用的“进阶”原则</h3>
+<ol>
+<li><strong>原子化提交：</strong> 一次 Commit 只做一件事。不要改了 Bug 又顺便写了新功能。如果做了两件事，就分两次提交。</li>
+<li><strong>简短有力：</strong> 第一行描述尽量控制在 50 个字符以内。如果说不清楚，可以在空一行后写详细的“正文”。</li>
+<li><strong>用“完成时”还是“现在时”？</strong> 中文习惯用“增加”、“修复”，这比“增加了”、“修复了”更简洁。</li>
+<li><strong>善用 Emoji（可选）：</strong> 很多开发者喜欢在开头加图标，让 Log 看起来更美观。<ul>
+<li>✨ <code>feat:</code></li>
+<li>🐛 <code>fix:</code></li>
+<li>📝 <code>docs:</code></li>
+<li>🚀 <code>perf:</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="_12">五、给小白的辅助工具推荐</h3>
+<p>既然你还不需要参与大型项目，可以利用工具来强迫自己养成习惯：
+1.  <strong>VS Code 插件：<code>GitLens</code> 或 <code>Conventional Commits</code></strong>
+    *   安装后，它会提供一个可视化的界面，让你下拉选择 <code>feat</code> 或 <code>fix</code>，你只需要填空即可。
+2.  <strong>命令行（进阶）：<code>Commitizen</code></strong>
+    *   这是一个 Node. js 工具，你输入 <code>git cz</code> 之后，它会一步步问你问题，最后自动生成符合规范的注释。</p>
+<h3 id="_13">总结你的“私人模板”：</h3>
+<pre><code class="language-text">[图标] 类型: 做了什么事 (为什么这么做)
+</code></pre>
+<p><strong>坚持这个习惯两周，你会发现回看自己代码历史时，有一种强迫症被治愈的爽快感！</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
