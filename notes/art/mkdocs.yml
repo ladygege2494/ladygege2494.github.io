@@ -11,4 +11,14 @@ theme:
     - search.suggest
     - search.highlight
 nav:
-  - 首页: index.md
+  - Home: index.md
+  - Film: Film/index.md
+  - Fine Art: Fine Art/index.md
+  - Literature: Literature/index.md
+  - Music: Music/index.md
+  - History: History/index.md
+  - Philosophy: Philosophy/index.md
+  - Culture: Culture/index.md
+  - Inspiration: Inspiration/index.md
+
+

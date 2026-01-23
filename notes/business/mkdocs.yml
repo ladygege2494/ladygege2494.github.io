@@ -11,4 +11,11 @@ theme:
     - search.suggest
     - search.highlight
 nav:
-  - 首页: index.md
+  - Home: index.md
+  - Macro: Macro/index.md
+  - Business Model: Business Model/index.md
+  - Investment: 
+    - 概览: Investment/index.md
+    - 股票: Investment/股票.md
+  - Leverage: Leverage/index.md
+  - Soft Skills: Soft Skills/index.md

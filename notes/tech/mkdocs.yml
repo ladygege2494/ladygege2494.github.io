@@ -11,4 +11,12 @@ theme:
     - search.suggest
     - search.highlight
 nav:
-  - 首页: index.md
+  - Home: index.md
+  - ISEE: ISEE/index.md
+  - CS: CS/index.md
+  - AI: AI/index.md
+  - Me: Me/index.md
+  - Math: Math/index.md
+  - Physics: Physics/index.md
+  - Other: Other/index.md
+  - 通识: 通识/index.md
