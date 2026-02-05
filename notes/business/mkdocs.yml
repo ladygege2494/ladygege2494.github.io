@@ -12,10 +12,15 @@ theme:
     - search.highlight
 nav:
   - Home: index.md
-  - Macro: Macro/index.md
-  - Business Model: Business Model/index.md
+  - Macro:
+    - 概览: Macro/index.md
+    - 经济学原理Principles of ecnomics: Macro/经济学原理Principles of ecnomics.md
+  - Business Model:
+    - 概览: Business Model/index.md
   - Investment: 
     - 概览: Investment/index.md
     - 股票: Investment/股票.md
-  - Leverage: Leverage/index.md
-  - Soft Skills: Soft Skills/index.md
+  - Leverage:
+    - 概览: Leverage/index.md
+  - Soft Skills:
+    - 概览: Soft Skills/index.md
