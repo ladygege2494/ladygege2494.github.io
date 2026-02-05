@@ -65,6 +65,7 @@ jobs:
           cp *.jpg site/ 2>/dev/null || true
           cp *.png site/ 2>/dev/null || true
           cp -r notes site/ 2>/dev/null || true
+          ls -la site/  # 验证文件复制
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
