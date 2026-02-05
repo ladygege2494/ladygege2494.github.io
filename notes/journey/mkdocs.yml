@@ -23,8 +23,8 @@ nav:
   - Home: index.md
   - Health: Health/index.md
   - Moments: Moments/index.md
-  - Thoughts: 
-    - Thoughts/index.md
+  - Thoughts:
+    - 概览: Thoughts/index.md
     - 我想如何度过我的本科: Thoughts/我想如何度过我的本科.md
 
 markdown_extensions:
