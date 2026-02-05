@@ -32,7 +32,7 @@ const blockDetails = {
     },
     journey: {
         text: '记录个人生活与成长感悟，分享一路走来的点滴。',
-        link: 'journey/index.html'
+        link: 'journey.html'
     }
 };
 
@@ -289,7 +289,7 @@ function initComments() {
 // ========== 打字效果 ==========
 function initTypingEffect() {
     const typingText = document.getElementById('typingText');
-    const texts = ['hello I am awesome', 'welcome to my nook'];
+    const texts = ['Hello! I am Awesome!', 'Welcome to My Nook!'];
     let textIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
@@ -599,7 +599,7 @@ function initBubbles() {
     const bubblesContainer = document.getElementById('bubblesContainer');
     if (!bubblesContainer) return;
 
-    const tags = ['微电子', '影迷', '终身学习', '前端开发', '设计', '阅读', '思考', '创作', '探索', '创新'];
+    const tags = ['微电子', '影迷', '终身学习', '技术产品', '阅读', '与人连接', '创作', '探索'];
     
     // 清除可能存在的旧数据
     bubblesData.length = 0;
@@ -625,7 +625,7 @@ function initBubbles() {
 function createBubble(tagText, autoRegen = true) {
     const bubblesContainer = document.getElementById('bubblesContainer');
     if (!bubblesContainer) return;
-    const tags = ['微电子', '影迷', '终身学习', '前端开发', '设计', '阅读', '思考', '创作', '探索', '创新'];
+    const tags = ['微电子', '影迷', '终身学习', '技术产品', '阅读', '与人连接', '创作', '探索'];
     const tag = tagText || tags[Math.floor(Math.random() * tags.length)];
     
     const bubble = document.createElement('div');
