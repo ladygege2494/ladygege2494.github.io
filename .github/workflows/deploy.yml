@@ -30,13 +30,13 @@ jobs:
       - name: Build Tech Notes
         run: |
           cd notes/tech
-          mkdocs build -d ../../site/tech
+          mkdocs build
 
       - name: Build Business Notes
         run: |
           if [ -d "notes/business" ]; then
             cd notes/business
-            mkdocs build -d ../../site/business
+            mkdocs build
             cd ../..
           fi
 
@@ -44,7 +44,7 @@ jobs:
         run: |
           if [ -d "notes/art" ]; then
             cd notes/art
-            mkdocs build -d ../../site/art
+            mkdocs build
             cd ../..
           fi
 
@@ -52,22 +52,19 @@ jobs:
         run: |
           if [ -d "notes/journey" ]; then
             cd notes/journey
-            mkdocs build -d ../../site/journey
+            mkdocs build
             cd ../..
           fi
 
       - name: Prepare main site
         run: |
-          # 创建 site 目录（如果还没有）
           mkdir -p site
-          # 将根目录的静态文件复制到 site 目录
           cp *.html site/ 2>/dev/null || true
           cp *.js site/ 2>/dev/null || true
           cp *.css site/ 2>/dev/null || true
           cp *.jpg site/ 2>/dev/null || true
           cp *.png site/ 2>/dev/null || true
-          # 如果有其他静态资源文件夹，也需要复制
-          # cp -r assets site/ 2>/dev/null || true
+          cp -r notes site/ 2>/dev/null || true
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
