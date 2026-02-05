@@ -16,7 +16,7 @@ const blockDetails = {
     },
     tech: {
         text: '技术笔记记录我的学习历程和技术思考，涵盖前端、后端、算法等多个领域。',
-        link: 'tech.html'
+        link: 'tech/index.html'
     },
     art: {
         text: '文艺笔记是我对电影、书籍、艺术的感悟和思考，记录那些触动心灵的时刻。',
@@ -32,7 +32,7 @@ const blockDetails = {
     },
     journey: {
         text: '记录个人生活与成长感悟，分享一路走来的点滴。',
-        link: 'journey.html'
+        link: 'journey/index.html'
     }
 };
 
