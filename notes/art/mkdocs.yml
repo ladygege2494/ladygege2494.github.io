@@ -3,8 +3,8 @@ theme:
   name: material
   language: zh
   palette:
-    primary: red
-    accent: red
+    primary: deep purple
+    accent: purple
   features:
     - navigation.tabs
     - navigation.sections

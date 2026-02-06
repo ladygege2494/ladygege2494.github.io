@@ -3,8 +3,8 @@ theme:
   name: material
   language: zh
   palette:
-    primary: red
-    accent: red
+    primary: blue grey
+    accent: indigo
   features:
     - navigation.tabs
     - navigation.sections

@@ -48,8 +48,14 @@
         .card-title {
             font-size: 1.5rem;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 8px;
             color: #000;
+        }
+        .card-account {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 15px;
+            font-style: italic;
         }
         .card-image-container {
             width: 100%;
@@ -79,7 +85,9 @@
     <div class="nav-hover-zone" id="navHoverZone"></div>
     <nav class="top-nav collapsed" id="globalNav">
         <div class="nav-left">
-            <span class="nav-logo">GegeNook</span>
+            <span class="nav-logo">
+                <span class="letter-red">G</span><span class="letter-yellow">e</span><span class="letter-blue">g</span><span class="letter-black">e</span><span class="letter-red">N</span><span class="letter-yellow">o</span><span class="letter-blue">o</span><span class="letter-black">k</span>
+            </span>
         </div>
         <div class="nav-center">
             <div class="nav-item" id="searchBtn">
@@ -120,6 +128,7 @@
         <div class="cards-grid">
             <div class="media-card" onclick="window.open('#', '_blank')">
                 <div class="card-title">📱 公众号</div>
+                <div class="card-account">Mr. Lady</div>
                 <div class="card-image-container" id="wechatCarousel">
                     <img src="media-img1.jpg" class="card-image active" alt="公众号1">
                     <img src="media-img2.jpg" class="card-image" alt="公众号2">
@@ -129,6 +138,7 @@
             
             <div class="media-card" onclick="window.open('https://space.bilibili.com/508676760', '_blank')">
                 <div class="card-title">🎥 B站主页</div>
+                <div class="card-account">MrLady 格格</div>
                 <div class="card-image-container" id="biliCarousel">
                     <img src="media-img4.png" class="card-image active" alt="B站1">
                     <img src="media-img5.png" class="card-image" alt="B站2">
@@ -138,6 +148,7 @@
             
             <div class="media-card" onclick="window.open('#', '_blank')">
                 <div class="card-title">🎧 小宇宙博客</div>
+                <div class="card-account">不拘一“格”</div>
                 <div class="card-image-container" id="podcastCarousel">
                     <img src="media-img7.jpg" class="card-image active" alt="小宇宙">
                 </div>

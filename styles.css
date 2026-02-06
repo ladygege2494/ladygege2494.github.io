@@ -205,11 +205,22 @@ body {
 }
 
 .nav-left {
-    font-size: 1.1rem;
-    color: #666;
-    font-weight: 500;
-    letter-spacing: 1px;
+    font-size: 1.3rem;
+    font-weight: 900;
+    font-family: -apple-system, BlinkMacSystemFont, "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    letter-spacing: 2px;
+    display: flex;
+    gap: 2px;
 }
+
+.nav-logo span {
+    display: inline-block;
+}
+
+.nav-logo .letter-red { color: #E60012; }
+.nav-logo .letter-yellow { color: #FFD700; }
+.nav-logo .letter-blue { color: #0066CC; }
+.nav-logo .letter-black { color: #000; }
 
 .nav-center {
     display: flex;
@@ -245,7 +256,8 @@ body {
 }
 
 .nav-text {
-    font-weight: 400;
+    font-weight: 900;
+    font-family: -apple-system, BlinkMacSystemFont, "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
 }
 
 .nav-toggle {

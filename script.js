@@ -353,6 +353,10 @@ function initScrollHandler() {
     });
 }
 
+// 滚轮累积量，用于惯性检测
+let wheelAccumulation = 0;
+const wheelThreshold = 100; // 累积达到这个值才触发切换
+
 function handleWheel(e) {
     // 只有首页才拦截滚动
     if (!document.body.classList.contains('home-body')) return;
@@ -361,16 +365,26 @@ function handleWheel(e) {
     
     e.preventDefault();
     
+    // 累积滚动量
+    wheelAccumulation += e.deltaY;
+    
+    // 清零计时器，如果一段时间没有滚动则重置累积
     clearTimeout(scrollTimeout);
     scrollTimeout = setTimeout(() => {
-        if (e.deltaY > 0) {
+        wheelAccumulation = 0;
+    }, 200);
+    
+    // 判断是否达到阈值
+    if (Math.abs(wheelAccumulation) >= wheelThreshold) {
+        if (wheelAccumulation > 0) {
             // 向下滚动 - 使用瀑布流动画
             scrollToSectionWithAnimation(currentSection + 1);
         } else {
-            // 向上滚动
-            scrollToSection(currentSection - 1);
+            // 向上滚动 - 也使用瀑布流动画
+            scrollToSectionWithAnimation(currentSection - 1);
         }
-    }, 100);
+        wheelAccumulation = 0;
+    }
 }
 
 function handleTouchSwipe() {
@@ -807,9 +821,9 @@ function openBubbleModal(bubbleEl) {
 
 // ========== 蒙德里安风格瀑布流页面切换动画 ==========
 function scrollToSectionWithAnimation(sectionNum) {
+    // 边界检查
     if (sectionNum < 1 || sectionNum > 2) {
-        scrollToSection(sectionNum);
-        return;
+        return; // 不超出范围
     }
 
     const pageTransition = document.getElementById('pageTransition');
