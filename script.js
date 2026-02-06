@@ -355,7 +355,7 @@ function initScrollHandler() {
 
 // 滚轮累积量，用于惯性检测
 let wheelAccumulation = 0;
-const wheelThreshold = 100; // 累积达到这个值才触发切换
+const wheelThreshold = 50; // 降低阈值，让滚动更灵敏
 
 function handleWheel(e) {
     // 只有首页才拦截滚动
@@ -372,7 +372,7 @@ function handleWheel(e) {
     clearTimeout(scrollTimeout);
     scrollTimeout = setTimeout(() => {
         wheelAccumulation = 0;
-    }, 200);
+    }, 150); // 缩短重置时间，增加惯性感
     
     // 判断是否达到阈值
     if (Math.abs(wheelAccumulation) >= wheelThreshold) {
@@ -380,7 +380,7 @@ function handleWheel(e) {
             // 向下滚动 - 使用瀑布流动画
             scrollToSectionWithAnimation(currentSection + 1);
         } else {
-            // 向上滚动 - 也使用瀑布流动画
+            // 向上滚动 - 使用瀑布流动画
             scrollToSectionWithAnimation(currentSection - 1);
         }
         wheelAccumulation = 0;
@@ -398,11 +398,11 @@ function handleTouchSwipe() {
     
     if (Math.abs(swipeDistance) > minSwipeDistance) {
         if (swipeDistance > 0) {
-            // 向上滑动
-            scrollToSection(currentSection + 1);
+            // 向上滑动 - 使用瀑布流动画
+            scrollToSectionWithAnimation(currentSection + 1);
         } else {
-            // 向下滑动
-            scrollToSection(currentSection - 1);
+            // 向下滑动 - 使用瀑布流动画
+            scrollToSectionWithAnimation(currentSection - 1);
         }
     }
 }
@@ -832,9 +832,13 @@ function scrollToSectionWithAnimation(sectionNum) {
         return;
     }
 
+    if (isScrolling) return; // 防止重复触发
     isScrolling = true;
 
-    // 清空之前的方格
+    const prevSection = currentSection;
+    currentSection = sectionNum;
+
+    // 清空之前的方格（重要：每次都重新生成）
     pageTransition.innerHTML = '';
     pageTransition.classList.add('active');
 
@@ -870,21 +874,43 @@ function scrollToSectionWithAnimation(sectionNum) {
         block.style.setProperty('--rotate', rotate + 'deg');
         
         // 延迟下落
-        const delay = Math.random() * 0.4;
+        const delay = Math.random() * 0.3;
         block.style.animationDelay = delay + 's';
         
         pageTransition.appendChild(block);
         
-        // 触发动画
-        setTimeout(() => {
+        // 立即触发动画
+        requestAnimationFrame(() => {
             block.classList.add('falling');
-        }, 10);
+        });
     }
 
-    // 动画结束后执行切换
+    // 同步执行页面切换和动画
+    const section1 = document.getElementById('section1');
+    const targetSection = document.getElementById(`section${sectionNum}`);
+    
+    // 添加幕布效果
+    if (section1 && currentSection === 2 && prevSection === 1) {
+        section1.classList.add('slide-up');
+    } else if (section1 && currentSection === 1) {
+        section1.classList.remove('slide-up');
+    }
+    
+    // 立即开始页面滚动（与动画同步）
+    if (targetSection) {
+        targetSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    }
+
+    // 动画结束后清理并重置状态
     setTimeout(() => {
-        scrollToSection(sectionNum);
         pageTransition.classList.remove('active');
-        pageTransition.innerHTML = '';
-    }, 1200);
+        // 延迟清空，避免闪烁
+        setTimeout(() => {
+            pageTransition.innerHTML = '';
+        }, 100);
+        isScrolling = false;
+    }, 1000); // 缩短到1秒，让切换更流畅
 }
