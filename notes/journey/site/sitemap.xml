@@ -1,3 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://yourdomain.com/notes/journey/</loc>
+         <lastmod>2026-02-06</lastmod>
+    </url>
+    <url>
+         <loc>https://yourdomain.com/notes/journey/Health/</loc>
+         <lastmod>2026-02-06</lastmod>
+    </url>
+    <url>
+         <loc>https://yourdomain.com/notes/journey/Moments/</loc>
+         <lastmod>2026-02-06</lastmod>
+    </url>
+    <url>
+         <loc>https://yourdomain.com/notes/journey/Thoughts/</loc>
+         <lastmod>2026-02-06</lastmod>
+    </url>
+    <url>
+         <loc>https://yourdomain.com/notes/journey/Thoughts/%E6%88%91%E6%83%B3%E5%A6%82%E4%BD%95%E5%BA%A6%E8%BF%87%E6%88%91%E7%9A%84%E6%9C%AC%E7%A7%91/</loc>
+         <lastmod>2026-02-06</lastmod>
+    </url>
 </urlset>

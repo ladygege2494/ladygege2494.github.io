@@ -1,15 +1,21 @@
 site_name: 文艺笔记
+site_url: https://yourdomain.com/notes/art/
 theme:
   name: material
   language: zh
+  favicon: ../../favicon.jpg
+  custom_dir: overrides
   palette:
     primary: deep purple
     accent: purple
   features:
     - navigation.tabs
     - navigation.sections
+    - navigation.top
     - search.suggest
     - search.highlight
+extra:
+  homepage: ../../art/index.html
 nav:
   - Home: index.md
   - Film:

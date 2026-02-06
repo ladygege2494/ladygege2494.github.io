@@ -1,15 +1,21 @@
 site_name: 技术笔记
+site_url: https://yourdomain.com/notes/tech/
 theme:
   name: material
   language: zh
+  favicon: ../../favicon.jpg
+  custom_dir: overrides
   palette:
-    primary: indigo
-    accent: indigo
+    primary: blue
+    accent: blue
   features:
     - navigation.tabs
     - navigation.sections
+    - navigation.top
     - search.suggest
     - search.highlight
+extra:
+  homepage: ../../tech/index.html
 nav:
   - Home: index.md
   - ISEE: ISEE/index.md

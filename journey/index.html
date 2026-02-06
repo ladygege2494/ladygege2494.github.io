@@ -50,7 +50,7 @@
             color: #fff;
         }
         
-        /* 蒙德里安风格照片墙 */
+        /* 照片树样式 */
         .photo-wall-title {
             font-size: 2.5rem;
             color: #fff;
@@ -58,60 +58,192 @@
             font-weight: bold;
         }
         
-        .photo-wall {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(3, 200px);
-            gap: 15px;
+        .tree-container {
+            position: relative;
             width: 100%;
             max-width: 1200px;
+            min-height: 800px;
             margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         
-        .photo-item {
-            position: relative;
-            overflow: hidden;
+        /* 树干 */
+        .tree-trunk {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 300px;
+            background: linear-gradient(to bottom, #8B4513, #654321);
+            border: 3px solid #000;
+            border-radius: 30px 30px 0 0;
+            z-index: 1;
+        }
+        
+        /* 树冠（SVG 样式） */
+        .tree-crown {
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 500px;
+            height: 500px;
+            z-index: 0;
+        }
+        
+        /* 照片卡片 */
+        .photo-card {
+            position: absolute;
+            width: 200px;
+            height: 150px;
+            background: #fff;
             border: 4px solid #000;
-            transition: all 0.3s ease;
+            border-radius: 8px;
+            overflow: hidden;
             cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 2;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
         }
         
-        .photo-item:hover {
-            transform: scale(1.05);
+        .photo-card:hover {
+            transform: rotate(0deg) scale(1.1) !important;
             z-index: 10;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            box-shadow: 8px 8px 0 rgba(0,0,0,0.3);
         }
         
-        .photo-item img {
+        .photo-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
         }
         
-        /* 不规则布局 */
-        .photo-item:nth-child(1) {
-            grid-column: span 2;
-            grid-row: span 2;
+        .photo-card::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 30px;
+            background: #8B4513;
+            border-left: 2px dashed #654321;
         }
         
-        .photo-item:nth-child(5) {
-            grid-column: span 2;
+        /* 照片位置布局 */
+        .photo-card:nth-child(1) {
+            top: 100px;
+            left: 150px;
+            transform: rotate(-5deg);
         }
         
-        .photo-item:nth-child(8) {
-            grid-row: span 2;
+        .photo-card:nth-child(2) {
+            top: 80px;
+            right: 150px;
+            transform: rotate(8deg);
+        }
+        
+        .photo-card:nth-child(3) {
+            top: 280px;
+            left: 100px;
+            transform: rotate(3deg);
+        }
+        
+        .photo-card:nth-child(4) {
+            top: 300px;
+            right: 100px;
+            transform: rotate(-7deg);
+        }
+        
+        /* 树洞留言卡片 */
+        .tree-hole-card {
+            position: absolute;
+            bottom: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 280px;
+            min-height: 200px;
+            background: #fff;
+            border: 4px solid #000;
+            border-radius: 12px;
+            padding: 20px;
+            z-index: 3;
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.2);
+        }
+        
+        .tree-hole-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #27AE60;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .tree-hole-textarea {
+            width: 100%;
+            min-height: 80px;
+            padding: 10px;
+            border: 2px solid #000;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            resize: vertical;
+            font-family: inherit;
+        }
+        
+        .tree-hole-btn {
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+            background: #27AE60;
+            color: #fff;
+            border: 3px solid #000;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .tree-hole-btn:hover {
+            background: #fff;
+            color: #27AE60;
+        }
+        
+        .tree-hole-messages {
+            margin-top: 15px;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        
+        .tree-hole-message {
+            padding: 8px;
+            background: #f0f0f0;
+            border-left: 3px solid #27AE60;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            border-radius: 4px;
         }
         
         @media (max-width: 768px) {
-            .photo-wall {
-                grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: auto;
+            .tree-container {
+                min-height: 600px;
             }
             
-            .photo-item:nth-child(1) {
-                grid-column: span 2;
-                grid-row: span 1;
+            .tree-crown {
+                width: 350px;
+                height: 350px;
+            }
+            
+            .photo-card {
+                width: 150px;
+                height: 110px;
+            }
+            
+            .tree-hole-card {
+                width: 240px;
             }
         }
     </style>
@@ -168,41 +300,90 @@
         <a href="../notes/journey/site/index.html" class="mkdocs-link">进入 MkDocs 网站 →</a>
     </div>
     
-    <!-- 蒙德里安风格照片墙 -->
-    <h2 class="photo-wall-title">照片墙</h2>
-    <div class="photo-wall">
-        <!-- 占位照片，用户可以替换为真实照片 -->
-        <div class="photo-item" style="background: #E60012;">
-            <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #fff; font-size: 1.2rem;">照片1</div>
+    <!-- 照片树 -->
+    <h2 class="photo-wall-title">🌳 成长之树</h2>
+    <div class="tree-container">
+        <!-- 树冠 SVG -->
+        <svg class="tree-crown" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="90" fill="#2ECC71" stroke="#000" stroke-width="3"/>
+            <circle cx="70" cy="80" r="50" fill="#27AE60" stroke="#000" stroke-width="2"/>
+            <circle cx="130" cy="85" r="55" fill="#27AE60" stroke="#000" stroke-width="2"/>
+            <circle cx="100" cy="130" r="60" fill="#229954" stroke="#000" stroke-width="2"/>
+        </svg>
+        
+        <!-- 树干 -->
+        <div class="tree-trunk"></div>
+        
+        <!-- 照片卡片 -->
+        <div class="photo-card">
+            <img src="fig/高中毕业.jpg" alt="高中毕业">
         </div>
-        <div class="photo-item" style="background: #FFD700;">
-            <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #000; font-size: 1.2rem;">照片2</div>
+        <div class="photo-card">
+            <img src="fig/大一下成功考入工高.jpg" alt="考入工高">
         </div>
-        <div class="photo-item" style="background: #0066CC;">
-            <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #fff; font-size: 1.2rem;">照片3</div>
+        <div class="photo-card">
+            <img src="fig/19岁生日.jpg" alt="19岁生日">
         </div>
-        <div class="photo-item" style="background: #fff;">
-            <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #000; font-size: 1.2rem;">照片4</div>
+        <div class="photo-card">
+            <img src="fig/告别大一加入的学生组织.jpg" alt="告别学生组织">
         </div>
-        <div class="photo-item" style="background: #E60012;">
-            <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #fff; font-size: 1.2rem;">照片5</div>
-        </div>
-        <div class="photo-item" style="background: #0066CC;">
-            <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #fff; font-size: 1.2rem;">照片6</div>
-        </div>
-        <div class="photo-item" style="background: #FFD700;">
-            <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #000; font-size: 1.2rem;">照片7</div>
-        </div>
-        <div class="photo-item" style="background: #fff;">
-            <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #000; font-size: 1.2rem;">照片8</div>
-        </div>
-        <div class="photo-item" style="background: #FFD700;">
-            <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #000; font-size: 1.2rem;">照片9</div>
-        </div>
-        <div class="photo-item" style="background: #E60012;">
-            <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #fff; font-size: 1.2rem;">照片10</div>
+        
+        <!-- 树洞留言卡片 -->
+        <div class="tree-hole-card">
+            <div class="tree-hole-title">🍃 树洞留言</div>
+            <textarea class="tree-hole-textarea" id="treeHoleInput" placeholder="写下你的心情..."></textarea>
+            <button class="tree-hole-btn" onclick="submitTreeHoleMessage()">投入树洞</button>
+            <div class="tree-hole-messages" id="treeHoleMessages"></div>
         </div>
     </div>
+    
+    <script>
+        // 树洞留言功能
+        function submitTreeHoleMessage() {
+            const input = document.getElementById('treeHoleInput');
+            const messagesDiv = document.getElementById('treeHoleMessages');
+            const message = input.value.trim();
+            
+            if (!message) {
+                alert('请输入留言内容');
+                return;
+            }
+            
+            // 保存到 localStorage
+            const messages = JSON.parse(localStorage.getItem('treeHoleMessages') || '[]');
+            messages.unshift({
+                content: message,
+                time: new Date().toLocaleString('zh-CN', {
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                })
+            });
+            localStorage.setItem('treeHoleMessages', JSON.stringify(messages.slice(0, 20))); // 只保留最近20条
+            
+            // 清空输入框
+            input.value = '';
+            
+            // 刷新显示
+            loadTreeHoleMessages();
+        }
+        
+        function loadTreeHoleMessages() {
+            const messagesDiv = document.getElementById('treeHoleMessages');
+            const messages = JSON.parse(localStorage.getItem('treeHoleMessages') || '[]');
+            
+            messagesDiv.innerHTML = messages.map(msg => `
+                <div class="tree-hole-message">
+                    <div style="font-size: 0.75rem; color: #666; margin-bottom: 4px;">${msg.time}</div>
+                    <div>${msg.content}</div>
+                </div>
+            `).join('');
+        }
+        
+        // 页面加载时显示留言
+        document.addEventListener('DOMContentLoaded', loadTreeHoleMessages);
+    </script>
 
     <!-- 页面切换加载动画 -->
     <div class="page-loader" id="pageLoader">

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+<style>
+.back-to-gegenook {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    z-index: 1000;
+    background: #27AE60;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    border: 2px solid #fff;
+}
+.back-to-gegenook:hover {
+    background: #fff;
+    color: #27AE60;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+</style>
+{% endblock %}
+
+{% block content %}
+{{ super() }}
+<a href="../../journey/index.html" class="back-to-gegenook">← 返回 GegeNook</a>
+{% endblock %}

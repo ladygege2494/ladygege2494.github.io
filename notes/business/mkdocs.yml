@@ -1,15 +1,21 @@
 site_name: 商业笔记
+site_url: https://yourdomain.com/notes/business/
 theme:
   name: material
   language: zh
+  favicon: ../../favicon.jpg
+  custom_dir: overrides
   palette:
-    primary: blue grey
-    accent: indigo
+    primary: red
+    accent: red
   features:
     - navigation.tabs
     - navigation.sections
+    - navigation.top
     - search.suggest
     - search.highlight
+extra:
+  homepage: ../../business/index.html
 nav:
   - Home: index.md
   - Macro:

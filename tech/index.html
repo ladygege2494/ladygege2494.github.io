@@ -17,35 +17,49 @@
             padding: 20px;
         }
         .tech-container {
-            max-width: 800px;
+            max-width: 1200px;
             width: 100%;
             text-align: center;
         }
-        .back-link {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: bold;
-            padding: 10px 20px;
-            border: 2px solid #fff;
-            transition: all 0.3s ease;
-        }
-        .back-link:hover {
-            background: #fff;
-            color: #0066CC;
-        }
         h1 {
             font-size: 3rem;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
             color: #fff;
         }
-        .info {
-            color: #fff;
-            font-size: 1.2rem;
-            line-height: 1.8;
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+        .note-card {
+            background: #fff;
+            border: 4px solid #000;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .note-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 8px 8px 0 #000;
+        }
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #000;
+        }
+        .card-desc {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
         }
         .mkdocs-link {
             display: inline-block;
@@ -110,9 +124,21 @@
 
     <div class="tech-container">
         <h1>技术笔记</h1>
-        <div class="info">
-            <p>技术笔记记录我的学习历程和技术思考，涵盖前端、后端、算法等多个领域。</p>
-            <p>内容将通过 MkDocs 网站展示，敬请期待。</p>
+        <div class="cards-grid">
+            <div class="note-card" onclick="window.location.href='#'">
+                <div class="card-title">🔥 近期更新</div>
+                <div class="card-desc">最新的技术学习笔记和开发心得</div>
+            </div>
+            
+            <div class="note-card" onclick="window.location.href='#'">
+                <div class="card-title">✨ 推荐阅读</div>
+                <div class="card-desc">精选技术文章，干货满满</div>
+            </div>
+            
+            <div class="note-card" onclick="window.location.href='#'">
+                <div class="card-title">💡 项目实践</div>
+                <div class="card-desc">真实项目经验和技术总结</div>
+            </div>
         </div>
         <a href="../notes/tech/site/index.html" class="mkdocs-link">进入 MkDocs 网站 →</a>
     </div>

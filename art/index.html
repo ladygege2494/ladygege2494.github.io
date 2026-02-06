@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../styles.css">
     <style>
         body {
-            background: #9B59B6;
+            background: linear-gradient(to right, #0066CC 0%, #0066CC 10%, #9B59B6 20%, #9B59B6 80%, #E60012 90%, #E60012 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -17,42 +17,56 @@
             padding: 20px;
         }
         .art-container {
-            max-width: 800px;
+            max-width: 1200px;
             width: 100%;
             text-align: center;
         }
-        .back-link {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: bold;
-            padding: 10px 20px;
-            border: 2px solid #fff;
-            transition: all 0.3s ease;
-        }
-        .back-link:hover {
-            background: #fff;
-            color: #E60012;
-        }
         h1 {
             font-size: 3rem;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
             color: #fff;
         }
-        .info {
-            color: #fff;
-            font-size: 1.2rem;
-            line-height: 1.8;
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+        .note-card {
+            background: #fff;
+            border: 4px solid #000;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .note-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 8px 8px 0 #000;
+        }
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #000;
+        }
+        .card-desc {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
         }
         .mkdocs-link {
             display: inline-block;
             margin-top: 30px;
             padding: 15px 30px;
             background: #fff;
-            color: #E60012;
+            color: #9B59B6;
             text-decoration: none;
             font-size: 1.1rem;
             font-weight: bold;
@@ -110,9 +124,21 @@
 
     <div class="art-container">
         <h1>文艺笔记</h1>
-        <div class="info">
-            <p>文艺笔记是我对电影、书籍、艺术的感悟和思考，记录那些触动心灵的时刻。</p>
-            <p>内容将通过 MkDocs 网站展示，敬请期待。</p>
+        <div class="cards-grid">
+            <div class="note-card" onclick="window.location.href='#'">
+                <div class="card-title">📚 近期更新</div>
+                <div class="card-desc">最新的电影、书籍评论和艺术感悟</div>
+            </div>
+            
+            <div class="note-card" onclick="window.location.href='#'">
+                <div class="card-title">⭐ 推荐阅读</div>
+                <div class="card-desc">精选优质内容，值得细细品味</div>
+            </div>
+            
+            <div class="note-card" onclick="window.location.href='#'">
+                <div class="card-title">🎬 经典回顾</div>
+                <div class="card-desc">那些触动心灵的永恒时刻</div>
+            </div>
         </div>
         <a href="../notes/art/site/index.html" class="mkdocs-link">进入 MkDocs 网站 →</a>
     </div>
