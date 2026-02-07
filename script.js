@@ -12,27 +12,27 @@ let draggedBubble = null; // 当前拖拽的气泡
 const blockDetails = {
     media: {
         text: '这里是我的自媒体平台，包括公众号和B站主页。分享我的思考、创作和生活。',
-        link: 'media/'
+        link: 'media/index.html'
     },
     tech: {
         text: '技术笔记记录我的学习历程和技术思考，涵盖前端、后端、算法等多个领域。',
-        link: 'tech/'
+        link: 'tech/index.html'
     },
     art: {
         text: '文艺笔记是我对电影、书籍、艺术的感悟和思考，记录那些触动心灵的时刻。',
-        link: 'art/'
+        link: 'art/index.html'
     },
     business: {
         text: '商业笔记分享我对商业、产品、创业的观察和思考，探索商业世界的逻辑。',
-        link: 'business/'
+        link: 'business/index.html'
     },
     portfolio: {
         text: '作品集展示我的项目作品，包括设计、开发、创意等多个方面的实践成果。',
-        link: 'portfolio/'
+        link: 'portfolio/index.html'
     },
     journey: {
         text: '记录个人生活与成长感悟，分享一路走来的点滴。',
-        link: 'journey/'
+        link: 'journey/index.html'
     }
 };
 

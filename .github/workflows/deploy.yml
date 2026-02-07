@@ -64,8 +64,21 @@ jobs:
           cp *.css site/ 2>/dev/null || true
           cp *.jpg site/ 2>/dev/null || true
           cp *.png site/ 2>/dev/null || true
-          cp -r notes site/ 2>/dev/null || true
+          cp -r tech site/ 2>/dev/null || true
+          cp -r art site/ 2>/dev/null || true
+          cp -r business site/ 2>/dev/null || true
+          cp -r media site/ 2>/dev/null || true
+          cp -r journey site/ 2>/dev/null || true
+          cp -r portfolio site/ 2>/dev/null || true
+          cp -r about site/ 2>/dev/null || true
+          cp -r friends site/ 2>/dev/null || true
+          mkdir -p site/notes
+          cp -r notes/tech/site site/notes/tech 2>/dev/null || true
+          cp -r notes/art/site site/notes/art 2>/dev/null || true
+          cp -r notes/business/site site/notes/business 2>/dev/null || true
+          cp -r notes/journey/site site/notes/journey 2>/dev/null || true
           ls -la site/  # 验证文件复制
+          ls -la site/notes/  # 验证MkDocs站点
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4

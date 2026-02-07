@@ -1,7 +1,6 @@
 site_name: 一路走来
 site_description: 记录个人生活与成长感悟
 site_author: LadyGege
-site_url: https://yourdomain.com/notes/journey/
 
 theme:
   name: material
