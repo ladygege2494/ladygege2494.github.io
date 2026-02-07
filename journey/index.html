@@ -92,14 +92,20 @@
         .timeline-item.left .timeline-content {
             margin-left: 0;
             margin-right: calc(50% + 40px);
-            text-align: right;
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            gap: 20px;
         }
         
         /* 右侧卡片 */
         .timeline-item.right .timeline-content {
             margin-left: calc(50% + 40px);
             margin-right: 0;
-            text-align: left;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 20px;
         }
         
         /* 内容卡片 */
@@ -152,21 +158,26 @@
         
         /* 照片 */
         .timeline-photo {
-            width: 100%;
-            max-width: 300px;
+            width: 200px;
             height: 200px;
             object-fit: cover;
             border: 3px solid #000;
             border-radius: 8px;
-            margin-bottom: 15px;
+            flex-shrink: 0;
         }
         
-        .timeline-item.left .timeline-photo {
-            float: right;
+        /* 文字内容区域 */
+        .timeline-text {
+            flex: 1;
+            min-width: 0;
         }
         
-        .timeline-item.right .timeline-photo {
-            float: left;
+        .timeline-item.left .timeline-text {
+            text-align: right;
+        }
+        
+        .timeline-item.right .timeline-text {
+            text-align: left;
         }
         
         /* 事件标题 */
@@ -175,7 +186,6 @@
             font-weight: bold;
             color: #27AE60;
             margin-bottom: 10px;
-            clear: both;
         }
         
         /* 事件描述 */
@@ -267,13 +277,17 @@
             .timeline-item.right .timeline-content {
                 margin-left: 80px;
                 margin-right: 0;
+                flex-direction: column;
+            }
+            
+            .timeline-item.left .timeline-text,
+            .timeline-item.right .timeline-text {
                 text-align: left;
             }
             
-            .timeline-item.left .timeline-photo,
-            .timeline-item.right .timeline-photo {
-                float: none;
-                max-width: 100%;
+            .timeline-photo {
+                width: 100%;
+                height: auto;
             }
         }
     </style>
@@ -325,55 +339,89 @@
         <h1>一路走来</h1>
         <div class="info">
             <p>记录个人生活与成长感悟，分享一路走来的点滴。</p>
-            <p>内容将通过 MkDocs 网站展示，敬请期待。</p>
         </div>
         <a href="../notes/journey/index.html" class="mkdocs-link">进入 MkDocs 网站 →</a>
     </div>
     
+
+
+    <!-- 座右铭卡片 -->
+    <div class="tree-hole-card" style="background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); margin-top: 0; max-width: 800px;">
+        <div class="tree-hole-title" style="font-size: 1.8rem; margin-bottom: 20px;">💫</div>
+        <div style="font-size: 1.2rem; line-height: 1.8; color: #333; text-align: center; font-style: italic;">
+            "I went to the woods because I wanted to live deliberately.<br>
+            I wanted to live deep and suck out all the marrow of life.<br>
+            To put to rout all that was not life.<br>
+            And not, when I had come to die, discover that I had not lived."
+        </div>
+        <div style="font-size: 0.9rem; color: #666; text-align: center; margin-top: 15px;">
+            —— Henry David Thoreau《Walden》
+        </div>
+    </div>
+    
     <!-- 垂直时间轴 -->
-    <h2 class="photo-wall-title">⏳ 成长时间轴</h2>
     <div class="timeline-container">
-        <!-- 2023 -->
+        <!-- 2025.10 -->
+        <div class="timeline-item right">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2025.4.26</div>
+            <div class="timeline-content">
+                <img src="fig/大二上加入xlab.jpg" alt="19岁生日" class="timeline-photo">
+                <div class="timeline-text">
+                    <div class="timeline-title">大二上加入xlab硬件团队</div>
+                    <div class="timeline-desc">📢📢📢</div>
+                </div>
+            </div>
+        </div>
+        <!-- 2025.6 -->
         <div class="timeline-item left">
             <div class="timeline-dot"></div>
-            <div class="timeline-year">2023</div>
+            <div class="timeline-year">2025.6</div>
             <div class="timeline-content">
-                <img src="fig/告别大一加入的学生组织.jpg" alt="告别学生组织" class="timeline-photo">
-                <div class="timeline-title">告别大一加入的学生组织</div>
-                <div class="timeline-desc">结束了充实而难忘的学生组织时光，带着满满的收获和美好回忆开启新的篇章。</div>
+                <div class="timeline-text">
+                    <div class="timeline-title">告别陪伴我整个大一的学生组织</div>
+                    <div class="timeline-desc">组织们：云峰融媒体中心视频部，云峰科创中心技术推广部，社团指导中心精品建设部</div>
+                </div>
+                <img src="fig/告别学生组织.jpg" alt="告别学生组织" class="timeline-photo">
             </div>
         </div>
         
-        <!-- 2022 -->
+        <!-- 2025.4.26 -->
         <div class="timeline-item right">
             <div class="timeline-dot"></div>
-            <div class="timeline-year">2022</div>
+            <div class="timeline-year">2025.4.26</div>
             <div class="timeline-content">
                 <img src="fig/19岁生日.jpg" alt="19岁生日" class="timeline-photo">
-                <div class="timeline-title">19岁生日</div>
-                <div class="timeline-desc">迎来了19岁生日，成人的第一个生日，充满期待和希望的新征程。</div>
+                <div class="timeline-text">
+                    <div class="timeline-title">19岁生日🎂</div>
+                    <div class="timeline-desc">赶在生日前完成了微电影制作</div>
+                </div>
             </div>
         </div>
         
-        <!-- 2021 -->
+        <!-- 2025.4 -->
         <div class="timeline-item left">
             <div class="timeline-dot"></div>
-            <div class="timeline-year">2021</div>
+            <div class="timeline-year">2025.4</div>
             <div class="timeline-content">
-                <img src="fig/大一下成功考入工高.jpg" alt="考入工高" class="timeline-photo">
-                <div class="timeline-title">大一下成功考入工高</div>
-                <div class="timeline-desc">通过努力与坚持，成功考入工高，开启全新的学习之旅。</div>
+                <div class="timeline-text">
+                    <div class="timeline-title">大一下加入ACEE</div>
+                    <div class="timeline-desc">开始单休生涯bushi</div>
+                </div>
+                <img src="fig/大一下加入ACEE.jpg" alt="考入工高" class="timeline-photo">
             </div>
         </div>
         
-        <!-- 2020 -->
+        <!-- 2024.8 -->
         <div class="timeline-item right">
             <div class="timeline-dot"></div>
-            <div class="timeline-year">2020</div>
+            <div class="timeline-year">2024.8</div>
             <div class="timeline-content">
                 <img src="fig/高中毕业.jpg" alt="高中毕业" class="timeline-photo">
-                <div class="timeline-title">高中毕业</div>
-                <div class="timeline-desc">告别高中时代，带着梦想和期待踏入大学校门，开启人生新的阶段。</div>
+                <div class="timeline-text">
+                    <div class="timeline-title">从知临中学毕业来到浙江大学</div>
+                    <div class="timeline-desc">开启全新的人生阶段！</div>
+                </div>
             </div>
         </div>
     </div>
@@ -381,7 +429,7 @@
     <!-- 树洞留言卡片 -->
     <div class="tree-hole-card">
         <div class="tree-hole-title">🍃 树洞留言</div>
-        <textarea class="tree-hole-textarea" id="treeHoleInput" placeholder="写下你的心情..."></textarea>
+        <textarea class="tree-hole-textarea" id="treeHoleInput" placeholder="我想听你说..."></textarea>
         <button class="tree-hole-btn" onclick="submitTreeHoleMessage()">投入树洞</button>
         <div class="tree-hole-messages" id="treeHoleMessages"></div>
     </div>
