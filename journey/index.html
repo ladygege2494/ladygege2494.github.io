@@ -50,7 +50,7 @@
             color: #fff;
         }
         
-        /* 照片树样式 */
+        /* 垂直时间轴样式 */
         .photo-wall-title {
             font-size: 2.5rem;
             color: #fff;
@@ -58,119 +58,141 @@
             font-weight: bold;
         }
         
-        .tree-container {
+        .timeline-container {
             position: relative;
-            width: 100%;
             max-width: 1200px;
-            min-height: 800px;
             margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding: 40px 0;
         }
         
-        /* 树干 */
-        .tree-trunk {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 300px;
-            background: linear-gradient(to bottom, #8B4513, #654321);
-            border: 3px solid #000;
-            border-radius: 30px 30px 0 0;
-            z-index: 1;
-        }
-        
-        /* 树冠（SVG 样式） */
-        .tree-crown {
-            position: absolute;
-            top: 50px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 500px;
-            height: 500px;
-            z-index: 0;
-        }
-        
-        /* 照片卡片 */
-        .photo-card {
-            position: absolute;
-            width: 200px;
-            height: 150px;
-            background: #fff;
-            border: 4px solid #000;
-            border-radius: 8px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 2;
-            box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
-        }
-        
-        .photo-card:hover {
-            transform: rotate(0deg) scale(1.1) !important;
-            z-index: 10;
-            box-shadow: 8px 8px 0 rgba(0,0,0,0.3);
-        }
-        
-        .photo-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .photo-card::before {
+        /* 时间轴中线 */
+        .timeline-container::before {
             content: '';
             position: absolute;
-            top: -30px;
             left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #2ECC71;
             transform: translateX(-50%);
-            width: 2px;
-            height: 30px;
-            background: #8B4513;
-            border-left: 2px dashed #654321;
         }
         
-        /* 照片位置布局 */
-        .photo-card:nth-child(1) {
-            top: 100px;
-            left: 150px;
-            transform: rotate(-5deg);
+        /* 时间节点 */
+        .timeline-item {
+            position: relative;
+            margin-bottom: 80px;
+            width: 100%;
         }
         
-        .photo-card:nth-child(2) {
-            top: 80px;
-            right: 150px;
-            transform: rotate(8deg);
+        .timeline-item:last-child {
+            margin-bottom: 0;
         }
         
-        .photo-card:nth-child(3) {
-            top: 280px;
-            left: 100px;
-            transform: rotate(3deg);
+        /* 左侧卡片 */
+        .timeline-item.left .timeline-content {
+            margin-left: 0;
+            margin-right: calc(50% + 40px);
+            text-align: right;
         }
         
-        .photo-card:nth-child(4) {
-            top: 300px;
-            right: 100px;
-            transform: rotate(-7deg);
+        /* 右侧卡片 */
+        .timeline-item.right .timeline-content {
+            margin-left: calc(50% + 40px);
+            margin-right: 0;
+            text-align: left;
         }
         
-        /* 树洞留言卡片 */
-        .tree-hole-card {
-            position: absolute;
-            bottom: 120px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 280px;
-            min-height: 200px;
+        /* 内容卡片 */
+        .timeline-content {
             background: #fff;
             border: 4px solid #000;
             border-radius: 12px;
             padding: 20px;
-            z-index: 3;
+            position: relative;
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 8px 8px 0 rgba(0,0,0,0.3);
+        }
+        
+        /* 时间节点圆点 */
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background: #27AE60;
+            border: 5px solid #fff;
+            border-radius: 50%;
+            z-index: 2;
+            box-shadow: 0 0 0 4px #27AE60;
+        }
+        
+        /* 时间标签 */
+        .timeline-year {
+            position: absolute;
+            left: 50%;
+            top: 60px;
+            transform: translateX(-50%);
+            background: #2ECC71;
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border: 3px solid #000;
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+            z-index: 2;
+        }
+        
+        /* 照片 */
+        .timeline-photo {
+            width: 100%;
+            max-width: 300px;
+            height: 200px;
+            object-fit: cover;
+            border: 3px solid #000;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .timeline-item.left .timeline-photo {
+            float: right;
+        }
+        
+        .timeline-item.right .timeline-photo {
+            float: left;
+        }
+        
+        /* 事件标题 */
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #27AE60;
+            margin-bottom: 10px;
+            clear: both;
+        }
+        
+        /* 事件描述 */
+        .timeline-desc {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        /* 树洞留言卡片 */
+        .tree-hole-card {
+            max-width: 500px;
+            margin: 60px auto 0;
+            background: #fff;
+            border: 4px solid #000;
+            border-radius: 12px;
+            padding: 25px;
             box-shadow: 6px 6px 0 rgba(0,0,0,0.2);
         }
         
@@ -185,22 +207,22 @@
         .tree-hole-textarea {
             width: 100%;
             min-height: 80px;
-            padding: 10px;
+            padding: 12px;
             border: 2px solid #000;
-            border-radius: 4px;
-            font-size: 0.9rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
             resize: vertical;
             font-family: inherit;
         }
         
         .tree-hole-btn {
             width: 100%;
-            margin-top: 10px;
-            padding: 10px;
+            margin-top: 12px;
+            padding: 12px;
             background: #27AE60;
             color: #fff;
             border: 3px solid #000;
-            border-radius: 4px;
+            border-radius: 6px;
             font-size: 1rem;
             font-weight: bold;
             cursor: pointer;
@@ -208,42 +230,50 @@
         }
         
         .tree-hole-btn:hover {
-            background: #fff;
-            color: #27AE60;
+            background: #2ECC71;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         
         .tree-hole-messages {
-            margin-top: 15px;
-            max-height: 150px;
+            margin-top: 20px;
+            max-height: 200px;
             overflow-y: auto;
         }
         
         .tree-hole-message {
-            padding: 8px;
+            padding: 10px;
             background: #f0f0f0;
-            border-left: 3px solid #27AE60;
-            margin-bottom: 8px;
-            font-size: 0.85rem;
+            border-left: 4px solid #27AE60;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
             border-radius: 4px;
         }
         
         @media (max-width: 768px) {
-            .tree-container {
-                min-height: 600px;
+            .timeline-container::before {
+                left: 30px;
             }
             
-            .tree-crown {
-                width: 350px;
-                height: 350px;
+            .timeline-dot {
+                left: 30px;
             }
             
-            .photo-card {
-                width: 150px;
-                height: 110px;
+            .timeline-year {
+                left: 30px;
             }
             
-            .tree-hole-card {
-                width: 240px;
+            .timeline-item.left .timeline-content,
+            .timeline-item.right .timeline-content {
+                margin-left: 80px;
+                margin-right: 0;
+                text-align: left;
+            }
+            
+            .timeline-item.left .timeline-photo,
+            .timeline-item.right .timeline-photo {
+                float: none;
+                max-width: 100%;
             }
         }
     </style>
@@ -300,41 +330,60 @@
         <a href="../notes/journey/site/index.html" class="mkdocs-link">进入 MkDocs 网站 →</a>
     </div>
     
-    <!-- 照片树 -->
-    <h2 class="photo-wall-title">🌳 成长之树</h2>
-    <div class="tree-container">
-        <!-- 树冠 SVG -->
-        <svg class="tree-crown" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="100" cy="100" r="90" fill="#2ECC71" stroke="#000" stroke-width="3"/>
-            <circle cx="70" cy="80" r="50" fill="#27AE60" stroke="#000" stroke-width="2"/>
-            <circle cx="130" cy="85" r="55" fill="#27AE60" stroke="#000" stroke-width="2"/>
-            <circle cx="100" cy="130" r="60" fill="#229954" stroke="#000" stroke-width="2"/>
-        </svg>
-        
-        <!-- 树干 -->
-        <div class="tree-trunk"></div>
-        
-        <!-- 照片卡片 -->
-        <div class="photo-card">
-            <img src="fig/高中毕业.jpg" alt="高中毕业">
-        </div>
-        <div class="photo-card">
-            <img src="fig/大一下成功考入工高.jpg" alt="考入工高">
-        </div>
-        <div class="photo-card">
-            <img src="fig/19岁生日.jpg" alt="19岁生日">
-        </div>
-        <div class="photo-card">
-            <img src="fig/告别大一加入的学生组织.jpg" alt="告别学生组织">
+    <!-- 垂直时间轴 -->
+    <h2 class="photo-wall-title">⏳ 成长时间轴</h2>
+    <div class="timeline-container">
+        <!-- 2023 -->
+        <div class="timeline-item left">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2023</div>
+            <div class="timeline-content">
+                <img src="fig/告别大一加入的学生组织.jpg" alt="告别学生组织" class="timeline-photo">
+                <div class="timeline-title">告别大一加入的学生组织</div>
+                <div class="timeline-desc">结束了充实而难忘的学生组织时光，带着满满的收获和美好回忆开启新的篇章。</div>
+            </div>
         </div>
         
-        <!-- 树洞留言卡片 -->
-        <div class="tree-hole-card">
-            <div class="tree-hole-title">🍃 树洞留言</div>
-            <textarea class="tree-hole-textarea" id="treeHoleInput" placeholder="写下你的心情..."></textarea>
-            <button class="tree-hole-btn" onclick="submitTreeHoleMessage()">投入树洞</button>
-            <div class="tree-hole-messages" id="treeHoleMessages"></div>
+        <!-- 2022 -->
+        <div class="timeline-item right">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2022</div>
+            <div class="timeline-content">
+                <img src="fig/19岁生日.jpg" alt="19岁生日" class="timeline-photo">
+                <div class="timeline-title">19岁生日</div>
+                <div class="timeline-desc">迎来了19岁生日，成人的第一个生日，充满期待和希望的新征程。</div>
+            </div>
         </div>
+        
+        <!-- 2021 -->
+        <div class="timeline-item left">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2021</div>
+            <div class="timeline-content">
+                <img src="fig/大一下成功考入工高.jpg" alt="考入工高" class="timeline-photo">
+                <div class="timeline-title">大一下成功考入工高</div>
+                <div class="timeline-desc">通过努力与坚持，成功考入工高，开启全新的学习之旅。</div>
+            </div>
+        </div>
+        
+        <!-- 2020 -->
+        <div class="timeline-item right">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2020</div>
+            <div class="timeline-content">
+                <img src="fig/高中毕业.jpg" alt="高中毕业" class="timeline-photo">
+                <div class="timeline-title">高中毕业</div>
+                <div class="timeline-desc">告别高中时代，带着梦想和期待踏入大学校门，开启人生新的阶段。</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 树洞留言卡片 -->
+    <div class="tree-hole-card">
+        <div class="tree-hole-title">🍃 树洞留言</div>
+        <textarea class="tree-hole-textarea" id="treeHoleInput" placeholder="写下你的心情..."></textarea>
+        <button class="tree-hole-btn" onclick="submitTreeHoleMessage()">投入树洞</button>
+        <div class="tree-hole-messages" id="treeHoleMessages"></div>
     </div>
     
     <script>
