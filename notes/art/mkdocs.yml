@@ -18,32 +18,37 @@ extra:
 nav:
   - Home: index.md
   - Film:
-    - 概览: Film/index.md
-    - 《花样年华》: Film/《花样年华》.md
-    - 《认识电影》书摘: Film/《认识电影》书摘.md
+    - "概览": Film/index.md
+    - "《花样年华》": Film/《花样年华》.md
+    - "《认识电影》书摘": Film/《认识电影》书摘.md
   - Fine Art:
-    - 概览: Fine Art/index.md
-    - 艺术史: Fine Art/艺术史.md
+    - "概览": Fine Art/index.md
+    - "艺术史": Fine Art/艺术史.md
+    - "设计风格汇总": Fine Art/设计风格汇总.md
   - Literature:
-    - 概览: Literature/index.md
-    - 伍尔夫——关于意识流与女性的困境: Literature/伍尔夫——关于意识流与女性的困境.md
+    - "概览": Literature/index.md
+    - "伍尔夫——关于意识流与女性的困境": Literature/伍尔夫——关于意识流与女性的困境.md
+    - "index": Literature/index.md
   - Music:
-    - 概览: Music/index.md
-    - 古典音乐: Music/古典音乐.md
-    - 流行演唱: Music/流行演唱.md
+    - "概览": Music/index.md
+    - "古典音乐": Music/古典音乐.md
+    - "流行演唱": Music/流行演唱.md
   - History:
-    - 概览: History/index.md
+    - "概览": History/index.md
   - Philosophy:
-    - 概览: Philosophy/index.md
-    - 辩论: Philosophy/辩论.md
+    - "概览": Philosophy/index.md
+    - "辩论": Philosophy/辩论.md
   - Culture:
-    - 概览: Culture/index.md
-    - 国家图鉴: Culture/国家图鉴.md
-    - 日本三大主流审美意识形态: Culture/日本三大主流审美意识形态.md
-    - 梦核，当代年轻人的新型电子止疼药: Culture/梦核，当代年轻人的新型电子止疼药.md
-    - 香水: Culture/香水.md
+    - "概览": Culture/index.md
+    - "国家图鉴": Culture/国家图鉴.md
+    - "日本三大主流审美意识形态": Culture/日本三大主流审美意识形态.md
+    - "梦核，当代年轻人的新型电子止疼药": Culture/梦核，当代年轻人的新型电子止疼药.md
+    - "香水": Culture/香水.md
   - Inspiration:
-    - 概览: Inspiration/index.md
-    - Filmilism: Inspiration/Filmilism.md
-
-
+    - "概览": Inspiration/index.md
+    - "Filmilism": Inspiration/Filmilism.md
+  - Language:
+    - "概览": Language/index.md
+    - "English": Language/English.md
+    - "French": Language/French.md
+    - "Japanese": Language/Japanese.md

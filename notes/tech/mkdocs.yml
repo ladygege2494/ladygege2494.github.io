@@ -17,11 +17,37 @@ extra:
   homepage: ../../tech/index.html
 nav:
   - Home: index.md
-  - ISEE: ISEE/index.md
-  - CS: CS/index.md
+  - ISEE:
+    - ISEE/index.md
+    - "电子电路基础": ISEE/电子电路基础.md
+    - "电设实验I": ISEE/电设实验I.md
+  - CS:
+    - CS/index.md
+    - "C程设计基础与实验": CS/C程设计基础与实验.md
   - AI: AI/index.md
-  - Me: Me/index.md
-  - Math: Math/index.md
-  - Physics: Physics/index.md
-  - Other: Other/index.md
-  - 通识: 通识/index.md
+  - Me:
+    - Me/index.md
+    - "工程图学": Me/工程图学.md
+  - Math:
+    - Math/index.md
+    - "复变函数与积分变换": Math/复变函数与积分变换.md
+    - "常微分方程": Math/常微分方程.md
+    - "微积分甲I": Math/微积分甲I.md
+    - "微积分甲II": Math/微积分甲II.md
+    - "数学建模": Math/数学建模.md
+    - "概率论与数理统计": Math/概率论与数理统计.md
+    - "线性代数": Math/线性代数.md
+  - Physics:
+    - Physics/index.md
+    - "大学物理实验": Physics/大学物理实验.md
+    - "大学物理甲I": Physics/大学物理甲I.md
+    - "大学物理甲II": Physics/大学物理甲II.md
+  - Other:
+    - Other/index.md
+    - "Git": Other/Git.md
+  - 通识:
+    - 通识/index.md
+    - "专业类通识": 通识/专业类通识.md
+    - "外语类汇总": 通识/外语类汇总.md
+    - "思政类汇总": 通识/思政类汇总.md
+    - "除思政外其他汇总": 通识/除思政外其他汇总.md
