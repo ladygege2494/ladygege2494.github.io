@@ -1,9 +1,13 @@
 ## 我的笔记
 ### 期中复习
-![[期中复习知识点（电学和磁学）.pdf]]
+
+<embed src="../assets/大学物理甲ii/期中复习.pdf" type="application/pdf" width="100%" height="600px" />
+
 ### 期末复习
-![[大物复习.pdf]]
+
+<embed src="../assets/大学物理甲ii/期末复习.pdf" type="application/pdf" width="100%" height="600px" />
 
 ### 物理学史
 为应对 ydd 的病急乱投医，虽然 0 点作用）
-![[物理学史.pdf]]
+
+<embed src="../assets/大学物理甲ii/物理学史.pdf" type="application/pdf" width="100%" height="600px" />

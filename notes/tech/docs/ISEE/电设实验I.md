@@ -2,14 +2,15 @@
 
 ## 我的报告
 仅供参考仅供参考!!会查重的 orz
-![[个人网站/技术笔记/ISEE/assets/电设实验i/实验报告汇总 1.pdf]]
 
-
+<embed src="../assets/电设实验i/实验报告汇总.pdf" type="application/pdf" width="100%" height="600px" />
 
 
 ## 我的知识点整理
 ### 实验操作注意事项
-![[电设实验操作注意事项.pdf]]
+
+<embed src="../assets/电设实验i/电设实验操作注意事项.pdf" type="application/pdf" width="100%" height="600px" />
 
 ### 实验理论公式汇总
-![[电设实验设计理论公式.pdf]]
+
+<embed src="../assets/电设实验i/电设实验设计理论公式.pdf" type="application/pdf" width="100%" height="600px" />

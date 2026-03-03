@@ -9,6 +9,7 @@
 <embed src="../assets/c程设计基础与实验/C程错题集.pdf" type="application/pdf" width="100%" height="600px" />
 
 ## 前辈资源
-![C程实验考试注意事项.pdf](../assets/c程设计基础与实验/C程实验考试注意事项.pdf)
+98上获取的一些资源，侵删
 
-![C尖琐碎笔记整理.pdf](../assets/c程设计基础与实验/C尖琐碎笔记整理.pdf)
+> 通过网盘分享的文件：C程.zip
+> 链接: https://pan.baidu.com/s/1GePCO9KZW8izKiJd9HfrAQ?pwd=xrae 提取码: xrae

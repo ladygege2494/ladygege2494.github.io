@@ -43,6 +43,7 @@
 3. mathmatical equation:rigorous
 ### the circular-flow diagram
 ![Pasted image 20250119234513](./asserts/经济学原理/Pasted image 20250119234513.png)
+
 企业，家庭，产品和服务市场，生产要素市场
 ### Two variables in the coordinate system
 - correlation相关性

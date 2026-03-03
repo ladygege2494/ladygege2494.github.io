@@ -1,5 +1,4 @@
-[lec2 - 2023春夏实用技能拾遗](https://slides.tonycrane.cc/PracticalSkillsTutorial/2023-spring-cs/lec2/#/0/3)
-从 ACEE 实践面 pre task，到 hhgg 的讲座，到自己抽空玩了一下子再到科创史项目，我离最开始接触Git 也过去好久了，陆陆续续学了些，一直没有真正的应用场景，到了该用的时候，每次都要重新查一遍 x
+离最开始接触Git也过去好久了，陆陆续续学了些，一直没有真正的应用场景，到了该用的时候，每次都要重新查一遍 x
 因此自己再写一篇文章整理一下，目的是达成真正内化，加强记忆，理解本质。
 # 版本的存储方式
 - 全量存储
@@ -11,7 +10,7 @@
 - 暂存区 staged
 - 仓库 committed/unmodified
 ❗注意 untracked 不属于三大区域
-![[3-RESOURCE/知识/理/工具/asserts/Git/image.png]]
+![image.png](../assets/Git/image.png)
 # 前期准备
 ## 安装
 https://git-scm.com/downloads/win (for Windows)
