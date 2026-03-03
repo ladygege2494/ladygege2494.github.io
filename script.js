@@ -613,7 +613,7 @@ function initBubbles() {
     const bubblesContainer = document.getElementById('bubblesContainer');
     if (!bubblesContainer) return;
 
-    const tags = ['微电子', '影迷', '终身学习', '技术产品', '阅读', '与人连接', '创作', '探索'];
+    const tags = ['电影', '技术产品', '终身学习', '与人连接', '长期主义' ,'创造', '探索'];
     
     // 清除可能存在的旧数据
     bubblesData.length = 0;
