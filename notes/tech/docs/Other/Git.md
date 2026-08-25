@@ -10,7 +10,7 @@
 - 暂存区 staged
 - 仓库 committed/unmodified
 ❗注意 untracked 不属于三大区域
-![image.png](../assets/Git/image.png)
+![Git 三大区域与四种状态](asserts/Git/image.png)
 # 前期准备
 ## 安装
 https://git-scm.com/downloads/win (for Windows)
@@ -151,5 +151,3 @@ GitHub Desktop
     *   🐛 `fix:`
     *   📝 `docs:`
     *   🚀 `perf:`
-
-

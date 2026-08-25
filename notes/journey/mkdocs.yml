@@ -1,4 +1,5 @@
 site_name: 一路走来
+site_url: https://ladygege2494.github.io/notes/journey/
 site_description: 记录个人生活与成长感悟
 site_author: LadyGege
 
@@ -22,7 +23,7 @@ theme:
     - search.highlight
 
 extra:
-  homepage: ../../journey/index.html
+  homepage: /journey/
 
 nav:
   - Home: index.md
@@ -30,7 +31,6 @@ nav:
   - Moments: Moments/index.md
   - Thoughts:
     - 概览: Thoughts/index.md
-    - 我想如何度过我的本科: Thoughts/我想如何度过我的本科.md
 
 markdown_extensions:
   - admonition

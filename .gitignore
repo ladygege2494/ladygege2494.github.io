@@ -1,0 +1,10 @@
+.DS_Store
+.venv/
+__pycache__/
+*.py[cod]
+/.mkdocs-cache/
+/site/
+notes/*/site/
+sync-config.local.sh
+*.tmp
+*.bak

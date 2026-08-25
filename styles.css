@@ -293,6 +293,12 @@ body {
     height: 80px;
 }
 
+.search-box.active.has-results {
+    height: min(70vh, 620px);
+    align-items: flex-start;
+    padding-top: 16px;
+}
+
 .search-box input {
     width: 60%;
     max-width: 600px;
@@ -317,6 +323,66 @@ body {
     font-size: 2rem;
     cursor: pointer;
     line-height: 1;
+}
+
+.search-results {
+    display: none;
+    position: absolute;
+    top: 76px;
+    width: min(760px, 90vw);
+    max-height: calc(min(70vh, 620px) - 96px);
+    overflow-y: auto;
+    background: #fff;
+    border: 3px solid #000;
+    box-shadow: 8px 8px 0 #e30512;
+    color: #111;
+}
+
+.search-box.has-results .search-results {
+    display: block;
+}
+
+.search-results-summary {
+    padding: 14px 18px;
+    border-bottom: 2px solid #000;
+    font-weight: 800;
+}
+
+.search-result-item {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 4px 14px;
+    padding: 14px 18px;
+    color: #111;
+    text-decoration: none;
+    border-bottom: 1px solid #bbb;
+}
+
+.search-result-item:hover {
+    background: #facd01;
+}
+
+.search-result-section {
+    grid-row: 1 / 3;
+    align-self: start;
+    color: #044ea2;
+    font-weight: 800;
+}
+
+.search-result-excerpt {
+    color: #555;
+    font-size: 0.9rem;
+    line-height: 1.45;
+}
+
+@media (max-width: 640px) {
+    .search-result-item {
+        grid-template-columns: 1fr;
+    }
+
+    .search-result-section {
+        grid-row: auto;
+    }
 }
 
 /* ========== 第二部分：蒙德里安风格 ========== */

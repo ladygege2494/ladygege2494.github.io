@@ -569,12 +569,74 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// ========== 搜索框功能 ==========
+// ========== 跨知识库搜索 ==========
+const searchIndexes = [
+    { name: '技术笔记', base: '/notes/tech/' },
+    { name: '商业笔记', base: '/notes/business/' },
+    { name: '文艺笔记', base: '/notes/art/' },
+    { name: '一路走来', base: '/notes/journey/' }
+];
+
+let searchDocumentsPromise = null;
+
+function loadSearchDocuments() {
+    if (searchDocumentsPromise) return searchDocumentsPromise;
+
+    searchDocumentsPromise = Promise.all(searchIndexes.map(async source => {
+        const response = await fetch(`${source.base}search/search_index.json`);
+        if (!response.ok) throw new Error(`${source.name}搜索索引加载失败`);
+        const data = await response.json();
+        return (data.docs || []).map(doc => ({
+            ...doc,
+            section: source.name,
+            url: new URL(doc.location || '.', `${window.location.origin}${source.base}`).href
+        }));
+    })).then(groups => groups.flat());
+
+    return searchDocumentsPromise;
+}
+
+function renderSearchResults(container, results, query) {
+    container.replaceChildren();
+
+    const summary = document.createElement('div');
+    summary.className = 'search-results-summary';
+    summary.textContent = results.length ? `找到 ${results.length} 条与“${query}”相关的内容` : `没有找到“${query}”`;
+    container.appendChild(summary);
+
+    results.slice(0, 30).forEach(result => {
+        const link = document.createElement('a');
+        link.className = 'search-result-item no-loader';
+        link.href = result.url;
+
+        const meta = document.createElement('span');
+        meta.className = 'search-result-section';
+        meta.textContent = result.section;
+
+        const title = document.createElement('strong');
+        title.textContent = result.title || '未命名页面';
+
+        const excerpt = document.createElement('span');
+        excerpt.className = 'search-result-excerpt';
+        const normalized = (result.text || '').replace(/\s+/g, ' ').trim();
+        const index = normalized.toLocaleLowerCase().indexOf(query.toLocaleLowerCase());
+        const start = index < 0 ? 0 : Math.max(0, index - 45);
+        excerpt.textContent = normalized.slice(start, start + 140);
+
+        link.append(meta, title, excerpt);
+        container.appendChild(link);
+    });
+}
+
 function initSearchBox() {
     const searchBtn = document.getElementById('searchBtn');
     const searchBox = document.getElementById('searchBox');
     const searchClose = document.getElementById('searchClose');
     const searchInput = document.getElementById('searchInput');
+    const searchResults = document.createElement('div');
+    searchResults.className = 'search-results';
+    searchResults.setAttribute('aria-live', 'polite');
+    if (searchBox) searchBox.appendChild(searchResults);
     
     if (searchBtn && searchBox) {
         searchBtn.addEventListener('click', function() {
@@ -590,18 +652,30 @@ function initSearchBox() {
     if (searchClose) {
         searchClose.addEventListener('click', function() {
             searchBox.classList.remove('active');
+            searchBox.classList.remove('has-results');
+            searchResults.replaceChildren();
         });
     }
     
-    // 搜索功能（可以后续扩展）
     if (searchInput) {
-        searchInput.addEventListener('keypress', function(e) {
+        searchInput.addEventListener('keypress', async function(e) {
             if (e.key === 'Enter') {
                 const query = this.value.trim();
                 if (query) {
-                    // 这里可以添加搜索逻辑
-                    console.log('搜索:', query);
-                    alert('搜索功能待实现: ' + query);
+                    searchBox.classList.add('has-results');
+                    searchResults.textContent = '正在加载搜索索引…';
+                    try {
+                        const documents = await loadSearchDocuments();
+                        const normalizedQuery = query.toLocaleLowerCase();
+                        const results = documents.filter(doc =>
+                            `${doc.title || ''} ${doc.text || ''}`.toLocaleLowerCase().includes(normalizedQuery)
+                        );
+                        renderSearchResults(searchResults, results, query);
+                    } catch (error) {
+                        searchResults.textContent = '搜索索引暂时无法加载，请稍后重试。';
+                        console.error(error);
+                        searchDocumentsPromise = null;
+                    }
                 }
             }
         });

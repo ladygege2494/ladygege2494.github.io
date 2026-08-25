@@ -3,7 +3,12 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # 或者是你代码所在的主分支
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -20,65 +25,17 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: '3.12'
+          cache: pip
 
       - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install mkdocs mkdocs-material
+        run: python -m pip install -r requirements.txt
 
-      - name: Build Tech Notes
-        run: |
-          cd notes/tech
-          mkdocs build
+      - name: Validate source content
+        run: python scripts/check_content.py
 
-      - name: Build Business Notes
-        run: |
-          if [ -d "notes/business" ]; then
-            cd notes/business
-            mkdocs build
-            cd ../..
-          fi
-
-      - name: Build Art Notes
-        run: |
-          if [ -d "notes/art" ]; then
-            cd notes/art
-            mkdocs build
-            cd ../..
-          fi
-
-      - name: Build Journey Notes
-        run: |
-          if [ -d "notes/journey" ]; then
-            cd notes/journey
-            mkdocs build
-            cd ../..
-          fi
-
-      - name: Prepare main site
-        run: |
-          mkdir -p site
-          cp *.html site/ 2>/dev/null || true
-          cp *.js site/ 2>/dev/null || true
-          cp *.css site/ 2>/dev/null || true
-          cp *.jpg site/ 2>/dev/null || true
-          cp *.png site/ 2>/dev/null || true
-          cp -r tech site/ 2>/dev/null || true
-          cp -r art site/ 2>/dev/null || true
-          cp -r business site/ 2>/dev/null || true
-          cp -r media site/ 2>/dev/null || true
-          cp -r journey site/ 2>/dev/null || true
-          cp -r portfolio site/ 2>/dev/null || true
-          cp -r about site/ 2>/dev/null || true
-          cp -r friends site/ 2>/dev/null || true
-          mkdir -p site/notes
-          cp -r notes/tech/site site/notes/tech 2>/dev/null || true
-          cp -r notes/art/site site/notes/art 2>/dev/null || true
-          cp -r notes/business/site site/notes/business 2>/dev/null || true
-          cp -r notes/journey/site site/notes/journey 2>/dev/null || true
-          ls -la site/  # 验证文件复制
-          ls -la site/notes/  # 验证MkDocs站点
+      - name: Build complete site
+        run: ./scripts/build-site.sh --strict
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
@@ -86,4 +43,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./site
           publish_branch: gh-pages
-          force_orphan: true  # 强制创建孤立分支，清除历史
+          force_orphan: true
