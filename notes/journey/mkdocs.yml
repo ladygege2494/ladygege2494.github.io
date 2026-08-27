@@ -92,4 +92,4 @@ markdown_extensions:
 plugins:
   - search:
       lang: zh
-      separator: '[\\s\\-，。；：！？、（）【】《》]+'
+      separator: '[\s\-，。；：！？、（）【】《》]+'

@@ -501,8 +501,15 @@ const nativeSearchDocuments = [
 
 let searchDocumentsPromise = null;
 
+function plainSearchText(value) {
+    const withoutTags = String(value || '').replace(/<[^>]*>/g, ' ');
+    if (typeof DOMParser === 'undefined') return withoutTags;
+    const parsed = new DOMParser().parseFromString(withoutTags, 'text/html');
+    return parsed.documentElement.textContent || '';
+}
+
 function normalizeSearchText(value) {
-    return String(value || '').normalize('NFKC').toLocaleLowerCase().replace(/\s+/g, ' ').trim();
+    return plainSearchText(value).normalize('NFKC').toLocaleLowerCase().replace(/\s+/g, ' ').trim();
 }
 
 function loadSearchDocuments() {
@@ -584,7 +591,7 @@ function renderSearchResults(container, results, query) {
 
         const excerpt = document.createElement('span');
         excerpt.className = 'search-result-excerpt';
-        const normalized = (result.text || '').replace(/\s+/g, ' ').trim();
+        const normalized = plainSearchText(result.text).replace(/\s+/g, ' ').trim();
         const index = normalizeSearchText(normalized).indexOf(normalizeSearchText(query));
         const start = index < 0 ? 0 : Math.max(0, index - 45);
         excerpt.textContent = normalized.slice(start, start + 140);
