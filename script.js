@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initClickEffect();
     initPageTransitions();
     initMouseTracker();
-    initComments(); // 初始化评论区
+    initSiteStats();
     animateBubbles();
     
     // 确保页面加载时显示第一部分
@@ -186,104 +186,14 @@ function animateBubbles() {
     requestAnimationFrame(animateBubbles);
 }
 
-// ========== 评论区功能 ==========
-function initComments() {
-    const submitBtn = document.getElementById('commentSubmitBtn');
-    const textarea = document.getElementById('commentTextarea');
-    const commentsList = document.getElementById('commentsList');
-    const countEl = document.getElementById('commentCount');
-    const nameModal = document.getElementById('nameModal');
-    const nameInput = document.getElementById('nameInput');
-    const nameConfirm = document.getElementById('nameConfirm');
-    const nameCancel = document.getElementById('nameCancel');
+// ========== 站点运行时间 ==========
+function initSiteStats() {
+    const ageElement = document.getElementById('siteAgeDays');
+    if (!ageElement) return;
 
-    if (!submitBtn || !commentsList) return;
-
-    let pendingComment = ''; // 待发表的评论
-
-    // 加载已有评论
-    const loadComments = () => {
-        const comments = JSON.parse(localStorage.getItem('siteComments') || '[]');
-        commentsList.innerHTML = comments.map(c => `
-            <div class="comment-item">
-                <div class="comment-header">
-                    <div class="comment-avatar">${c.author[0].toUpperCase()}</div>
-                    <span class="comment-author">${c.author}</span>
-                    <span class="comment-time">${c.time}</span>
-                </div>
-                <div class="comment-content">${c.content}</div>
-            </div>
-        `).join('');
-        
-        if (countEl) {
-            countEl.textContent = `${comments.length} 条评论`;
-        }
-    };
-
-    loadComments();
-
-    // 点击发表评论按钮
-    submitBtn.addEventListener('click', () => {
-        const content = textarea.value.trim();
-        if (!content) {
-            alert('请输入评论内容');
-            return;
-        }
-        
-        pendingComment = content;
-        nameModal.classList.add('active');
-        nameInput.value = '';
-        nameInput.focus();
-    });
-
-    // 确认署名
-    nameConfirm.addEventListener('click', () => {
-        const author = nameInput.value.trim();
-        if (!author) {
-            alert('请输入你的署名');
-            return;
-        }
-
-        const comments = JSON.parse(localStorage.getItem('siteComments') || '[]');
-        comments.unshift({
-            author: author,
-            content: pendingComment,
-            time: new Date().toLocaleString('zh-CN', {
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit',
-                hour: '2-digit',
-                minute: '2-digit'
-            })
-        });
-        localStorage.setItem('siteComments', JSON.stringify(comments));
-        
-        textarea.value = '';
-        pendingComment = '';
-        nameModal.classList.remove('active');
-        loadComments();
-    });
-
-    // 取消署名
-    nameCancel.addEventListener('click', () => {
-        nameModal.classList.remove('active');
-        pendingComment = '';
-    });
-
-    // 点击外部关闭弹窗
-    nameModal.addEventListener('click', (e) => {
-        if (e.target === nameModal) {
-            nameModal.classList.remove('active');
-            pendingComment = '';
-        }
-    });
-
-    // 回车键确认
-    nameInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            nameConfirm.click();
-        }
-    });
+    const siteCreatedAt = new Date('2026-01-21T00:00:00+08:00');
+    const elapsedDays = Math.max(0, Math.floor((Date.now() - siteCreatedAt.getTime()) / 86400000));
+    ageElement.textContent = elapsedDays.toLocaleString('zh-CN');
 }
 
 // ========== 打字效果 ==========
@@ -569,7 +479,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// ========== 跨知识库搜索 ==========
+// ========== 全站搜索 ==========
 const searchIndexes = [
     { name: '技术笔记', base: '/notes/tech/' },
     { name: '商业笔记', base: '/notes/business/' },
@@ -577,12 +487,28 @@ const searchIndexes = [
     { name: '一路走来', base: '/notes/journey/' }
 ];
 
+const nativeSearchDocuments = [
+    { section: '网站', title: 'GegeNook 主页', text: '不拘一格 个人网站 首页', url: '/' },
+    { section: '网站', title: '友链', text: '友情链接 友链申请 评论', url: '/friends/' },
+    { section: '网站', title: '关于', text: '关于我 联系方式 个人介绍', url: '/about/' },
+    { section: '网站', title: '自媒体', text: '公众号 B站 内容创作', url: '/media/' },
+    { section: '网站', title: '作品集', text: '项目 设计 开发 作品', url: '/portfolio/' },
+    { section: '分区', title: '技术笔记', text: '工程 技术 课程 计算机 数学 物理', url: '/tech/' },
+    { section: '分区', title: '文艺笔记', text: '电影 文学 艺术 音乐 哲学 文化', url: '/art/' },
+    { section: '分区', title: '商业笔记', text: '商业 投资 经济 商业模式', url: '/business/' },
+    { section: '分区', title: '一路走来', text: '生活 成长 随想 时刻 健康', url: '/journey/' }
+];
+
 let searchDocumentsPromise = null;
+
+function normalizeSearchText(value) {
+    return String(value || '').normalize('NFKC').toLocaleLowerCase().replace(/\s+/g, ' ').trim();
+}
 
 function loadSearchDocuments() {
     if (searchDocumentsPromise) return searchDocumentsPromise;
 
-    searchDocumentsPromise = Promise.all(searchIndexes.map(async source => {
+    searchDocumentsPromise = Promise.allSettled(searchIndexes.map(async source => {
         const response = await fetch(`${source.base}search/search_index.json`);
         if (!response.ok) throw new Error(`${source.name}搜索索引加载失败`);
         const data = await response.json();
@@ -591,9 +517,48 @@ function loadSearchDocuments() {
             section: source.name,
             url: new URL(doc.location || '.', `${window.location.origin}${source.base}`).href
         }));
-    })).then(groups => groups.flat());
+    })).then(groups => {
+        const remoteDocuments = groups
+            .filter(group => group.status === 'fulfilled')
+            .flatMap(group => group.value);
+        if (!remoteDocuments.length) throw new Error('所有文章搜索索引均加载失败');
+        return [...nativeSearchDocuments.map(doc => ({
+            ...doc,
+            url: new URL(doc.url, window.location.origin).href
+        })), ...remoteDocuments];
+    });
 
     return searchDocumentsPromise;
+}
+
+function searchDocuments(documents, query) {
+    const phrase = normalizeSearchText(query);
+    const tokens = phrase.split(/[\s,，。；;：:！？!?、]+/).filter(Boolean);
+    const seen = new Set();
+
+    return documents.map(doc => {
+        const title = normalizeSearchText(doc.title);
+        const text = normalizeSearchText(doc.text);
+        if (!tokens.every(token => title.includes(token) || text.includes(token))) return null;
+
+        let score = 0;
+        if (title === phrase) score += 240;
+        if (title.startsWith(phrase)) score += 120;
+        if (title.includes(phrase)) score += 90;
+        if (text.includes(phrase)) score += 36;
+        tokens.forEach(token => {
+            if (title.includes(token)) score += 30;
+            if (text.includes(token)) score += 8;
+        });
+        return { ...doc, score };
+    }).filter(Boolean)
+        .sort((a, b) => b.score - a.score || String(a.title).localeCompare(String(b.title), 'zh-CN'))
+        .filter(doc => {
+            const key = `${doc.url}|${doc.title}`;
+            if (seen.has(key)) return false;
+            seen.add(key);
+            return true;
+        });
 }
 
 function renderSearchResults(container, results, query) {
@@ -604,10 +569,11 @@ function renderSearchResults(container, results, query) {
     summary.textContent = results.length ? `找到 ${results.length} 条与“${query}”相关的内容` : `没有找到“${query}”`;
     container.appendChild(summary);
 
-    results.slice(0, 30).forEach(result => {
+    results.slice(0, 40).forEach(result => {
         const link = document.createElement('a');
         link.className = 'search-result-item no-loader';
         link.href = result.url;
+        link.setAttribute('role', 'option');
 
         const meta = document.createElement('span');
         meta.className = 'search-result-section';
@@ -619,7 +585,7 @@ function renderSearchResults(container, results, query) {
         const excerpt = document.createElement('span');
         excerpt.className = 'search-result-excerpt';
         const normalized = (result.text || '').replace(/\s+/g, ' ').trim();
-        const index = normalized.toLocaleLowerCase().indexOf(query.toLocaleLowerCase());
+        const index = normalizeSearchText(normalized).indexOf(normalizeSearchText(query));
         const start = index < 0 ? 0 : Math.max(0, index - 45);
         excerpt.textContent = normalized.slice(start, start + 140);
 
@@ -636,50 +602,125 @@ function initSearchBox() {
     const searchResults = document.createElement('div');
     searchResults.className = 'search-results';
     searchResults.setAttribute('aria-live', 'polite');
+    searchResults.setAttribute('role', 'listbox');
     if (searchBox) searchBox.appendChild(searchResults);
+    let debounceTimer;
+
+    if (searchInput) {
+        searchInput.placeholder = '输入关键词，实时搜索全部文章…';
+        searchInput.setAttribute('autocomplete', 'off');
+        searchInput.setAttribute('aria-label', '全站搜索');
+    }
+
+    if (searchBtn) {
+        searchBtn.setAttribute('role', 'button');
+        searchBtn.setAttribute('tabindex', '0');
+        searchBtn.setAttribute('aria-controls', 'searchBox');
+        searchBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    if (searchClose) searchClose.setAttribute('aria-label', '关闭搜索');
+
+    const closeSearch = () => {
+        searchBox?.classList.remove('active', 'has-results');
+        searchBtn?.setAttribute('aria-expanded', 'false');
+        searchResults.replaceChildren();
+    };
+
+    const openSearch = () => {
+        searchBox?.classList.add('active');
+        searchBtn?.setAttribute('aria-expanded', 'true');
+        setTimeout(() => searchInput?.focus(), 180);
+    };
+
+    const toggleSearch = () => {
+        if (searchBox?.classList.contains('active')) closeSearch();
+        else openSearch();
+    };
+
+    const runSearch = async () => {
+        const query = searchInput?.value.trim() || '';
+        if (!query) {
+            searchBox?.classList.remove('has-results');
+            searchResults.replaceChildren();
+            return;
+        }
+
+        searchBox.classList.add('has-results');
+        searchResults.textContent = '正在检索四个知识库和网站页面…';
+        try {
+            const documents = await loadSearchDocuments();
+            renderSearchResults(searchResults, searchDocuments(documents, query), query);
+        } catch (error) {
+            searchResults.textContent = '搜索索引暂时无法加载，请稍后重试。';
+            console.error(error);
+            searchDocumentsPromise = null;
+        }
+    };
     
     if (searchBtn && searchBox) {
-        searchBtn.addEventListener('click', function() {
-            searchBox.classList.toggle('active');
-            if (searchBox.classList.contains('active')) {
-                setTimeout(() => {
-                    searchInput.focus();
-                }, 300);
+        searchBtn.addEventListener('click', toggleSearch);
+        searchBtn.addEventListener('keydown', event => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                toggleSearch();
             }
         });
     }
     
     if (searchClose) {
         searchClose.addEventListener('click', function() {
-            searchBox.classList.remove('active');
-            searchBox.classList.remove('has-results');
-            searchResults.replaceChildren();
+            closeSearch();
         });
     }
     
     if (searchInput) {
-        searchInput.addEventListener('keypress', async function(e) {
-            if (e.key === 'Enter') {
-                const query = this.value.trim();
-                if (query) {
-                    searchBox.classList.add('has-results');
-                    searchResults.textContent = '正在加载搜索索引…';
-                    try {
-                        const documents = await loadSearchDocuments();
-                        const normalizedQuery = query.toLocaleLowerCase();
-                        const results = documents.filter(doc =>
-                            `${doc.title || ''} ${doc.text || ''}`.toLocaleLowerCase().includes(normalizedQuery)
-                        );
-                        renderSearchResults(searchResults, results, query);
-                    } catch (error) {
-                        searchResults.textContent = '搜索索引暂时无法加载，请稍后重试。';
-                        console.error(error);
-                        searchDocumentsPromise = null;
-                    }
+        searchInput.addEventListener('input', () => {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(runSearch, 180);
+        });
+
+        searchInput.addEventListener('keydown', event => {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                clearTimeout(debounceTimer);
+                runSearch();
+            } else if (event.key === 'Escape') {
+                closeSearch();
+            } else if (event.key === 'ArrowDown') {
+                const firstResult = searchResults.querySelector('.search-result-item');
+                if (firstResult) {
+                    event.preventDefault();
+                    firstResult.focus();
                 }
             }
         });
     }
+
+    searchResults.addEventListener('keydown', event => {
+        if (!['ArrowDown', 'ArrowUp', 'Escape'].includes(event.key)) return;
+        const links = [...searchResults.querySelectorAll('.search-result-item')];
+        const currentIndex = links.indexOf(document.activeElement);
+        if (event.key === 'Escape') {
+            closeSearch();
+            return;
+        }
+        event.preventDefault();
+        const nextIndex = event.key === 'ArrowDown'
+            ? Math.min(links.length - 1, currentIndex + 1)
+            : Math.max(0, currentIndex - 1);
+        links[nextIndex]?.focus();
+    });
+
+    document.addEventListener('keydown', event => {
+        const isShortcut = (event.metaKey || event.ctrlKey) && event.key.toLocaleLowerCase() === 'k';
+        if (isShortcut) {
+            event.preventDefault();
+            openSearch();
+        } else if (event.key === 'Escape' && searchBox?.classList.contains('active')) {
+            closeSearch();
+        }
+    });
 }
 
 // ========== 气泡动画 ==========

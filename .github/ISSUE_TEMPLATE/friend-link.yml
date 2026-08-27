@@ -1,0 +1,53 @@
+name: 申请友链
+description: 申请加入 GegeNook 的友情链接页面
+title: "[友链申请] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢交换友链。请填写以下资料；通过后会在友链页面加入你的网站。
+  - type: input
+    id: site_name
+    attributes:
+      label: 网站名称
+      placeholder: 例如：GegeNook
+    validations:
+      required: true
+  - type: input
+    id: site_url
+    attributes:
+      label: 网站地址
+      description: 请填写可公开访问的 HTTPS 地址。
+      placeholder: https://example.com/
+    validations:
+      required: true
+  - type: input
+    id: owner
+    attributes:
+      label: 站长称呼
+      placeholder: 希望在友链卡片中显示的名字
+    validations:
+      required: true
+  - type: textarea
+    id: introduction
+    attributes:
+      label: 网站简介
+      description: 仅用于审核和了解网站，不会显示在友链方格中。
+      placeholder: 简单介绍网站的主要内容。
+    validations:
+      required: true
+  - type: input
+    id: backlink
+    attributes:
+      label: 本站友链位置（可选）
+      description: 如果你已经添加 GegeNook，请填写对应页面地址。
+      placeholder: https://example.com/friends/
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: 确认事项
+      options:
+        - label: 网站能够稳定通过 HTTPS 访问，且内容适合公开展示。
+          required: true
+        - label: 我同意站长根据实际情况决定是否收录或移除友链。
+          required: true

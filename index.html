@@ -81,8 +81,20 @@
             </div>
 
             <!-- 中间列 -->
-            <div class="mondrian-block white-block block-center-thin-1"></div>
-            <div class="mondrian-block white-block block-center-thin-2"></div>
+            <div class="mondrian-block white-block block-center-thin-1" aria-label="建站天数">
+                <div class="site-stat">
+                    <span class="site-stat-label">建站</span>
+                    <strong id="siteAgeDays">—</strong>
+                    <span>天</span>
+                </div>
+            </div>
+            <div class="mondrian-block white-block block-center-thin-2" id="busuanzi_container_site_pv" aria-label="网站访问次数">
+                <div class="site-stat">
+                    <span class="site-stat-label">访问</span>
+                    <strong id="busuanzi_value_site_pv">—</strong>
+                    <span>次</span>
+                </div>
+            </div>
             
             <div class="mondrian-block yellow-block block-media" data-block="media">
                 <div class="block-content">
@@ -148,6 +160,7 @@
         </div>
     </div>
 
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

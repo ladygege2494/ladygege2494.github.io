@@ -1,21 +1,85 @@
 site_name: 商业笔记
 site_url: https://ladygege2494.github.io/notes/business/
+site_description: GegeNook 的商业、投资与经济笔记
+site_author: LadyGege
 theme:
   name: material
   language: zh
-  favicon: ../../favicon.jpg
-  custom_dir: overrides
+  favicon: /favicon.jpg
+  icon:
+    logo: material/chart-line
+  custom_dir: ../overrides
+  font: false
   palette:
-    primary: red
-    accent: red
+    - scheme: default
+      primary: red
+      accent: amber
+      toggle:
+        icon: material/weather-night
+        name: 切换至深色模式
+    - scheme: slate
+      primary: red
+      accent: amber
+      toggle:
+        icon: material/weather-sunny
+        name: 切换至浅色模式
   features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
     - navigation.tabs
     - navigation.sections
+    - navigation.indexes
     - navigation.top
+    - toc.follow
     - search.suggest
     - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.select
+    - content.tabs.link
+    - content.tooltips
 extra:
   homepage: /business/
+extra_css:
+  - /assets/mkdocs-extra.css
+extra_javascript:
+  - /assets/mkdocs.js
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.betterem
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+plugins:
+  - search:
+      lang: zh
+      separator: '[\\s\\-，。；：！？、（）【】《》]+'
 nav:
   - Home: index.md
   - Macro:

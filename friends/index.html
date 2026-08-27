@@ -75,87 +75,69 @@
             padding: 12px;
         }
         
-        /* 评论区样式 */
+        .friends-actions,
         .comments-section {
-            margin-top: 60px;
-            padding: 40px;
-            background: #f8f9fa;
+            padding: clamp(24px, 4vw, 44px);
             border-top: 8px solid #000;
         }
-        
-        .comments-title {
-            font-size: 2.2rem;
-            font-weight: 800;
-            margin-bottom: 30px;
-            color: #000;
-        }
-        
-        .comments-stats {
-            margin-bottom: 30px;
-            text-align: center;
-            color: #666;
-            font-size: 1.1rem;
-        }
-        
-        .comment-input-box {
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            background: #fff;
-            overflow: hidden;
-        }
-        
-        .comment-tabs {
-            display: flex;
-            border-bottom: 1px solid #eee;
-            background: #fafafa;
-        }
-        
-        .comment-tab {
-            padding: 12px 24px;
-            font-size: 0.95rem;
-            cursor: pointer;
-            border-right: 1px solid #eee;
-        }
-        
-        .comment-tab.active {
-            background: #fff;
-            font-weight: bold;
-            border-bottom: 2px solid #000;
-        }
-        
-        .comment-textarea {
-            width: 100%;
-            min-height: 150px;
-            padding: 20px;
-            border: none;
-            resize: vertical;
-            font-size: 1rem;
-            outline: none;
-        }
-        
-        .comment-footer {
-            padding: 15px 20px;
-            background: #fafafa;
-            display: flex;
-            justify-content: flex-end;
-            border-top: 1px solid #eee;
-        }
-        
-        .btn-github {
-            display: flex;
+
+        .friends-actions {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 28px;
             align-items: center;
-            gap: 10px;
-            padding: 10px 20px;
-            background: #2ea44f;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 600;
-            transition: background 0.2s;
+            margin-top: 20px;
+            background: #facd01;
         }
-        
-        .btn-github:hover {
-            background: #2c974b;
+
+        .friends-actions h2,
+        .comments-title {
+            margin: 0 0 10px;
+            color: #000;
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 800;
+        }
+
+        .friends-actions p,
+        .comments-hint {
+            max-width: 720px;
+            margin: 0;
+            color: #333;
+            line-height: 1.7;
+        }
+
+        .friend-apply-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 170px;
+            padding: 14px 20px;
+            border: 4px solid #000;
+            background: #044ea2;
+            color: #fff;
+            font-weight: 800;
+            text-decoration: none;
+            box-shadow: 6px 6px 0 #000;
+            transition: transform 150ms ease, box-shadow 150ms ease;
+        }
+
+        .friend-apply-button:hover {
+            color: #fff;
+            transform: translate(3px, 3px);
+            box-shadow: 3px 3px 0 #000;
+        }
+
+        .comments-section {
+            background: #f8f9fa;
+        }
+
+        .comments-title {
+            margin-bottom: 6px;
+        }
+
+        .comments-hint {
+            margin-bottom: 24px;
+            color: #666;
         }
         
         @media (max-width: 1024px) {
@@ -171,6 +153,12 @@
             .friends-container {
                 width: 95%;
                 margin-top: 80px;
+            }
+            .friends-actions {
+                grid-template-columns: 1fr;
+            }
+            .friend-apply-button {
+                width: 100%;
             }
         }
     </style>
@@ -281,157 +269,28 @@
             </a>
         </div>
 
-        <!-- 评论区 -->
-        <div class="comments-section">
-            <h2 class="comments-title">Comments</h2>
-            
-            <div class="comments-stats" id="commentsStats">
-                <p id="commentCount">0 条评论</p>
-                <div style="font-size: 2rem; margin-top: 10px;">😊</div>
+        <section class="friends-actions" aria-labelledby="friend-apply-title">
+            <div>
+                <h2 id="friend-apply-title">申请友链</h2>
+                <p>欢迎内容原创、能够稳定访问的网站来交换友链。申请将通过 GitHub Issue 提交，登录后填写网站名称、地址和简介即可。</p>
             </div>
+            <a class="friend-apply-button no-loader"
+               href="https://github.com/ladygege2494/ladygege2494.github.io/issues/new?template=friend-link.yml"
+               target="_blank"
+               rel="noopener noreferrer">使用 GitHub 申请 →</a>
+        </section>
 
-            <div class="comment-input-box">
-                <div class="comment-tabs">
-                    <div class="comment-tab active">输入</div>
-                    <div class="comment-tab">预览</div>
-                </div>
-                <textarea class="comment-textarea" id="commentTextarea" placeholder="写下你的评论..."></textarea>
-                <div class="comment-footer">
-                    <button id="commentSubmitBtn" class="btn-submit">
-                        📝 发表评论
-                    </button>
-                </div>
-            </div>
-            
-            <div id="commentsList" style="margin-top: 30px;">
-                <!-- 评论将在这里动态生成 -->
-            </div>
-        </div>
-    </div>
-
-    <!-- 署名编辑弹窗 -->
-    <div class="name-modal" id="nameModal">
-        <div class="name-modal-content">
-            <h3>👤 请留下你的署名</h3>
-            <input type="text" id="nameInput" placeholder="输入你的昵称..." maxlength="20">
-            <div class="name-modal-actions">
-                <button id="nameConfirm">确定</button>
-                <button id="nameCancel">取消</button>
-            </div>
-        </div>
-    </div>
-
-    <style>
-        .btn-submit {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 20px;
-            background: #2ea44f;
-            color: #fff;
-            border: none;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .btn-submit:hover {
-            background: #2c974b;
-        }
-        
-        .name-modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.7);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 3000;
-        }
-        .name-modal.active {
-            display: flex;
-        }
-        .name-modal-content {
-            background: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 400px;
-            border: 4px solid #000;
-        }
-        .name-modal-content h3 {
-            margin-bottom: 20px;
-            font-size: 1.3rem;
-            color: #000;
-        }
-        .name-modal-content input {
-            width: 100%;
-            padding: 12px;
-            font-size: 1rem;
-            border: 2px solid #000;
-            border-radius: 6px;
-            margin-bottom: 20px;
-        }
-        .name-modal-actions {
-            display: flex;
-            gap: 10px;
-            justify-content: flex-end;
-        }
-        .name-modal-actions button {
-            padding: 10px 20px;
-            border: 2px solid #000;
-            background: #000;
-            color: #fff;
-            cursor: pointer;
-            font-weight: bold;
-            border-radius: 6px;
-            transition: all 0.2s ease;
-        }
-        .name-modal-actions button:last-child {
-            background: #fff;
-            color: #000;
-        }
-        .name-modal-actions button:hover {
-            transform: translateY(-2px);
-        }
-        
-        .comment-item {
-            background: #fff;
-            border: 4px solid #000;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        .comment-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-        .comment-avatar {
-            width: 40px;
-            height: 40px;
-            background: #000;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            border-radius: 4px;
-        }
-        .comment-author {
-            font-weight: bold;
-        }
-        .comment-time {
-            font-size: 0.8rem;
-            color: #666;
-            margin-left: auto;
-        }
-        .comment-content {
-            line-height: 1.6;
-            color: #333;
-        }
-    </style>
-        </div>
+        <section class="comments-section" aria-labelledby="friends-comments-title">
+            <h2 class="comments-title" id="friends-comments-title">友链留言</h2>
+            <p class="comments-hint">评论公开保存到 GitHub Issues；登录 GitHub 后即可留言、回复和使用 Markdown。</p>
+            <script src="https://utteranc.es/client.js"
+                    repo="ladygege2494/ladygege2494.github.io"
+                    issue-term="pathname"
+                    theme="github-light"
+                    crossorigin="anonymous"
+                    async>
+            </script>
+        </section>
     </div>
 
     <!-- 页面切换加载动画 -->

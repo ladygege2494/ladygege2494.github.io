@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+{{ super() }}
+{% if page and page.file %}
+<section class="article-comments" aria-labelledby="article-comments-title">
+  <h2 class="article-comments__heading" id="article-comments-title">文章评论</h2>
+  <p class="article-comments__hint">使用 GitHub 登录后参与讨论；评论将公开保存到本站仓库的 Issues。</p>
+  <script src="https://utteranc.es/client.js"
+          repo="ladygege2494/ladygege2494.github.io"
+          issue-term="pathname"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+</section>
+{% endif %}
+<a href="{{ config.extra.homepage }}" class="back-to-gegenook" aria-label="返回 GegeNook 分区首页">← 返回 GegeNook</a>
+{% endblock %}

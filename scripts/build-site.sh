@@ -34,6 +34,8 @@ for file in index.html script.js styles.css favicon.jpg image1.jpg image2.jpg im
   [[ -f "$REPO_ROOT/$file" ]] && cp "$REPO_ROOT/$file" "$SITE_DIR/"
 done
 
+[[ -d "$REPO_ROOT/assets" ]] && cp -R "$REPO_ROOT/assets" "$SITE_DIR/assets"
+
 for directory in tech art business media journey portfolio about friends; do
   [[ -d "$REPO_ROOT/$directory" ]] && cp -R "$REPO_ROOT/$directory" "$SITE_DIR/$directory"
 done
