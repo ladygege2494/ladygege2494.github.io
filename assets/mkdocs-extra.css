@@ -100,7 +100,7 @@ input {
 
 /* Search-only n-gram tags improve Chinese partial matching, but are not content. */
 .md-search-result .md-tags {
-  display: none;
+  display: none !important;
 }
 
 .article-comments {

@@ -45,7 +45,7 @@ extra:
   homepage: /journey/
 
 extra_css:
-  - /assets/mkdocs-extra.css
+  - /assets/mkdocs-extra.css?v=20260827-3
 
 extra_javascript:
   - /assets/mkdocs.js
