@@ -41,10 +41,15 @@ for directory in tech art business media journey portfolio about friends; do
 done
 
 for project in tech business art journey; do
-  "$MKDOCS" build \
-    --config-file "$REPO_ROOT/notes/$project/mkdocs.yml" \
-    --site-dir "$SITE_DIR/notes/$project" \
-    "${STRICT_ARGS[@]}"
+  MKDOCS_ARGS=(
+    build
+    --config-file "$REPO_ROOT/notes/$project/mkdocs.yml"
+    --site-dir "$SITE_DIR/notes/$project"
+  )
+  if [[ ${#STRICT_ARGS[@]} -gt 0 ]]; then
+    MKDOCS_ARGS+=("${STRICT_ARGS[@]}")
+  fi
+  "$MKDOCS" "${MKDOCS_ARGS[@]}"
   python3 "$REPO_ROOT/scripts/enhance_search_index.py" \
     "$SITE_DIR/notes/$project/search/search_index.json"
 done

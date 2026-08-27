@@ -98,6 +98,11 @@ input {
     box-shadow: 0 0.35rem 1.2rem rgba(0, 0, 0, 0.07);
 }
 
+/* Search-only n-gram tags improve Chinese partial matching, but are not content. */
+.md-search-result .md-tags {
+  display: none;
+}
+
 .article-comments {
     max-width: 56rem;
     margin: 3.2rem auto 1.5rem;
