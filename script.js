@@ -516,7 +516,7 @@ function loadSearchDocuments() {
     if (searchDocumentsPromise) return searchDocumentsPromise;
 
     searchDocumentsPromise = Promise.allSettled(searchIndexes.map(async source => {
-        const response = await fetch(`${source.base}search/search_index.json`);
+        const response = await fetch(`${source.base}search/search_index.json?v=20260827-2`);
         if (!response.ok) throw new Error(`${source.name}搜索索引加载失败`);
         const data = await response.json();
         return (data.docs || []).map(doc => ({
