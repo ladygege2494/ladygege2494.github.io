@@ -45,6 +45,8 @@ for project in tech business art journey; do
     --config-file "$REPO_ROOT/notes/$project/mkdocs.yml" \
     --site-dir "$SITE_DIR/notes/$project" \
     "${STRICT_ARGS[@]}"
+  python3 "$REPO_ROOT/scripts/enhance_search_index.py" \
+    "$SITE_DIR/notes/$project/search/search_index.json"
 done
 
 touch "$SITE_DIR/.nojekyll"

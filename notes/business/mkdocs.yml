@@ -80,6 +80,13 @@ plugins:
   - search:
       lang: zh
       separator: '[\s\-，。；：！？、（）【】《》]+'
+      fields:
+        title:
+          boost: 1000
+        text:
+          boost: 1
+        tags:
+          boost: 30
 nav:
   - Home: index.md
   - Macro:

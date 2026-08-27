@@ -70,7 +70,7 @@ cd /Users/ladygege/MyWebsite
 ## 搜索、评论与友链申请
 
 - 原生 HTML 页面使用 `script.js` 同时检索四套 MkDocs 索引和网站固定页面；输入关键词后即时显示按相关度排序的结果。
-- 每套 MkDocs 使用独立中文搜索索引，并共享 `assets/mkdocs-extra.css`、`assets/mkdocs.js` 和 `notes/overrides/main.html`。
+- 每套 MkDocs 使用独立中文搜索索引，通过 Jieba 分词支持中文短词检索，并共享 `assets/mkdocs-extra.css`、`assets/mkdocs.js` 和 `notes/overrides/main.html`。
 - MkDocs 文章页和友链页通过 Utterances 将评论保存到 GitHub Issues，访客需要登录 GitHub。
 - 友链申请使用 `.github/ISSUE_TEMPLATE/friend-link.yml`，申请入口位于 `/friends/`。
 - 主页建站天数以仓库创建日 `2026-01-21` 为起点；访问次数由不蒜子提供公开 PV 统计。
