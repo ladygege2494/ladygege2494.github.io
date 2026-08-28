@@ -91,17 +91,45 @@ nav:
   - Home: index.md
   - ISEE:
     - ISEE/index.md
+    - "信号与系统": ISEE/信号与系统.md
+    - "半导体物理": ISEE/半导体物理.md
+    - "数字系统设计": ISEE/数字系统设计.md
+    - "数字系统设计实验": ISEE/数字系统设计实验.md
     - "电子电路基础": ISEE/电子电路基础.md
-    - "电设实验I": ISEE/电设实验I.md
+    - "电子电路设计实验 I": ISEE/电子电路设计实验I.md
+    - "电子电路设计实验 II": ISEE/电子电路设计实验II.md
   - CS:
     - CS/index.md
     - "C程设计基础与实验": CS/C程设计基础与实验.md
-  - AI: AI/index.md
+    - "数据结构基础":
+      - CS/数据结构基础/index.md
+      - "知识点": CS/数据结构基础/知识点.md
+      - "错题集": CS/数据结构基础/错题集.md
+      - "Chapter 1 · Course Preview": CS/数据结构基础/Chapter1 Course Preview.md
+      - "Chapter 2 · Algorithm Analysis": CS/数据结构基础/Chapter2 Algorithm Analysis.md
+      - "Chapter 3 · Lists, Stacks, and Queues": CS/数据结构基础/Chapter3 Lists, Stacks, and Queues.md
+      - "Chapter 4 · Tree": CS/数据结构基础/Chapter4 Tree.md
+      - "Chapter 5 · Binary Search Tree": CS/数据结构基础/Chapter5 Binary Search Tree(BST).md
+      - "Chapter 6 · Priority Queue": CS/数据结构基础/Chapter6 Priority Queue(Heap).md
+      - "Chapter 7 · Segment Tree": CS/数据结构基础/Chapter7 Segment Tree.md
+      - "Chapter 8 · Disjoint Set": CS/数据结构基础/Chapter8 Disjoint Set.md
+      - "Chapter 9 · Shortest Path Algorithm": CS/数据结构基础/Chapter9 Shortest Path Algorithm.md
+      - "Chapter 10 · NFP + MST + DFS": CS/数据结构基础/Chapter10 NFP+MST+DFS.md
+      - "Chapter 11 · Sorting": CS/数据结构基础/Chapter11 Sorting.md
+      - "Chapter 12 · Hashing": CS/数据结构基础/Chapter12 Hashing.md
+  - AI:
+    - AI/index.md
+    - "人工智能": AI/人工智能.md
   - Me:
     - Me/index.md
     - "工程图学": Me/工程图学.md
   - Math:
     - Math/index.md
+    - "信息理论":
+      - Math/信息理论/index.md
+      - "Chapter 1 · 信息的度量": Math/信息理论/Chapter1 信息的度量.md
+      - "Chapter 2 · 信源编码": Math/信息理论/Chapter2 信源编码.md
+      - "Chapter 3 · 信道编码": Math/信息理论/Chapter3 信道编码.md
     - "复变函数与积分变换": Math/复变函数与积分变换.md
     - "常微分方程": Math/常微分方程.md
     - "微积分甲I": Math/微积分甲I.md
@@ -117,6 +145,9 @@ nav:
   - Other:
     - Other/index.md
     - "Git": Other/Git.md
+  - 课业规划:
+    - 课业规划/index.md
+    - "大二春夏": 课业规划/大二春夏.md
   - 通识:
     - 通识/index.md
     - "专业类通识": 通识/专业类.md

@@ -75,7 +75,8 @@ sync_one "商业笔记" "business"
 sync_one "文艺笔记" "art"
 sync_one "一路走来" "journey"
 
-python3 "$REPO_ROOT/scripts/normalize_obsidian.py"
+OBSIDIAN_VAULT_ROOT="$(dirname "$OBSIDIAN_ROOT")" \
+  python3 "$REPO_ROOT/scripts/normalize_obsidian.py"
 python3 "$REPO_ROOT/scripts/check_content.py"
 
 if $BUILD; then

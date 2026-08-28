@@ -1,0 +1,27 @@
+# Explicitly approved public attachments outside the “个人网站” folder.
+1-PROJECT-NOW/大二春夏/asserts/大二春夏/image.png
+1-PROJECT-NOW/大二春夏/asserts/大二春夏/image-1.png
+1-PROJECT-NOW/大二春夏/asserts/大二春夏/image-2.png
+1-PROJECT-NOW/大二春夏/asserts/大二春夏/image-3.png
+1-PROJECT-NOW/大二春夏/asserts/大二春夏/image-4.png
+1-PROJECT-NOW/大二春夏/asserts/大二春夏/image-5.png
+1-PROJECT-NOW/大二春夏/asserts/大二春夏/image-6.png
+1-PROJECT-NOW/大二春夏/asserts/大二春夏/image-7.png
+1-PROJECT-NOW/大二春夏/asserts/大二春夏/image-8.png
+1-PROJECT-NOW/大二春夏/asserts/大二春夏/image-9.png
+1-PROJECT-NOW/大二春夏/asserts/大二春夏/image-10.png
+1-PROJECT-NOW/大二春夏/asserts/大二春夏/image-12.png
+1-PROJECT-NOW/大二春夏/asserts/大二春夏/image-13.png
+1-PROJECT-NOW/大二春夏/asserts/大二春夏/image-14.png
+1-PROJECT-NOW/大二春夏/asserts/大二春夏/image-15.png
+1-PROJECT-NOW/大二春夏/asserts/大二春夏/image-16.png
+1-PROJECT-NOW/大二春夏/asserts/大二春夏/image-17.png
+1-PROJECT-NOW/大二春夏/asserts/大二春夏/image-18.png
+1-PROJECT-NOW/大二春夏/asserts/大二春夏/image-19.png
+1-PROJECT-NOW/大二春夏/信息理论/asserts/教材大纲/image-1.png
+1-PROJECT-NOW/大二春夏/信息理论/asserts/教材大纲/image-2.png
+1-PROJECT-NOW/大二春夏/数据结构基础/asserts/C语言复习/image.png
+1-PROJECT-NOW/大二春夏/数据结构基础/asserts/C语言复习/image-1.png
+1-PROJECT-NOW/大二春夏/数据结构基础/asserts/期末知识点自查/image.png
+1-PROJECT-NOW/大二春夏/数据结构基础/asserts/期末知识点自查/image-1.png
+4-ARCHIVE/大一春夏/asserts/大物/image-26.png
