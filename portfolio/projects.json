@@ -1,0 +1,169 @@
+{
+  "projects": [
+    {
+      "title": "MRSAudio空间音频benchmark",
+      "category": "科研项目",
+      "description": "参与赵洲教授课题组大规模多模态空间音频数据集MRSAudio的构建与核心数据采集。相关成果已录用于人工智能顶级学术会议NeurIPS 2025（CCF-A类）。",
+      "links": [
+        {
+          "label": "查看链接",
+          "url": "https://arxiv.org/abs/2510.10396"
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/projects/MRSAudio.png",
+          "alt": "MRSAudio空间音频benchmark"
+        }
+      ],
+      "incomplete": false
+    },
+    {
+      "title": "基于大模型语义对齐的跨范式运动功能智能评估框架",
+      "category": "科研项目",
+      "description": "参与浙江大学大学生科研训练计划（SRTP）国家级项目，构建基于大模型语义对齐的跨范式运动功能智能评估框架，探索多模态运动数据与大语言模型语义空间的统一表征与智能评估方法。",
+      "links": [],
+      "images": [
+        {
+          "src": "assets/projects/SRTP.png",
+          "alt": "基于大模型语义对齐的跨范式运动功能智能评估框架"
+        }
+      ],
+      "incomplete": false
+    },
+    {
+      "title": "PCB布局优化",
+      "category": "科研项目",
+      "description": "本项目针对 PCB 元件布局优化问题，以最小化半周长线长（HPWL）为目标，在满足元件间距不小于 2 个单位（即 gapx ≥ 2 或 gapy ≥ 2）且不超出画布边界的约束条件下，设计了力导向排斥合法化 + 交换优化 + 贪心下降的三阶段混合优化算法。在 4 个数据集（small-1 至 small-4）上进行了实验，所有数据集均实现了零违规（violation=0）。在 small-1、small-2、small-3 上，HPWL 取得了 29.3%–41.6%的显著改善；small-4 因网络稀疏性仅改善 1.0%，但违规同样从 625 降至 0。实验表明，交换优化（组件重排序）对于 HPWL 优化的贡献远超细粒度位置微调。",
+      "links": [],
+      "images": [
+        {
+          "src": "assets/projects/PCB%E5%B8%83%E5%B1%80%E4%BC%98%E5%8C%961.png",
+          "alt": "PCB布局优化"
+        },
+        {
+          "src": "assets/projects/PCB%E5%B8%83%E5%B1%80%E4%BC%98%E5%8C%962.png",
+          "alt": "PCB布局优化"
+        }
+      ],
+      "incomplete": false
+    },
+    {
+      "title": "上海城市跑",
+      "category": "软件项目",
+      "description": "项目部署在魔塔社区的创空间上：cityrun · 创空间",
+      "links": [
+        {
+          "label": "https://github.com/ladygege2494/shanghai-city-run.git",
+          "url": "https://github.com/ladygege2494/shanghai-city-run.git"
+        },
+        {
+          "label": "cityrun · 创空间",
+          "url": "https://www.modelscope.cn/studios/justauser/cityrun"
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/projects/%E4%B8%8A%E6%B5%B7%E5%9F%8E%E5%B8%82%E8%B7%91.png",
+          "alt": "上海城市跑"
+        }
+      ],
+      "incomplete": false
+    },
+    {
+      "title": "携程酒店预订应用开发",
+      "category": "软件项目",
+      "description": "",
+      "links": [
+        {
+          "label": "查看链接",
+          "url": "https://github.com/Lydia1108/Yisu-hotel-reservation.git"
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/projects/%E6%90%BA%E7%A8%8B%E9%85%92%E5%BA%971.png",
+          "alt": "携程酒店预订应用开发"
+        },
+        {
+          "src": "assets/projects/%E6%90%BA%E7%A8%8B%E9%85%92%E5%BA%972.png",
+          "alt": "携程酒店预订应用开发"
+        }
+      ],
+      "incomplete": false
+    },
+    {
+      "title": "《视界伴行》视障助行系统",
+      "category": "硬件项目",
+      "description": "参加2026年大学生电子设计竞赛嵌入式AI专题赛（英特尔杯），完成作品《视界伴行——基于多模态感知与柔性外骨骼的视障助行系统》，融合多模态感知与柔性外骨骼技术为视障人群提供智能助行方案，获全国一等奖。",
+      "links": [],
+      "images": [
+        {
+          "src": "assets/projects/%E8%8B%B1%E7%89%B9%E5%B0%94%E6%9D%AF.png",
+          "alt": "《视界伴行》视障助行系统"
+        }
+      ],
+      "incomplete": false
+    },
+    {
+      "title": "《智脊未来》脊柱侧弯智能筛查系统",
+      "category": "硬件项目",
+      "description": "参加第十一届全国大学生生物医学工程创新设计竞赛，完成作品《智脊未来——基于三维点云技术的青少年特发性脊柱侧弯智能筛查系统》，利用基于深度相机的三维点云技术实现青少年特发性脊柱侧弯的智能筛查，获全国一等奖。",
+      "links": [],
+      "images": [
+        {
+          "src": "assets/projects/%E8%84%8A%E6%9F%B1%E4%BE%A7%E5%BC%AF%E5%B0%8F%E5%B1%8B.png",
+          "alt": "《智脊未来》脊柱侧弯智能筛查系统"
+        }
+      ],
+      "incomplete": false
+    },
+    {
+      "title": "STM32桌面宠物狗",
+      "category": "硬件项目",
+      "description": "该项目是一个以STM32为核心的智能机械宠物狗。它不仅仅是一个模型，更是一个集成了前沿技术的桌面级伴侣。通过内置的语音识别模块，用户可以直接用声音向它发出“坐下”、“握手”等指令，实现自然流畅的语音交互。同时，STM32主控板精准驱动多个舵机，赋予它“摇摆”、“伸懒腰”等生动的仿生动作。",
+      "links": [],
+      "images": [
+        {
+          "src": "assets/projects/%E6%A1%8C%E9%9D%A2%E5%AE%A0%E7%89%A9%E7%8B%97.png",
+          "alt": "STM32桌面宠物狗"
+        }
+      ],
+      "incomplete": false
+    },
+    {
+      "title": "电路模型探究装置",
+      "category": "硬件项目",
+      "description": "",
+      "links": [],
+      "images": [
+        {
+          "src": "assets/projects/%E7%94%B5%E8%B5%9B.png",
+          "alt": "电路模型探究装置"
+        }
+      ],
+      "incomplete": false
+    },
+    {
+      "title": "李萨如图装置",
+      "category": "硬件项目",
+      "description": "",
+      "links": [],
+      "images": [],
+      "incomplete": true
+    },
+    {
+      "title": "2026年数学建模美赛M奖",
+      "category": "其他项目",
+      "description": "",
+      "links": [],
+      "images": [
+        {
+          "src": "assets/projects/%E7%BE%8E%E8%B5%9B.png",
+          "alt": "2026年数学建模美赛M奖"
+        }
+      ],
+      "incomplete": false
+    }
+  ]
+}

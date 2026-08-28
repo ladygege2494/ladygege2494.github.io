@@ -27,7 +27,7 @@ const blockDetails = {
         link: 'business/index.html'
     },
     portfolio: {
-        text: '作品集展示我的项目作品，包括设计、开发、创意等多个方面的实践成果。',
+        text: '作品集收录科研、软件、硬件项目，以及视觉设计、摄影和视频创作。',
         link: 'portfolio/index.html'
     },
     journey: {
@@ -39,7 +39,7 @@ const blockDetails = {
 // ========== 页面加载初始化 ==========
 document.addEventListener('DOMContentLoaded', function() {
     initTypingEffect();
-    initScrollHandler();
+    if (document.body.classList.contains('home-body')) initScrollHandler();
     initMondrianBlocks();
     initBubbles();
     initSearchBox();
@@ -199,6 +199,7 @@ function initSiteStats() {
 // ========== 打字效果 ==========
 function initTypingEffect() {
     const typingText = document.getElementById('typingText');
+    if (!typingText) return;
     const texts = ['Hello! I am Awesome!', 'Welcome to My Nook!'];
     let textIndex = 0;
     let charIndex = 0;
@@ -484,7 +485,8 @@ const searchIndexes = [
     { name: '技术笔记', base: '/notes/tech/' },
     { name: '商业笔记', base: '/notes/business/' },
     { name: '文艺笔记', base: '/notes/art/' },
-    { name: '一路走来', base: '/notes/journey/' }
+    { name: '一路走来', base: '/notes/journey/' },
+    { name: '作品集', base: '/portfolio/', data: 'projects.json' }
 ];
 
 const nativeSearchDocuments = [
@@ -492,7 +494,7 @@ const nativeSearchDocuments = [
     { section: '网站', title: '友链', text: '友情链接 友链申请 评论', url: '/friends/' },
     { section: '网站', title: '关于', text: '关于我 联系方式 个人介绍', url: '/about/' },
     { section: '网站', title: '自媒体', text: '公众号 B站 内容创作', url: '/media/' },
-    { section: '网站', title: '作品集', text: '项目 设计 开发 作品', url: '/portfolio/' },
+    { section: '网站', title: '作品集', text: '科研 软件 硬件 项目 视觉设计 美工 摄影 视频 MRSAudio PCB 上海城市跑 携程酒店 视界伴行 智脊未来 STM32 桌面宠物狗 电路模型 李萨如图 数学建模', url: '/portfolio/' },
     { section: '分区', title: '技术笔记', text: '工程 技术 课程 计算机 数学 物理', url: '/tech/' },
     { section: '分区', title: '文艺笔记', text: '电影 文学 艺术 音乐 哲学 文化', url: '/art/' },
     { section: '分区', title: '商业笔记', text: '商业 投资 经济 商业模式', url: '/business/' },
@@ -516,9 +518,17 @@ function loadSearchDocuments() {
     if (searchDocumentsPromise) return searchDocumentsPromise;
 
     searchDocumentsPromise = Promise.allSettled(searchIndexes.map(async source => {
-        const response = await fetch(`${source.base}search/search_index.json?v=20260827-2`);
+        const response = await fetch(`${source.base}${source.data || 'search/search_index.json'}?v=20260828-1`);
         if (!response.ok) throw new Error(`${source.name}搜索索引加载失败`);
         const data = await response.json();
+        if (source.data === 'projects.json') {
+            return (data.projects || []).map(project => ({
+                section: source.name,
+                title: project.title,
+                text: [project.category, project.description, ...(project.links || []).map(link => link.label)].join(' '),
+                url: new URL('#projects', `${window.location.origin}${source.base}`).href
+            }));
+        }
         return (data.docs || []).map(doc => ({
             ...doc,
             section: source.name,

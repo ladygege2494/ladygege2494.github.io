@@ -3,153 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GegeNook-作品集</title>
+    <meta name="description" content="GegeNook 作品集：科研、软件、硬件、视觉设计、摄影与视频作品。">
+    <title>GegeNook · 作品集</title>
     <link rel="icon" type="image/jpeg" href="../favicon.jpg">
-    <link rel="stylesheet" href="../styles.css?v=20260827-2">
-    <style>
-        body {
-            background: #FFFFFF;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        .portfolio-container {
-            max-width: 1000px;
-            width: 100%;
-            text-align: center;
-        }
-        .back-link {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            color: #000;
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: bold;
-            padding: 10px 20px;
-            border: 2px solid #000;
-            transition: all 0.3s ease;
-        }
-        .back-link:hover {
-            background: #000;
-            color: #fff;
-        }
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 2rem;
-            color: #000;
-        }
-        .info {
-            color: #000;
-            font-size: 1.2rem;
-            line-height: 1.8;
-            margin-bottom: 40px;
-        }
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
-        }
-        .portfolio-item {
-            padding: 40px 20px;
-            background: rgba(0, 0, 0, 0.05);
-            border: 3px solid #000;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .portfolio-item:hover {
-            background: #000;
-            color: #fff;
-            transform: scale(1.05);
-        }
-        .portfolio-item h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="../styles.css?v=20260828-1">
+    <link rel="stylesheet" href="portfolio.css?v=20260828-1">
 </head>
-<body>
-    <!-- 全局导航栏 -->
+<body class="portfolio-page">
     <div class="nav-hover-zone" id="navHoverZone"></div>
-    <nav class="top-nav collapsed" id="globalNav">
+    <nav class="top-nav collapsed" id="globalNav" aria-label="全站导航">
         <div class="nav-left">
-            <span class="nav-logo">
+            <a class="nav-logo" href="../index.html" aria-label="返回 GegeNook 主页">
                 <span class="letter-red">G</span><span class="letter-yellow">e</span><span class="letter-blue">g</span><span class="letter-black">e</span><span class="letter-red">N</span><span class="letter-yellow">o</span><span class="letter-blue">o</span><span class="letter-black">k</span>
-            </span>
+            </a>
         </div>
         <div class="nav-center">
-            <div class="nav-item" id="searchBtn">
-                <span class="nav-icon">
-                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                </span>
+            <button class="nav-item nav-button" id="searchBtn" type="button">
+                <span class="nav-icon"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
                 <span class="nav-text">搜索</span>
-            </div>
-            <div class="nav-item" onclick="window.location.href='../index.html#section2'">
-                <span class="nav-icon">
-                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                </span>
+            </button>
+            <a class="nav-item" href="../index.html#section2">
+                <span class="nav-icon"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></span>
                 <span class="nav-text">主页</span>
-            </div>
-            <div class="nav-item" onclick="window.location.href='../friends/'">
-                <span class="nav-icon">
-                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
-                </span>
+            </a>
+            <a class="nav-item" href="../friends/">
+                <span class="nav-icon"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></span>
                 <span class="nav-text">友链</span>
-            </div>
-            <div class="nav-item" onclick="window.location.href='../about/'">
-                <span class="nav-icon">
-                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                </span>
+            </a>
+            <a class="nav-item" href="../about/">
+                <span class="nav-icon"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span>
                 <span class="nav-text">关于</span>
-            </div>
+            </a>
         </div>
-        <button class="nav-toggle" id="navToggle" aria-label="折叠导航" style="display: none;">﹀</button>
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="折叠导航" style="display: none;">﹀</button>
     </nav>
 
     <div class="search-box" id="searchBox">
-        <input type="text" placeholder="搜索站内文章..." id="searchInput">
-        <button class="search-close" id="searchClose">&times;</button>
+        <input type="text" placeholder="搜索站内文章与作品…" id="searchInput">
+        <button class="search-close" id="searchClose" type="button" aria-label="关闭搜索">&times;</button>
     </div>
 
-    <div class="portfolio-container">
-        <h1>作品集</h1>
-        <div class="info">
-            <p>作品集展示我的项目作品，包括设计、开发、创意等多个方面的实践成果。</p>
-        </div>
-        <div class="portfolio-grid">
-            <div class="portfolio-item">
-                <h3>项目 1</h3>
-                <p>项目描述</p>
+    <main>
+        <header class="portfolio-hero">
+            <div class="hero-grid" aria-hidden="true">
+                <span class="hero-square square-red"></span><span class="hero-square square-yellow"></span>
+                <span class="hero-square square-blue"></span><span class="hero-square square-white"></span>
             </div>
-            <div class="portfolio-item">
-                <h3>项目 2</h3>
-                <p>项目描述</p>
+            <div class="hero-copy">
+                <p class="eyebrow">SELECTED WORKS · 2026</p>
+                <h1>从想法到<br><span>真实作品</span></h1>
+                <p class="hero-intro">这里收藏我的科研探索、软件与硬件实践，也将持续更新视觉设计、摄影和视频创作。</p>
+                <a class="hero-link" href="#projects">浏览项目 <span aria-hidden="true">↓</span></a>
             </div>
-            <div class="portfolio-item">
-                <h3>项目 3</h3>
-                <p>项目描述</p>
-            </div>
-            <div class="portfolio-item">
-                <h3>项目 4</h3>
-                <p>项目描述</p>
-            </div>
-        </div>
-    </div>
+            <dl class="portfolio-stats" aria-label="作品集统计">
+                <div><dt id="projectCount">—</dt><dd>个项目</dd></div>
+                <div><dt id="categoryCount">—</dt><dd>个方向</dd></div>
+                <div><dt id="visualCount">—</dt><dd>件视觉作品</dd></div>
+            </dl>
+        </header>
 
-    <!-- 页面切换加载动画 -->
-    <div class="page-loader" id="pageLoader">
-        <div class="loader-square">
-            <div class="loader-inner-square red"></div>
-            <div class="loader-inner-square yellow"></div>
-            <div class="loader-inner-square blue"></div>
-            <div class="loader-inner-square white"></div>
-        </div>
-    </div>
+        <section class="project-section" id="projects" aria-labelledby="projects-title">
+            <div class="section-heading">
+                <div><p class="section-index">01 / PROJECTS</p><h2 id="projects-title">项目实践</h2></div>
+                <p>项目内容来自 Obsidian「作品集/我的项目.md」，每次同步时自动更新。</p>
+            </div>
+            <div class="project-filters" id="projectFilters" aria-label="按项目类型筛选"></div>
+            <div class="project-grid" id="projectGrid" aria-live="polite"><div class="loading-state">正在整理作品…</div></div>
+        </section>
 
-    <script src="../script.js?v=20260827-2"></script>
+        <section class="visual-section" id="visual-works" aria-labelledby="visual-title">
+            <div class="section-heading visual-heading">
+                <div><p class="section-index">02 / VISUAL STORIES</p><h2 id="visual-title">视觉与影像</h2></div>
+                <p>设计用于表达，摄影用于观察，视频用于讲述。画廊会随 Obsidian 素材同步生长。</p>
+            </div>
+            <div class="gallery-block">
+                <div class="gallery-title"><h3>美工设计</h3><span>GRAPHIC &amp; VISUAL</span></div>
+                <div class="masonry-gallery" id="designGallery"></div>
+                <div class="gallery-empty" id="designEmpty"><strong>视觉作品整理中</strong><span>新的设计项目会在这里出现。</span></div>
+            </div>
+            <div class="gallery-block">
+                <div class="gallery-title"><h3>摄影</h3><span>PHOTOGRAPHY</span></div>
+                <div class="masonry-gallery" id="photographyGallery"></div>
+                <div class="gallery-empty" id="photographyEmpty"><strong>摄影作品整理中</strong><span>光影与瞬间，即将抵达。</span></div>
+            </div>
+            <div class="gallery-block">
+                <div class="gallery-title"><h3>视频</h3><span>MOTION &amp; FILM</span></div>
+                <div class="video-gallery" id="videoGallery"></div>
+                <div class="gallery-empty" id="videoEmpty"><strong>视频作品整理中</strong><span>影像内容将在这里以作品卡片呈现。</span></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="portfolio-footer"><p>MAKE · OBSERVE · SHARE</p><a href="../index.html">返回 GegeNook</a></footer>
+
+    <dialog class="lightbox" id="portfolioLightbox">
+        <button class="lightbox-close" type="button" aria-label="关闭大图">×</button><img alt=""><p></p>
+    </dialog>
+
+    <div class="page-loader" id="pageLoader"><div class="loader-square">
+        <div class="loader-inner-square red"></div><div class="loader-inner-square yellow"></div><div class="loader-inner-square blue"></div><div class="loader-inner-square white"></div>
+    </div></div>
+
+    <script src="../script.js?v=20260828-1"></script>
+    <script src="portfolio.js?v=20260828-1"></script>
 </body>
 </html>

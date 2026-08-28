@@ -75,6 +75,10 @@ sync_one "商业笔记" "business"
 sync_one "文艺笔记" "art"
 sync_one "一路走来" "journey"
 
+python3 "$REPO_ROOT/scripts/build_portfolio.py" \
+  --source "$OBSIDIAN_ROOT/作品集" \
+  --target "$REPO_ROOT/portfolio"
+
 OBSIDIAN_VAULT_ROOT="$(dirname "$OBSIDIAN_ROOT")" \
   python3 "$REPO_ROOT/scripts/normalize_obsidian.py"
 python3 "$REPO_ROOT/scripts/check_content.py"
@@ -84,7 +88,9 @@ if $BUILD; then
 fi
 
 if $PUSH; then
-  git -C "$REPO_ROOT" add notes/tech/docs notes/business/docs notes/art/docs notes/journey/docs
+  git -C "$REPO_ROOT" add \
+    notes/tech/docs notes/business/docs notes/art/docs notes/journey/docs \
+    portfolio/projects.json portfolio/gallery.json portfolio/assets
   if git -C "$REPO_ROOT" diff --cached --quiet; then
     echo "没有需要发布的笔记变更。"
     exit 0
