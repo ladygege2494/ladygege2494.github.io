@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>友链 - GegeNook</title>
     <link rel="icon" type="image/jpeg" href="../favicon.jpg">
-    <link rel="stylesheet" href="../styles.css?v=20260827-2">
+    <link rel="stylesheet" href="../styles.css?v=20260829-1">
     <style>
         body {
             background: #000;
@@ -73,6 +73,17 @@
             font-weight: bold;
             letter-spacing: 1px;
             padding: 12px;
+        }
+
+        .friends-state {
+            grid-column: 1 / -1;
+            display: grid;
+            place-items: center;
+            min-height: 150px;
+            margin: 0;
+            background: #fff;
+            border: 4px solid #000;
+            font-weight: 800;
         }
         
         .friends-actions,
@@ -207,66 +218,8 @@
     </div>
     
     <div class="friends-container">
-        <div class="friends-grid">
-            <a href="https://wbx0710.github.io/mymkdocs/" class="friend-card friend-red size-lg">
-                <div class="friend-name">wbx老师</div>
-            </a>
-
-            <a href="https://xw-soleil.github.io/" class="friend-card friend-blue size-wide">
-                <div class="friend-name">sxw老师</div>
-            </a>
-
-            <a href="https://slowist-lee.github.io/notebook/" class="friend-card friend-white size-sm">
-                <div class="friend-name">slow老师</div>
-            </a>
-
-            <a href="https://plankton2005.best/" class="friend-card friend-yellow size-tall">
-                <div class="friend-name">痞老板</div>
-            </a>
-
-            <a href="https://veronalo.github.io/" class="friend-card friend-white size-wide">
-                <div class="friend-name">zlh老师</div>
-            </a>
-
-            <a href="https://maverick-s-blog.vercel.app/?_vercel_share=RqZsv6xMTDH02JDl8uAAICCAqCTbNEct" class="friend-card friend-red size-sm">
-                <div class="friend-name">zmy老师</div>
-            </a>
-
-            <a href="https://yukinoshitasherry.github.io/" class="friend-card friend-blue size-tall">
-                <div class="friend-name">秋月老师</div>
-            </a>
-
-            <a href="https://conscient.hk.cn/" class="friend-card friend-white size-lg">
-                <div class="friend-name">yz老师</div>
-            </a>
-
-            <a href="https://chatter-barber-020.notion.site/40075ca669a9460d9c915b1e564c83c2?v=ea79d5524f6546eba94e3da5efb93f1e" class="friend-card friend-yellow size-wide">
-                <div class="friend-name">jjk老师</div>
-            </a>
-
-            <a href="https://zicx.top/" class="friend-card friend-red size-sm">
-                <div class="friend-name">zcx老师</div>
-            </a>
-
-            <a href="https://blog.mindorigin.top/" class="friend-card friend-blue size-wide">
-                <div class="friend-name">lxy老师</div>
-            </a>
-
-            <a href="https://brucejqs.github.io/MyNotebook/about/geren/" class="friend-card friend-white size-tall">
-                <div class="friend-name">jqs老师</div>
-            </a>
-
-            <a href="https://lhmd.top/" class="friend-card friend-yellow size-lg">
-                <div class="friend-name">wwj老师</div>
-            </a>
-
-            <a href="https://note.jiepeng.tech/" class="friend-card friend-red size-wide">
-                <div class="friend-name">jjp老师</div>
-            </a>
-
-            <a href="https://nijingzhe.github.io/" class="friend-card friend-blue size-sm">
-                <div class="friend-name">njz老师</div>
-            </a>
+        <div class="friends-grid" id="friendsGrid" aria-live="polite">
+            <p class="friends-state">正在从 Obsidian 读取友链…</p>
         </div>
 
         <section class="friends-actions" aria-labelledby="friend-apply-title">
@@ -303,6 +256,7 @@
         </div>
     </div>
 
-    <script src="../script.js?v=20260827-2"></script>
+    <script src="friends.js?v=20260829-1"></script>
+    <script src="../script.js?v=20260829-1"></script>
 </body>
 </html>

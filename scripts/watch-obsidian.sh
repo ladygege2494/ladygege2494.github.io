@@ -13,6 +13,7 @@ fingerprint() {
     "$OBSIDIAN_ROOT/文艺笔记" \
     "$OBSIDIAN_ROOT/一路走来" \
     "$OBSIDIAN_ROOT/作品集" \
+    "$OBSIDIAN_ROOT/友链.md" \
     -type f ! -name '.DS_Store' -exec stat -f '%m %z %N' {} + 2>/dev/null \
     | LC_ALL=C sort | shasum -a 256 | awk '{print $1}'
 }

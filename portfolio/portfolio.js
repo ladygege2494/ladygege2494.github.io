@@ -60,9 +60,6 @@
         image.decoding = 'async';
         image.src = images[0].src;
         image.alt = images[0].alt || project.title;
-        image.addEventListener('load', () => {
-            media.classList.toggle('is-portrait', image.naturalHeight > image.naturalWidth * 1.16);
-        });
         image.addEventListener('click', () => openLightbox(image.src, project.title));
         media.appendChild(image);
 
@@ -255,8 +252,8 @@
     async function loadPortfolio() {
         try {
             const [projectResponse, galleryResponse] = await Promise.all([
-                fetch('projects.json?v=20260828-1'),
-                fetch('gallery.json?v=20260828-1')
+                fetch('projects.json', { cache: 'no-store' }),
+                fetch('gallery.json', { cache: 'no-store' })
             ]);
             if (!projectResponse.ok || !galleryResponse.ok) throw new Error('作品数据加载失败');
             const projectData = await projectResponse.json();

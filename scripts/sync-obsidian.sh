@@ -13,7 +13,7 @@ usage() {
 用法：./scripts/sync-obsidian.sh [选项]
 
   --build            同步后构建完整网站
-  --push             提交 docs 变更并推送 main，触发 GitHub Pages
+  --push             提交笔记、作品集和友链变更并推送 main
   --message TEXT     自定义提交信息
   --source PATH      覆盖 Obsidian“个人网站”目录
   -h, --help         显示帮助
@@ -79,6 +79,10 @@ python3 "$REPO_ROOT/scripts/build_portfolio.py" \
   --source "$OBSIDIAN_ROOT/作品集" \
   --target "$REPO_ROOT/portfolio"
 
+python3 "$REPO_ROOT/scripts/build_friends.py" \
+  --source "$OBSIDIAN_ROOT/友链.md" \
+  --target "$REPO_ROOT/friends/friends.json"
+
 OBSIDIAN_VAULT_ROOT="$(dirname "$OBSIDIAN_ROOT")" \
   python3 "$REPO_ROOT/scripts/normalize_obsidian.py"
 python3 "$REPO_ROOT/scripts/check_content.py"
@@ -90,9 +94,10 @@ fi
 if $PUSH; then
   git -C "$REPO_ROOT" add \
     notes/tech/docs notes/business/docs notes/art/docs notes/journey/docs \
-    portfolio/projects.json portfolio/gallery.json portfolio/assets
+    portfolio/projects.json portfolio/gallery.json portfolio/assets \
+    friends/friends.json
   if git -C "$REPO_ROOT" diff --cached --quiet; then
-    echo "没有需要发布的笔记变更。"
+    echo "没有需要发布的内容变更。"
     exit 0
   fi
   if [[ -z "$COMMIT_MESSAGE" ]]; then

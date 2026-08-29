@@ -260,10 +260,9 @@
     height: 100%;
     display: block;
     object-fit: cover;
+    object-position: center center;
     cursor: zoom-in;
 }
-
-.project-media.is-portrait img { object-fit: contain; background: #d9d4ca; }
 
 .project-placeholder {
     width: 100%;

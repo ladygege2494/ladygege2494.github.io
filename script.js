@@ -191,7 +191,8 @@ function initSiteStats() {
     const ageElement = document.getElementById('siteAgeDays');
     if (!ageElement) return;
 
-    const siteCreatedAt = new Date('2026-01-21T00:00:00+08:00');
+    // GitHub 仓库创建时间：2026-01-21T08:37:44Z。
+    const siteCreatedAt = new Date('2026-01-21T16:37:44+08:00');
     const elapsedDays = Math.max(0, Math.floor((Date.now() - siteCreatedAt.getTime()) / 86400000));
     ageElement.textContent = elapsedDays.toLocaleString('zh-CN');
 }
@@ -518,7 +519,7 @@ function loadSearchDocuments() {
     if (searchDocumentsPromise) return searchDocumentsPromise;
 
     searchDocumentsPromise = Promise.allSettled(searchIndexes.map(async source => {
-        const response = await fetch(`${source.base}${source.data || 'search/search_index.json'}?v=20260828-1`);
+        const response = await fetch(`${source.base}${source.data || 'search/search_index.json'}`, { cache: 'no-store' });
         if (!response.ok) throw new Error(`${source.name}搜索索引加载失败`);
         const data = await response.json();
         if (source.data === 'projects.json') {
