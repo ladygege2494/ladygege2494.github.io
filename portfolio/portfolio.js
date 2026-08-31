@@ -98,6 +98,44 @@
         return media;
     }
 
+    function createProjectAttachments(project) {
+        const videos = Array.isArray(project.videos) ? project.videos : [];
+        const documents = Array.isArray(project.documents) ? project.documents : [];
+        if (!videos.length && !documents.length) return null;
+
+        const attachments = document.createElement('div');
+        attachments.className = 'project-attachments';
+
+        videos.forEach(item => {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'project-video';
+            const heading = document.createElement('p');
+            heading.className = 'attachment-title';
+            heading.textContent = item.title || '演示视频';
+            const video = document.createElement('video');
+            video.src = item.src;
+            video.controls = true;
+            video.preload = 'metadata';
+            video.playsInline = true;
+            video.setAttribute('aria-label', `${project.title}演示视频`);
+            wrapper.append(heading, video);
+            attachments.appendChild(wrapper);
+        });
+
+        documents.forEach(item => {
+            const link = document.createElement('a');
+            link.className = 'project-document no-loader';
+            link.href = item.src;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.innerHTML = '<span class="document-icon" aria-hidden="true">PDF</span><span></span><span aria-hidden="true">↗</span>';
+            link.children[1].textContent = item.title || '查看 PDF';
+            attachments.appendChild(link);
+        });
+
+        return attachments;
+    }
+
     function createProjectCard(project, index) {
         const article = document.createElement('article');
         article.className = 'project-card';
@@ -145,6 +183,9 @@
             note.textContent = '项目资料整理中';
             body.appendChild(note);
         }
+
+        const attachments = createProjectAttachments(project);
+        if (attachments) body.appendChild(attachments);
 
         if (Array.isArray(project.links) && project.links.length) {
             const links = document.createElement('div');

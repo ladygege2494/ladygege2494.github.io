@@ -8,15 +8,19 @@ import json
 import os
 import re
 import shutil
+import subprocess
 from pathlib import Path
 from urllib.parse import quote
 
 
-PROJECT_IMAGE_RE = re.compile(r"!\[\[([^\]|#]+)(?:\|[^\]]+)?\]\]")
+PROJECT_EMBED_RE = re.compile(r"!\[\[([^\]|#]+)(?:\|[^\]]+)?\]\]")
 MARKDOWN_LINK_RE = re.compile(r"\[([^\]]+)\]\((https?://[^)]+)\)")
 BARE_URL_RE = re.compile(r"(?<!\()https?://[^\s<>]+")
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".gif", ".avif"}
 VIDEO_EXTENSIONS = {".mp4", ".webm", ".mov", ".m4v"}
+DOCUMENT_EXTENSIONS = {".pdf"}
+VIDEO_TRANSCODE_THRESHOLD = 25_000_000
+VIDEO_PUBLISH_LIMIT = 95_000_000
 GALLERY_DIRECTORIES = {
     "design": ("美工设计", "视觉设计"),
     "photography": ("摄影", "摄影作品"),
@@ -58,8 +62,8 @@ def locate_asset(source_root: Path, filename: str) -> Path:
     if len(matches) == 1:
         return matches[0]
     if not matches:
-        raise FileNotFoundError(f"作品集引用的图片不存在：{filename}")
-    raise RuntimeError(f"作品集图片名称不唯一，请使用不同文件名：{filename}")
+        raise FileNotFoundError(f"作品集引用的附件不存在：{filename}")
+    raise RuntimeError(f"作品集附件名称不唯一，请使用不同文件名：{filename}")
 
 
 def unique_destination(directory: Path, filename: str) -> Path:
@@ -92,16 +96,25 @@ def extract_description(lines: list[str]) -> str:
     paragraphs: list[str] = []
     current: list[str] = []
     for raw_line in lines:
-        line = PROJECT_IMAGE_RE.sub("", raw_line).strip()
+        line = PROJECT_EMBED_RE.sub("", raw_line).strip()
         line = MARKDOWN_LINK_RE.sub(lambda match: match.group(1), line)
         line = BARE_URL_RE.sub("", line).strip()
         line = clean_inline_markdown(line)
-        if re.fullmatch(r"(?:论文链接|项目仓库|项目地址|仓库|链接)[：:]?", line):
+        if re.fullmatch(
+            r"(?:论文链接|项目仓库|项目地址|仓库|链接|演示视频|视频|海报|论文PDF|PDF|我们的工作|作品实物图)[：:]?",
+            line,
+        ):
             continue
         if not line:
             if current:
                 paragraphs.append(" ".join(current))
                 current = []
+            continue
+        if re.match(r"^\d+[.、]\s*", line):
+            if current:
+                paragraphs.append(" ".join(current))
+                current = []
+            paragraphs.append(line)
             continue
         current.append(line)
     if current:
@@ -121,10 +134,10 @@ def parse_projects(source_file: Path, source_root: Path, public_root: Path) -> l
             return
         current["description"] = extract_description(source_lines)
         current["links"] = extract_links(source_lines)
-        image_names: list[str] = []
+        asset_names: list[str] = []
         for line in source_lines:
-            image_names.extend(PROJECT_IMAGE_RE.findall(line))
-        current["source_images"] = image_names
+            asset_names.extend(PROJECT_EMBED_RE.findall(line))
+        current["source_assets"] = asset_names
         projects.append(current)
         current = None
         source_lines = []
@@ -143,22 +156,112 @@ def parse_projects(source_file: Path, source_root: Path, public_root: Path) -> l
     finish_project()
 
     target_images = public_root / "assets" / "projects"
-    if target_images.exists():
-        shutil.rmtree(target_images)
     target_images.mkdir(parents=True, exist_ok=True)
+
+    published_files: set[Path] = set()
+    copied_assets: dict[Path, tuple[str, Path]] = {}
+
+    def publish_asset(source_asset: Path) -> tuple[str, Path]:
+        if source_asset in copied_assets:
+            return copied_assets[source_asset]
+
+        extension = source_asset.suffix.lower()
+        if extension in IMAGE_EXTENSIONS:
+            asset_type = "image"
+        elif extension in VIDEO_EXTENSIONS:
+            asset_type = "video"
+        elif extension in DOCUMENT_EXTENSIONS:
+            asset_type = "document"
+        else:
+            raise RuntimeError(f"作品集暂不支持此附件格式：{source_asset.name}")
+
+        optimize_video = asset_type == "video" and source_asset.stat().st_size > VIDEO_TRANSCODE_THRESHOLD
+        avconvert = shutil.which("avconvert") if optimize_video else None
+        destination_name = (
+            f"{source_asset.stem}.m4v" if optimize_video and avconvert is not None else source_asset.name
+        )
+        destination = target_images / destination_name
+        if destination in published_files:
+            destination = unique_destination(target_images, destination_name)
+
+        if optimize_video:
+            needs_transcode = (
+                not destination.exists()
+                or destination.stat().st_mtime < source_asset.stat().st_mtime
+                or destination.stat().st_size >= VIDEO_PUBLISH_LIMIT
+            )
+            if needs_transcode:
+                if avconvert is None:
+                    if source_asset.stat().st_size >= VIDEO_PUBLISH_LIMIT:
+                        raise RuntimeError(
+                            f"视频超过 GitHub 限制且未找到 avconvert：{source_asset.name}"
+                        )
+                    shutil.copy2(source_asset, destination)
+                else:
+                    presets = ("PresetAppleM4V480pSD",)
+                    for preset in presets:
+                        result = subprocess.run(
+                            [
+                                avconvert,
+                                "--source", str(source_asset),
+                                "--preset", preset,
+                                "--output", str(destination),
+                                "--replace",
+                                "--disableMetadataFilter",
+                            ],
+                            capture_output=True,
+                            text=True,
+                            check=False,
+                        )
+                        if result.returncode != 0:
+                            raise RuntimeError(
+                                f"视频转换失败（{source_asset.name}）：{result.stderr.strip()}"
+                            )
+                        if destination.stat().st_size < VIDEO_PUBLISH_LIMIT:
+                            break
+                    if destination.stat().st_size >= VIDEO_PUBLISH_LIMIT:
+                        raise RuntimeError(f"网页优化后的视频仍超过 95 MB：{source_asset.name}")
+        else:
+            shutil.copy2(source_asset, destination)
+
+        published_files.add(destination)
+        copied_assets[source_asset] = (asset_type, destination)
+        return asset_type, destination
 
     for project in projects:
         published_images: list[dict[str, str]] = []
-        for filename in project.pop("source_images", []):
+        published_videos: list[dict[str, str]] = []
+        published_documents: list[dict[str, str]] = []
+        for filename in project.pop("source_assets", []):
             source_asset = locate_asset(source_root, str(filename))
-            destination = unique_destination(target_images, source_asset.name)
-            shutil.copy2(source_asset, destination)
-            published_images.append({
+            asset_type, destination = publish_asset(source_asset)
+            public_asset = {
                 "src": asset_url(destination, public_root),
-                "alt": str(project["title"]),
-            })
+                "title": source_asset.stem,
+            }
+            if asset_type == "image":
+                published_images.append({
+                    "src": public_asset["src"],
+                    "alt": str(project["title"]),
+                })
+            elif asset_type == "video":
+                published_videos.append(public_asset)
+            else:
+                published_documents.append({**public_asset, "type": "pdf"})
         project["images"] = published_images
-        project["incomplete"] = not bool(project["description"] or project["links"] or project["images"])
+        project["videos"] = published_videos
+        project["documents"] = published_documents
+        project["incomplete"] = not bool(
+            project["description"]
+            or project["links"]
+            or project["images"]
+            or project["videos"]
+            or project["documents"]
+        )
+
+    for existing in target_images.iterdir():
+        if existing.is_file() and existing not in published_files:
+            existing.unlink()
     return projects
 
 
