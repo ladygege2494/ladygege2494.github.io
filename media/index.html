@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GegeNook-自媒体</title>
+    <link rel="icon" type="image/jpeg" href="../favicon.jpg">
+    <link rel="stylesheet" href="../styles.css?v=20260827-2">
+    <style>
+        body {
+            background: #FFD700;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .media-container {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: #000;
+        }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .media-card {
+            background: #fff;
+            border: 4px solid #000;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .media-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 8px 8px 0 #000;
+        }
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #000;
+        }
+        .card-account {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+        .card-image-container {
+            width: 100%;
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+            background: #f0f0f0;
+            border: 2px solid #000;
+        }
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .card-image.active {
+            opacity: 1;
+        }
+        /* media-img7 特殊样式 */
+        img[src="fig/media-img7.jpg"] {
+            object-fit: contain;
+            object-position: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- 全局导航栏 -->
+    <div class="nav-hover-zone" id="navHoverZone"></div>
+    <nav class="top-nav collapsed" id="globalNav">
+        <div class="nav-left">
+            <span class="nav-logo">
+                <span class="letter-red">G</span><span class="letter-yellow">e</span><span class="letter-blue">g</span><span class="letter-black">e</span><span class="letter-red">N</span><span class="letter-yellow">o</span><span class="letter-blue">o</span><span class="letter-black">k</span>
+            </span>
+        </div>
+        <div class="nav-center">
+            <div class="nav-item" id="searchBtn">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </span>
+                <span class="nav-text">搜索</span>
+            </div>
+            <div class="nav-item" onclick="window.location.href='../index.html#section2'">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                </span>
+                <span class="nav-text">主页</span>
+            </div>
+            <div class="nav-item" onclick="window.location.href='../friends/'">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                </span>
+                <span class="nav-text">友链</span>
+            </div>
+            <div class="nav-item" onclick="window.location.href='../about/'">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </span>
+                <span class="nav-text">关于</span>
+            </div>
+        </div>
+        <button class="nav-toggle" id="navToggle" aria-label="折叠导航" style="display: none;">﹀</button>
+    </nav>
+
+    <div class="search-box" id="searchBox">
+        <input type="text" placeholder="搜索站内文章..." id="searchInput">
+        <button class="search-close" id="searchClose">&times;</button>
+    </div>
+
+    <div class="media-container">
+        <h1>自媒体</h1>
+        <div class="cards-grid">
+            <div class="media-card" onclick="window.open('#', '_blank')">
+                <div class="card-title">📱 公众号</div>
+                <div class="card-account">Mr. Lady</div>
+                <div class="card-image-container" id="wechatCarousel">
+                    <img src="fig/media-img1.jpg" class="card-image active" alt="公众号1">
+                    <img src="fig/media-img2.jpg" class="card-image" alt="公众号2">
+                    <img src="fig/media-img3.jpg" class="card-image" alt="公众号3">
+                </div>
+            </div>
+            
+            <div class="media-card" onclick="window.open('https://space.bilibili.com/508676760', '_blank')">
+                <div class="card-title">🎥 B站主页</div>
+                <div class="card-account">MrLady 格格</div>
+                <div class="card-image-container" id="biliCarousel">
+                    <img src="fig/media-img4.png" class="card-image active" alt="B站1">
+                    <img src="fig/media-img5.png" class="card-image" alt="B站2">
+                    <img src="fig/media-img6.png" class="card-image" alt="B站3">
+                </div>
+            </div>
+            
+            <div class="media-card" onclick="window.open('#', '_blank')">
+                <div class="card-title">🎧 小宇宙博客</div>
+                <div class="card-account">不拘一“格”</div>
+                <div class="card-image-container" id="podcastCarousel">
+                    <img src="fig/media-img7.jpg" class="card-image active" alt="小宇宙">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 轮播功能
+        function startCarousel(containerId, imageCount, interval = 3000) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            
+            const images = container.querySelectorAll('.card-image');
+            let currentIndex = 0;
+            
+            setInterval(() => {
+                images[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % imageCount;
+                images[currentIndex].classList.add('active');
+            }, interval);
+        }
+        
+        // 启动轮播
+        startCarousel('wechatCarousel', 3, 3000);
+        startCarousel('biliCarousel', 3, 3000);
+        // 小宇宙只有1张图，不需要轮播
+    </script>
+
+    <!-- 页面切换加载动画 -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-square">
+            <div class="loader-inner-square red"></div>
+            <div class="loader-inner-square yellow"></div>
+            <div class="loader-inner-square blue"></div>
+            <div class="loader-inner-square white"></div>
+        </div>
+    </div>
+
+    <script src="../script.js?v=20260827-2"></script>
+</body>
+</html>

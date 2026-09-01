@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>友链 - GegeNook</title>
+    <link rel="icon" type="image/jpeg" href="../favicon.jpg">
+    <link rel="stylesheet" href="../styles.css?v=20260829-1">
+    <style>
+        body {
+            background: #000;
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+            font-family: 'Arial', 'Helvetica', 'Microsoft YaHei', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .friends-container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 100px auto 40px;
+            padding: 20px;
+            background: #fff;
+            border: 8px solid #000;
+        }
+        
+        .friends-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-auto-rows: 150px;
+            gap: 12px;
+            background: #000;
+            padding: 12px;
+            border: 4px solid #000;
+        }
+        
+        .friend-card {
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            overflow: hidden;
+            position: relative;
+            border: 4px solid #000;
+        }
+        
+        .friend-card:hover {
+            z-index: 10;
+            transform: translate(-4px, -4px);
+            box-shadow: 8px 8px 0 #000;
+        }
+        
+        /* 蒙德里安颜色类 */
+        .friend-red { background-color: #e30512; color: #fff; }
+        .friend-blue { background-color: #044ea2; color: #fff; }
+        .friend-yellow { background-color: #facd01; color: #000; }
+        .friend-white { background-color: #ffffff; color: #000; }
+        
+        /* 不同尺寸的卡片 */
+        .friend-card.size-lg { grid-column: span 2; grid-row: span 2; }
+        .friend-card.size-wide { grid-column: span 2; grid-row: span 1; }
+        .friend-card.size-tall { grid-column: span 1; grid-row: span 2; }
+        .friend-card.size-sm { grid-column: span 1; grid-row: span 1; }
+        
+        .friend-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            padding: 12px;
+        }
+
+        .friends-state {
+            grid-column: 1 / -1;
+            display: grid;
+            place-items: center;
+            min-height: 150px;
+            margin: 0;
+            background: #fff;
+            border: 4px solid #000;
+            font-weight: 800;
+        }
+        
+        .friends-actions,
+        .comments-section {
+            padding: clamp(24px, 4vw, 44px);
+            border-top: 8px solid #000;
+        }
+
+        .friends-actions {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 28px;
+            align-items: center;
+            margin-top: 20px;
+            background: #facd01;
+        }
+
+        .friends-actions h2,
+        .comments-title {
+            margin: 0 0 10px;
+            color: #000;
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 800;
+        }
+
+        .friends-actions p,
+        .comments-hint {
+            max-width: 720px;
+            margin: 0;
+            color: #333;
+            line-height: 1.7;
+        }
+
+        .friend-apply-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 170px;
+            padding: 14px 20px;
+            border: 4px solid #000;
+            background: #044ea2;
+            color: #fff;
+            font-weight: 800;
+            text-decoration: none;
+            box-shadow: 6px 6px 0 #000;
+            transition: transform 150ms ease, box-shadow 150ms ease;
+        }
+
+        .friend-apply-button:hover {
+            color: #fff;
+            transform: translate(3px, 3px);
+            box-shadow: 3px 3px 0 #000;
+        }
+
+        .comments-section {
+            background: #f8f9fa;
+        }
+
+        .comments-title {
+            margin-bottom: 6px;
+        }
+
+        .comments-hint {
+            margin-bottom: 24px;
+            color: #666;
+        }
+        
+        @media (max-width: 1024px) {
+            .friends-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .friends-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .friends-container {
+                width: 95%;
+                margin-top: 80px;
+            }
+            .friends-actions {
+                grid-template-columns: 1fr;
+            }
+            .friend-apply-button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 全局导航栏 -->
+    <div class="nav-hover-zone" id="navHoverZone"></div>
+    <nav class="top-nav collapsed" id="globalNav">
+        <div class="nav-left">
+            <span class="nav-logo">
+                <span class="letter-red">G</span><span class="letter-yellow">e</span><span class="letter-blue">g</span><span class="letter-black">e</span><span class="letter-red">N</span><span class="letter-yellow">o</span><span class="letter-blue">o</span><span class="letter-black">k</span>
+            </span>
+        </div>
+        <div class="nav-center">
+            <div class="nav-item" id="searchBtn">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </span>
+                <span class="nav-text">搜索</span>
+            </div>
+            <div class="nav-item" onclick="window.location.href='../index.html#section2'">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                </span>
+                <span class="nav-text">主页</span>
+            </div>
+            <div class="nav-item" onclick="window.location.href='../friends/'">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                </span>
+                <span class="nav-text">友链</span>
+            </div>
+            <div class="nav-item" onclick="window.location.href='../about/'">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </span>
+                <span class="nav-text">关于</span>
+            </div>
+        </div>
+        <button class="nav-toggle" id="navToggle" aria-label="折叠导航" style="display: none;">﹀</button>
+    </nav>
+
+    <div class="search-box" id="searchBox">
+        <input type="text" placeholder="搜索站内文章..." id="searchInput">
+        <button class="search-close" id="searchClose">&times;</button>
+    </div>
+    
+    <div class="friends-container">
+        <div class="friends-grid" id="friendsGrid" aria-live="polite">
+            <p class="friends-state">正在从 Obsidian 读取友链…</p>
+        </div>
+
+        <section class="friends-actions" aria-labelledby="friend-apply-title">
+            <div>
+                <h2 id="friend-apply-title">申请友链</h2>
+                <p>欢迎内容原创、能够稳定访问的网站来交换友链。申请将通过 GitHub Issue 提交，登录后填写网站名称、地址和简介即可。</p>
+            </div>
+            <a class="friend-apply-button no-loader"
+               href="https://github.com/ladygege2494/ladygege2494.github.io/issues/new?template=friend-link.yml"
+               target="_blank"
+               rel="noopener noreferrer">使用 GitHub 申请 →</a>
+        </section>
+
+        <section class="comments-section" aria-labelledby="friends-comments-title">
+            <h2 class="comments-title" id="friends-comments-title">友链留言</h2>
+            <p class="comments-hint">评论公开保存到 GitHub Issues；登录 GitHub 后即可留言、回复和使用 Markdown。</p>
+            <script src="https://utteranc.es/client.js"
+                    repo="ladygege2494/ladygege2494.github.io"
+                    issue-term="pathname"
+                    theme="github-light"
+                    crossorigin="anonymous"
+                    async>
+            </script>
+        </section>
+    </div>
+
+    <!-- 页面切换加载动画 -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-square">
+            <div class="loader-inner-square red"></div>
+            <div class="loader-inner-square yellow"></div>
+            <div class="loader-inner-square blue"></div>
+            <div class="loader-inner-square white"></div>
+        </div>
+    </div>
+
+    <script src="friends.js?v=20260829-1"></script>
+    <script src="../script.js?v=20260829-1"></script>
+</body>
+</html>

@@ -1,0 +1,247 @@
+{
+  "projects": [
+    {
+      "title": "《 MRSAudio: A Large-Scale Multimodal Recorded Spatial Audio Dataset with Refined Annotations》",
+      "category": "科研项目",
+      "description": "参与浙江大学赵洲教授课题组大规模多模态空间音频数据集MRSAudio的构建与核心数据采集。相关成果已录用于人工智能顶级学术会议NeurIPS 2025（CCF-A类）。",
+      "links": [
+        {
+          "label": "查看链接",
+          "url": "https://arxiv.org/abs/2510.10396"
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/projects/MRSAudio.png",
+          "alt": "《 MRSAudio: A Large-Scale Multimodal Recorded Spatial Audio Dataset with Refined Annotations》"
+        }
+      ],
+      "videos": [],
+      "documents": [],
+      "incomplete": false
+    },
+    {
+      "title": "基于大模型语义对齐的跨范式运动功能智能评估框架",
+      "category": "科研项目",
+      "description": "参与浙江大学大学生科研训练计划（SRTP）国家级项目，构建基于大模型语义对齐的跨范式运动功能智能评估框架，探索多模态运动数据与大语言模型语义空间的统一表征与智能评估方法。",
+      "links": [],
+      "images": [
+        {
+          "src": "assets/projects/SRTP.png",
+          "alt": "基于大模型语义对齐的跨范式运动功能智能评估框架"
+        }
+      ],
+      "videos": [],
+      "documents": [],
+      "incomplete": false
+    },
+    {
+      "title": "PCB布局优化",
+      "category": "科研项目",
+      "description": "本项目针对 PCB 元件布局优化问题，以最小化半周长线长（HPWL）为目标，在满足元件间距不小于 2 个单位（即 gapx ≥ 2 或 gapy ≥ 2）且不超出画布边界的约束条件下，设计了力导向排斥合法化 + 交换优化 + 贪心下降的三阶段混合优化算法。在 4 个数据集（small-1 至 small-4）上进行了实验，所有数据集均实现了零违规（violation=0）。在 small-1、small-2、small-3 上，HPWL 取得了 29.3%–41.6%的显著改善；small-4 因网络稀疏性仅改善 1.0%，但违规同样从 625 降至 0。实验表明，交换优化（组件重排序）对于 HPWL 优化的贡献远超细粒度位置微调。",
+      "links": [],
+      "images": [
+        {
+          "src": "assets/projects/PCB%E5%B8%83%E5%B1%80%E4%BC%98%E5%8C%961.png",
+          "alt": "PCB布局优化"
+        },
+        {
+          "src": "assets/projects/PCB%E5%B8%83%E5%B1%80%E4%BC%98%E5%8C%962.png",
+          "alt": "PCB布局优化"
+        }
+      ],
+      "videos": [],
+      "documents": [],
+      "incomplete": false
+    },
+    {
+      "title": "上海城市跑",
+      "category": "软件项目",
+      "description": "本项目是一款专为跑步爱好者打造的智慧跑步服务平台。系统集成天气、时段与用户偏好，提供智能化的特色路线推荐（如外滩、陆家嘴等）。应用涵盖跑步数据统计、路线库检索、挑战竞赛及个人中心等功能模块，旨在为用户提供科学、有趣的日常健跑辅助体验。\n\n项目部署在魔塔社区的创空间上：cityrun · 创空间",
+      "links": [
+        {
+          "label": "https://github.com/ladygege2494/shanghai-city-run.git",
+          "url": "https://github.com/ladygege2494/shanghai-city-run.git"
+        },
+        {
+          "label": "cityrun · 创空间",
+          "url": "https://www.modelscope.cn/studios/justauser/cityrun"
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/projects/%E4%B8%8A%E6%B5%B7%E5%9F%8E%E5%B8%82%E8%B7%91.png",
+          "alt": "上海城市跑"
+        }
+      ],
+      "videos": [],
+      "documents": [],
+      "incomplete": false
+    },
+    {
+      "title": "易宿酒店预订应用开发",
+      "category": "软件项目",
+      "description": "本项目由客户端与商家端双端组成。客户端面向消费者，提供国内、海外、民宿及钟点房等预订服务，支持多维度检索、定位、日期选择与订单管理。商家端则面向酒店经营者，实现房源发布、价格库存管理和订单处理，提供闭环的在线预订管理功能。",
+      "links": [
+        {
+          "label": "查看链接",
+          "url": "https://github.com/Lydia1108/Yisu-hotel-reservation.git"
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/projects/%E6%90%BA%E7%A8%8B%E9%85%92%E5%BA%971.png",
+          "alt": "易宿酒店预订应用开发"
+        },
+        {
+          "src": "assets/projects/%E6%90%BA%E7%A8%8B%E9%85%92%E5%BA%972.png",
+          "alt": "易宿酒店预订应用开发"
+        }
+      ],
+      "videos": [],
+      "documents": [],
+      "incomplete": false
+    },
+    {
+      "title": "《视界伴行》视障助行系统",
+      "category": "硬件项目",
+      "description": "参加2026年大学生电子设计竞赛嵌入式AI专题赛（英特尔杯），完成作品《视界伴行——基于多模态感知与柔性外骨骼的视障助行系统》，融合多模态感知与柔性外骨骼技术为视障人群提供智能助行方案，获全国一等奖。",
+      "links": [
+        {
+          "label": "查看链接",
+          "url": "https://github.com/ladygege2494/guardian_stride.git"
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/projects/%E8%8B%B1%E7%89%B9%E5%B0%94%E6%9D%AF.png",
+          "alt": "《视界伴行》视障助行系统"
+        }
+      ],
+      "videos": [
+        {
+          "src": "assets/projects/%E8%8B%B1%E7%89%B9%E5%B0%94%E6%9D%AF%E6%BC%94%E7%A4%BA%E8%A7%86%E9%A2%91.m4v",
+          "title": "英特尔杯演示视频"
+        }
+      ],
+      "documents": [],
+      "incomplete": false
+    },
+    {
+      "title": "《智脊未来》脊柱侧弯智能筛查系统",
+      "category": "硬件项目",
+      "description": "参加第十一届全国大学生生物医学工程创新设计竞赛，完成作品《智脊未来——基于三维点云技术的青少年特发性脊柱侧弯智能筛查系统》，利用基于深度相机的三维点云技术实现青少年特发性脊柱侧弯的智能筛查，获全国一等奖。",
+      "links": [],
+      "images": [
+        {
+          "src": "assets/projects/%E8%84%8A%E6%9F%B1%E4%BE%A7%E5%BC%AF%E5%B0%8F%E5%B1%8B.png",
+          "alt": "《智脊未来》脊柱侧弯智能筛查系统"
+        }
+      ],
+      "videos": [
+        {
+          "src": "assets/projects/%E8%84%8A%E6%9F%B1%E4%BE%A7%E5%BC%AF%E6%BC%94%E7%A4%BA%E8%A7%86%E9%A2%91.m4v",
+          "title": "脊柱侧弯演示视频"
+        }
+      ],
+      "documents": [],
+      "incomplete": false
+    },
+    {
+      "title": "STM32桌面宠物狗",
+      "category": "硬件项目",
+      "description": "该项目是一个以STM32为核心的智能机械宠物狗。它不仅仅是一个模型，更是一个集成了前沿技术的桌面级伴侣。通过内置的语音识别模块，用户可以直接用声音向它发出“坐下”、“握手”等指令，实现自然流畅的语音交互。同时，STM32主控板精准驱动多个舵机，赋予它“摇摆”、“伸懒腰”等生动的仿生动作。",
+      "links": [],
+      "images": [
+        {
+          "src": "assets/projects/%E6%A1%8C%E9%9D%A2%E5%AE%A0%E7%89%A9%E7%8B%97.png",
+          "alt": "STM32桌面宠物狗"
+        }
+      ],
+      "videos": [
+        {
+          "src": "assets/projects/%E6%A1%8C%E9%9D%A2%E5%AE%A0%E7%89%A9%E7%8B%97%E6%BC%94%E7%A4%BA%E8%A7%86%E9%A2%91.mp4",
+          "title": "桌面宠物狗演示视频"
+        }
+      ],
+      "documents": [],
+      "incomplete": false
+    },
+    {
+      "title": "电路模型探究装置",
+      "category": "硬件项目",
+      "description": "本项目完成了RC有源滤波电路及探究装置的设计制作。系统实现了高精度正弦信号发生、宽范围扫频，以及对已知模型输出电压的闭环控制，满足了基础部分的各项要求。在此基础上，装置实现了对未知RLC电路的初步学习与建模。",
+      "links": [],
+      "images": [
+        {
+          "src": "assets/projects/%E7%94%B5%E8%B5%9B.png",
+          "alt": "电路模型探究装置"
+        }
+      ],
+      "videos": [],
+      "documents": [],
+      "incomplete": false
+    },
+    {
+      "title": "《Navigating the Gen-AI Bifurcation: A Synergistic Framework for Occupation and Education》",
+      "category": "其他项目",
+      "description": "参加2026年数学建模美赛，获得M奖。该研究构建了“生成式AI-职业-教育协同框架”。首先利用跳跃扩散模型预测AI发展轨迹，随后结合柯布-道格拉斯生产函数定量评估其对精算师、厨师等职业的替代与增强效应，最后利用SQP算法优化教育政策，推动教学目标从传统职业技能向培养“人类韧性”与“AI原生能力”战略转型。",
+      "links": [],
+      "images": [
+        {
+          "src": "assets/projects/%E7%BE%8E%E8%B5%9B.png",
+          "alt": "《Navigating the Gen-AI Bifurcation: A Synergistic Framework for Occupation and Education》"
+        }
+      ],
+      "videos": [],
+      "documents": [
+        {
+          "src": "assets/projects/%E7%BE%8E%E8%B5%9B%E8%AE%BA%E6%96%87.pdf",
+          "title": "美赛论文",
+          "type": "pdf"
+        }
+      ],
+      "incomplete": false
+    },
+    {
+      "title": "自媒体工作台",
+      "category": "Vibecoding项目",
+      "description": "整个工作台采用蒙德里安风格\n\n1. 仪表盘：参考网上常见的自媒体运营数据可视化仪表盘，自动抓取运营数据，并接入AI 热点爬取和数据分析\n\n2. 选题库：包括三个功能模块：我的灵感库（一小段话，功能构想有点像浮墨笔记，积累到一定程度灵感相互关联形成一个选题），素材库（平时上网冲浪和学习生活中收集到的素材，如公众号文章、相册照片、小红书笔记、b站视频链接、一段文字）通过手机端电脑端都可以上传并实时同步，并且可以打上选题的 tag, 一个素材可以对应多个tag），选题库（分为待办、进行、归档）\n\n3. 写作室：每一个选题可以包含多个md文件。主要功能是一个md编辑器，可以便携地调取素材库中待有该选题tag的内容，包括便携的图片插入。在这里可以写公众号和小红书的正文内容、视频的台词文案拍摄脚本、播客的逐字稿等等。还要提供一个 AI 对话窗口（API 接入）可以上传素材和对话来辅助写作。\n\n4. 排版室：包括两个功能，选中写作室的md文件导入就可以实现AI 配图（提供豆包等 AI 生图网站和图片处理 skill 网站的入口，还有 API 接入）和 AI 一键排版（API 接入），排版有多种风格可选，除了风格外还可以选择小红书和公众号两种排版。排版后的最终定稿的公众号文章和小红书图文内容选择导入发布中心等待发布。还要提供一个可画的入口。\n\n5. 剪辑室：即现在的AI 视频子页面。链接一个视频素材箱，通过手机端电脑端都可以上传并实时同步。可以导入写作室中用于视频创作的md文件，输出完整的 AI 生成视频的提示词。还要提供剪映和即梦等AI生成视频平台的入口。\n\n6. 录音室：即现在的播客工作台子页面。可以导入写作室中用于播客录制的md文件。 AI自动音频剪辑，自动进行shownote写作并标好对应时间点。还要提供一个剪映的入口。\n\n7. 发布中心：即现在的发布中心子页面\n\n8. 个人品牌：个人 IP 形象的打造，内容定位等等",
+      "links": [],
+      "images": [],
+      "videos": [],
+      "documents": [],
+      "incomplete": false
+    },
+    {
+      "title": "AI-Native 学习工作台",
+      "category": "Vibecoding项目",
+      "description": "1. 核心定位\n\n一个单页面本地网页，用于串联 “NotebookLM (输入) -> Learn About (认知) -> Cursor/MCP (应用) -> Obsidian (记录)” 的个人学习流。通过“统一上下文”减少跨工具切换的成本。\n\n2. 界面布局 (3 栏设计)\n\n左栏：导航中心 (Nav Hub) 内置高频学习网站卡片 (GitHub, CSDIY, NotebookLM, Learn About, ChatGPT)。 支持点击 ➕ 动态添加自定义网站（名称 + URL），数据保存在本地。 中栏：工作流控制台 顶部：快速任务添加。单行输入框组合：[ 任务名称 ] + [ 分类下拉选择 ] + [ 资料链接 ] + [ ➕添加按钮 ]。按回车或点击添加后，任务进入 Kanban 首列。 下方：学习看板 (Kanban)。5列：待计划 (Inbox) -> NotebookLM 研读 -> Learn About 学习 -> MCP 实践 -> 已完成。卡片支持左右移动和删除。 右栏：上下文与导出面板 (Active Context) 点击看板中的任意卡片，在此处显示该卡片的元数据。 一键复制 Prompt 功能： NotebookLM 专属：一键复制拼接了该任务标题和目标的研读 Prompt。 Learn About 专属：一键复制拼接了核心概念的苏格拉底式提问 Prompt。\n\n3. 技术实现要求 (用于 Codex 生成)\n\n架构：单文件 HTML (包含 Tailwind CSS 样式与 Vue.js/React 逻辑，通过 CDN 引入)。 数据存储：无需后端，所有任务和自定义导航数据均保存在浏览器 localStorage 中。 视觉风格：极简暗色调 (Dark Mode)，高信息密度。",
+      "links": [],
+      "images": [],
+      "videos": [],
+      "documents": [],
+      "incomplete": false
+    },
+    {
+      "title": "吉他助手",
+      "category": "Vibecoding项目",
+      "description": "1. AI 扒谱\n\n2. 曲谱库\n\n3. 调音、节拍器等工具",
+      "links": [],
+      "images": [],
+      "videos": [],
+      "documents": [],
+      "incomplete": false
+    },
+    {
+      "title": "智能发票整理助手",
+      "category": "Vibecoding项目",
+      "description": "1. ORC 发票命名\n\n2. 报销项目管理",
+      "links": [],
+      "images": [],
+      "videos": [],
+      "documents": [],
+      "incomplete": false
+    }
+  ]
+}

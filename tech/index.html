@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LadyGege's Tech Notes</title>
+    <link rel="icon" type="image/jpeg" href="../favicon.jpg">
+    <link rel="stylesheet" href="../styles.css?v=20260827-2">
+    <style>
+        body {
+            background: #0066CC;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .tech-container {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: #fff;
+        }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+        .note-card {
+            background: #fff;
+            border: 4px solid #000;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .note-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 8px 8px 0 #000;
+        }
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #000;
+        }
+        .card-desc {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+        .mkdocs-link {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 30px;
+            background: #fff;
+            color: #0066CC;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: 3px solid #fff;
+            transition: all 0.3s ease;
+        }
+        .mkdocs-link:hover {
+            background: transparent;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- 全局导航栏 -->
+    <div class="nav-hover-zone" id="navHoverZone"></div>
+    <nav class="top-nav collapsed" id="globalNav">
+        <div class="nav-left">
+            <span class="nav-logo">
+                <span class="letter-red">G</span><span class="letter-yellow">e</span><span class="letter-blue">g</span><span class="letter-black">e</span><span class="letter-red">N</span><span class="letter-yellow">o</span><span class="letter-blue">o</span><span class="letter-black">k</span>
+            </span>
+        </div>
+        <div class="nav-center">
+            <div class="nav-item" id="searchBtn">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </span>
+                <span class="nav-text">搜索</span>
+            </div>
+            <div class="nav-item" onclick="window.location.href='../index.html#section2'">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                </span>
+                <span class="nav-text">主页</span>
+            </div>
+            <div class="nav-item" onclick="window.location.href='../friends/'">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                </span>
+                <span class="nav-text">友链</span>
+            </div>
+            <div class="nav-item" onclick="window.location.href='../about/'">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </span>
+                <span class="nav-text">关于</span>
+            </div>
+        </div>
+        <button class="nav-toggle" id="navToggle" aria-label="折叠导航" style="display: none;">﹀</button>
+    </nav>
+
+    <div class="search-box" id="searchBox">
+        <input type="text" placeholder="搜索站内文章..." id="searchInput">
+        <button class="search-close" id="searchClose">&times;</button>
+    </div>
+
+    <div class="tech-container">
+        <h1>技术笔记</h1>
+        <div class="cards-grid">
+            <div class="note-card" onclick="window.location.href='#'">
+                <div class="card-title">🔥 近期更新</div>
+                <div class="card-desc">最新的技术学习笔记和开发心得</div>
+            </div>
+            
+            <div class="note-card" onclick="window.location.href='#'">
+                <div class="card-title">✨ 推荐阅读</div>
+                <div class="card-desc">精选技术文章，干货满满</div>
+            </div>
+            
+            <div class="note-card" onclick="window.location.href='#'">
+                <div class="card-title">💡 项目实践</div>
+                <div class="card-desc">真实项目经验和技术总结</div>
+            </div>
+        </div>
+        <a href="../notes/tech/index.html" class="mkdocs-link">进入 MkDocs 网站 →</a>
+    </div>
+
+    <!-- 页面切换加载动画 -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-square">
+            <div class="loader-inner-square red"></div>
+            <div class="loader-inner-square yellow"></div>
+            <div class="loader-inner-square blue"></div>
+            <div class="loader-inner-square white"></div>
+        </div>
+    </div>
+
+    <script src="../script.js?v=20260827-2"></script>
+</body>
+</html>
