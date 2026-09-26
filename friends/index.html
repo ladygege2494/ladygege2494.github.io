@@ -173,8 +173,9 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="friends.css?v=20260926-1">
 </head>
-<body>
+<body class="friends-page-body">
     <!-- 全局导航栏 -->
     <div class="nav-hover-zone" id="navHoverZone"></div>
     <nav class="top-nav collapsed" id="globalNav">
@@ -217,8 +218,22 @@
         <button class="search-close" id="searchClose">&times;</button>
     </div>
     
-    <div class="friends-container">
-        <div class="friends-grid" id="friendsGrid" aria-live="polite">
+    <main class="friends-page-shell">
+        <header class="friends-hero">
+            <div>
+                <p class="friends-kicker">LINKS · PEOPLE · CORNERS OF THE WEB</p>
+                <h1>朋友们的<br>互联网角落</h1>
+                <p class="friends-intro">按 Obsidian「友链.md」中的二级标题整理。每一个名字，都通往一处值得停留的个人空间。</p>
+            </div>
+            <div class="friends-total" aria-label="友链总数">
+                <div>
+                    <strong id="friendsCount">—</strong>
+                    <span>FRIEND SITES</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="friend-groups" id="friendsGroups" aria-live="polite">
             <p class="friends-state">正在从 Obsidian 读取友链…</p>
         </div>
 
@@ -244,7 +259,7 @@
                     async>
             </script>
         </section>
-    </div>
+    </main>
 
     <!-- 页面切换加载动画 -->
     <div class="page-loader" id="pageLoader">
@@ -256,7 +271,7 @@
         </div>
     </div>
 
-    <script src="friends.js?v=20260829-1"></script>
+    <script src="friends.js?v=20260926-1"></script>
     <script src="../script.js?v=20260829-1"></script>
 </body>
 </html>

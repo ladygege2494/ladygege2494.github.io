@@ -13,6 +13,10 @@ from urllib.parse import urlparse
 
 MARKDOWN_LINK_RE = re.compile(r"\[([^\]]+)\]\((https?://[^)]+)\)")
 PLAIN_URL_RE = re.compile(r"https?://\S+")
+SECOND_LEVEL_HEADING_RE = re.compile(r"^##\s+(.+?)\s*$")
+SCHEMELESS_DOMAIN_RE = re.compile(
+    r"(?i)(?:[a-z0-9-]+\.)+[a-z]{2,}(?::\d+)?(?:/[^\s]*)?(?:\?[^\s]*)?"
+)
 
 
 def normalize_url(raw: str) -> str:
@@ -43,13 +47,22 @@ def parse_line(line: str, line_number: int) -> dict[str, str] | None:
             raise ValueError(f"友链第 {line_number} 行缺少名称：{line}")
         return {"name": name, "url": normalize_url(plain_match.group(0))}
 
-    parts = value.split(maxsplit=1)
-    if len(parts) != 2:
-        raise ValueError(f"无法解析友链第 {line_number} 行：{line}")
-    name, domain = parts
-    # 兼容 Obsidian 中为了排版加入空格的域名，如 "name. github. io"。
-    domain = re.sub(r"\s+", "", domain)
-    return {"name": name, "url": normalize_url(domain)}
+    parts = value.split()
+    for index in range(1, len(parts)):
+        # 兼容为了排版加入空格的域名，例如 "name. github. io"；同时保留名称中的空格和年级。
+        domain = "".join(parts[index:]).rstrip("，。；;,")
+        if SCHEMELESS_DOMAIN_RE.fullmatch(domain):
+            name = " ".join(parts[:index]).strip()
+            return {"name": name, "url": normalize_url(domain)}
+    raise ValueError(f"无法解析友链第 {line_number} 行：{line}")
+
+
+def clean_heading(value: str) -> str:
+    value = value.strip()
+    value = re.sub(r"\*\*(.*?)\*\*", r"\1", value)
+    value = re.sub(r"__(.*?)__", r"\1", value)
+    value = re.sub(r"`([^`]+)`", r"\1", value)
+    return value.strip()
 
 
 def write_if_changed(path: Path, data: object) -> None:
@@ -79,10 +92,24 @@ def main() -> None:
     if not source.is_file():
         raise SystemExit(f"找不到友链源文件：{source}")
 
+    groups: list[dict[str, object]] = []
+    current_group: dict[str, object] | None = None
     friends: list[dict[str, str]] = []
     seen_names: set[str] = set()
     seen_urls: set[str] = set()
+    seen_group_titles: set[str] = set()
     for line_number, line in enumerate(source.read_text(encoding="utf-8").splitlines(), start=1):
+        heading_match = SECOND_LEVEL_HEADING_RE.match(line.strip())
+        if heading_match:
+            title = clean_heading(heading_match.group(1))
+            if not title:
+                raise SystemExit(f"友链第 {line_number} 行的二级标题为空")
+            if title in seen_group_titles:
+                raise SystemExit(f"友链分组名称重复：{title}")
+            current_group = {"title": title, "friends": []}
+            groups.append(current_group)
+            seen_group_titles.add(title)
+            continue
         friend = parse_line(line, line_number)
         if friend is None:
             continue
@@ -93,9 +120,17 @@ def main() -> None:
         seen_names.add(friend["name"])
         seen_urls.add(friend["url"])
         friends.append(friend)
+        if current_group is None:
+            current_group = {"title": "其他友链", "friends": []}
+            groups.append(current_group)
+            seen_group_titles.add("其他友链")
+        current_friends = current_group["friends"]
+        assert isinstance(current_friends, list)
+        current_friends.append(friend)
 
-    write_if_changed(target, {"friends": friends})
-    print(f"友链已生成：{len(friends)} 个网站")
+    groups = [group for group in groups if group["friends"]]
+    write_if_changed(target, {"groups": groups, "friends": friends})
+    print(f"友链已生成：{len(groups)} 个分组，{len(friends)} 个网站")
 
 
 if __name__ == "__main__":
