@@ -118,6 +118,8 @@ nav:
   - Inspiration:
     - "概览": Inspiration/index.md
     - "Filmilism": Inspiration/Filmilism.md
+  - Photography:
+    - "摄影入门": Photography/摄影入门.md
   - Language:
     - "概览": Language/index.md
     - "English": Language/English.md

@@ -237,7 +237,7 @@ int mian(int argc,char const *argv[]){
 | **CPU缓存** | 友好（缓存命中率高）           | 不友好（跳来跳去）            |
 
 > 为什么链表对 CPU 缓存？
-> ![image](../../_assets/external/1-PROJECT-NOW/大二春夏/数据结构基础/asserts/C语言复习/image.png)
+> ![image](../../_assets/external/4-ARCHIVE/大二春夏/数据结构基础/asserts/C语言复习/image.png)
 
 ### 链表操作函数
 #### 类型定义
@@ -317,7 +317,7 @@ P->Next = TmpCell;                     // 4. 让 P 指向新节点（再接前�
 - 记得使用 `free()`，尤其是**删除**节点时，否则会带来严重后果
 
 > 内存错误和段错误的？
-> ![image-1](../../_assets/external/1-PROJECT-NOW/大二春夏/数据结构基础/asserts/C语言复习/image-1.png)
+> ![image-1](../../_assets/external/4-ARCHIVE/大二春夏/数据结构基础/asserts/C语言复习/image-1.png)
 ### Double Linked Circular Lists（双向循环链表）
 #### 基本性质
 - **公式（必考）**：

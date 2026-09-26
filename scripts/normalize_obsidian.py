@@ -113,7 +113,12 @@ def copy_allowed_external_attachment(docs_root: Path, target_text: str) -> Path 
 
 def find_target(docs_root: Path, source_file: Path, raw_target: str) -> Path | None:
     target_text = raw_target.strip().replace("\\", "/")
-    candidates = [source_file.parent / target_text, docs_root / target_text]
+    candidates = [
+        source_file.parent / target_text,
+        source_file.parent / "assets" / source_file.stem / target_text,
+        source_file.parent / "asserts" / source_file.stem / target_text,
+        docs_root / target_text,
+    ]
 
     if not Path(target_text).suffix:
         candidates.extend(

@@ -71,7 +71,7 @@ $$
 
 ### 事件的自信息 $\neq$ 事件的不确定性
 ![image 1](asserts/Chapter1 信息的度量/image 1.png)
-![image-1](../../_assets/external/1-PROJECT-NOW/大二春夏/信息理论/asserts/教材大纲/image-1.png)
+![image-1](../../_assets/external/4-ARCHIVE/大二春夏/信息理论/asserts/教材大纲/image-1.png)
 
 ## 数学证明
 ### 证明离散和连续互信息非负（詹森不等式+对数的凸性）
@@ -87,7 +87,7 @@ $$
 
 ## 解题方法
 ### 2.1 求互信息最大值
-![image-2](../../_assets/external/1-PROJECT-NOW/大二春夏/信息理论/asserts/教材大纲/image-2.png)
+![image-2](../../_assets/external/4-ARCHIVE/大二春夏/信息理论/asserts/教材大纲/image-2.png)
 ### 2.3 求条件熵
 ![image-3 1](asserts/Chapter1 信息的度量/image-3 1.png)
 ### 2.5 求平均互信息
