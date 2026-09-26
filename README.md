@@ -44,6 +44,14 @@ cd /Users/ladygege/MyWebsite
 
 ## 日常使用
 
+完整图文说明见 Obsidian 根目录的 `网站更新使用指南.md`。
+
+macOS 上最简单的方式是在 Finder 中双击仓库根目录的 `发布网站.command`。它等同于执行严格构建并发布：
+
+```bash
+./scripts/sync-obsidian.sh --build --push
+```
+
 仅同步到本地仓库：
 
 ```bash

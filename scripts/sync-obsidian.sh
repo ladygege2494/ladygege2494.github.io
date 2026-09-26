@@ -97,7 +97,13 @@ if $PUSH; then
     portfolio/projects.json portfolio/gallery.json portfolio/assets \
     friends/friends.json
   if git -C "$REPO_ROOT" diff --cached --quiet; then
-    echo "没有需要发布的内容变更。"
+    if [[ "$(git -C "$REPO_ROOT" rev-list --count origin/main..HEAD)" -gt 0 ]]; then
+      echo "没有新的内容变更，但检测到尚未推送的本地提交；正在补推……"
+      git -C "$REPO_ROOT" push origin main
+      echo "已补推。GitHub Actions 将在数分钟内更新 https://ladygege2494.github.io/"
+    else
+      echo "没有需要发布的内容变更。"
+    fi
     exit 0
   fi
   if [[ -z "$COMMIT_MESSAGE" ]]; then
