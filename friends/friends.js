@@ -5,9 +5,12 @@
     const countElement = document.getElementById('friendsCount');
     if (!groupsRoot) return;
 
-    function createFriendCard(friend) {
+    const colors = ['friend-red', 'friend-blue', 'friend-white', 'friend-yellow'];
+    const sizes = ['size-lg', 'size-wide', 'size-sm', 'size-tall', 'size-wide', 'size-sm', 'size-tall'];
+
+    function createFriendCard(friend, index) {
         const link = document.createElement('a');
-        link.className = 'friend-tile no-loader';
+        link.className = `friend-tile ${colors[index % colors.length]} ${sizes[index % sizes.length]} no-loader`;
         link.href = friend.url;
         link.target = '_blank';
         link.rel = 'noopener noreferrer';
@@ -66,7 +69,9 @@
 
                 const cards = document.createElement('div');
                 cards.className = 'friend-tiles';
-                group.friends.forEach(friend => cards.appendChild(createFriendCard(friend)));
+                group.friends.forEach((friend, friendIndex) =>
+                    cards.appendChild(createFriendCard(friend, groupIndex * 3 + friendIndex))
+                );
 
                 header.append(marker, title, count);
                 section.append(header, cards);
