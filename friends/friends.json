@@ -1,0 +1,160 @@
+{
+  "groups": [
+    {
+      "title": "Friends",
+      "friends": [
+        {
+          "name": "洛水老师",
+          "url": "https://rubisco-l.github.io/ls-corner-site/"
+        },
+        {
+          "name": "绚神",
+          "url": "https://cestfloraison.asia/"
+        },
+        {
+          "name": "zlh老师：微电子er",
+          "url": "https://veronalo.github.io"
+        },
+        {
+          "name": "秋月老师",
+          "url": "https://yukinoshitasherry.github.io"
+        },
+        {
+          "name": "njz老师：技推老祖",
+          "url": "https://nijingzhe.github.io/"
+        }
+      ]
+    },
+    {
+      "title": "ACEEer",
+      "friends": [
+        {
+          "name": "lyx老师：25级",
+          "url": "https://alrediph.github.io/curate/"
+        },
+        {
+          "name": "痞老板：24 级",
+          "url": "https://plankton2005.best"
+        },
+        {
+          "name": "slow老师:23 级",
+          "url": "https://slowist-lee.github.io/notebook/"
+        },
+        {
+          "name": "zmy老师：24 级",
+          "url": "https://maverick-s-blog.vercel.app?_vercel_share=RqZsv6xMTDH02JDl8uAAICCAqCTbNEct"
+        },
+        {
+          "name": "conscient 老师：25 级",
+          "url": "https://conscient.hk.cn"
+        },
+        {
+          "name": "wbx老师：23 级",
+          "url": "https://wbx0710.github.io/mymkdocs/"
+        },
+        {
+          "name": "sxw老师：23 级",
+          "url": "https://xw-soleil.github.io/"
+        },
+        {
+          "name": "jjk老师：23 级",
+          "url": "https://chatter-barber-020.notion.site/40075ca669a9460d9c915b1e564c83c2?v=ea79d5524f6546eba94e3da5efb93f1e"
+        },
+        {
+          "name": "zcx老师：20 级",
+          "url": "https://zicx.top/"
+        },
+        {
+          "name": "lxy老师：23 级",
+          "url": "https://blog.mindorigin.top/"
+        },
+        {
+          "name": "jqs老师：23 级",
+          "url": "https://brucejqs.github.io/MyNotebook/about/geren/"
+        },
+        {
+          "name": "wwj老师 ：22 级",
+          "url": "https://lhmd.top/?"
+        },
+        {
+          "name": "jjp老师：22 级",
+          "url": "https://note.jiepeng.tech/?"
+        }
+      ]
+    }
+  ],
+  "friends": [
+    {
+      "name": "洛水老师",
+      "url": "https://rubisco-l.github.io/ls-corner-site/"
+    },
+    {
+      "name": "绚神",
+      "url": "https://cestfloraison.asia/"
+    },
+    {
+      "name": "zlh老师：微电子er",
+      "url": "https://veronalo.github.io"
+    },
+    {
+      "name": "秋月老师",
+      "url": "https://yukinoshitasherry.github.io"
+    },
+    {
+      "name": "njz老师：技推老祖",
+      "url": "https://nijingzhe.github.io/"
+    },
+    {
+      "name": "lyx老师：25级",
+      "url": "https://alrediph.github.io/curate/"
+    },
+    {
+      "name": "痞老板：24 级",
+      "url": "https://plankton2005.best"
+    },
+    {
+      "name": "slow老师:23 级",
+      "url": "https://slowist-lee.github.io/notebook/"
+    },
+    {
+      "name": "zmy老师：24 级",
+      "url": "https://maverick-s-blog.vercel.app?_vercel_share=RqZsv6xMTDH02JDl8uAAICCAqCTbNEct"
+    },
+    {
+      "name": "conscient 老师：25 级",
+      "url": "https://conscient.hk.cn"
+    },
+    {
+      "name": "wbx老师：23 级",
+      "url": "https://wbx0710.github.io/mymkdocs/"
+    },
+    {
+      "name": "sxw老师：23 级",
+      "url": "https://xw-soleil.github.io/"
+    },
+    {
+      "name": "jjk老师：23 级",
+      "url": "https://chatter-barber-020.notion.site/40075ca669a9460d9c915b1e564c83c2?v=ea79d5524f6546eba94e3da5efb93f1e"
+    },
+    {
+      "name": "zcx老师：20 级",
+      "url": "https://zicx.top/"
+    },
+    {
+      "name": "lxy老师：23 级",
+      "url": "https://blog.mindorigin.top/"
+    },
+    {
+      "name": "jqs老师：23 级",
+      "url": "https://brucejqs.github.io/MyNotebook/about/geren/"
+    },
+    {
+      "name": "wwj老师 ：22 级",
+      "url": "https://lhmd.top/?"
+    },
+    {
+      "name": "jjp老师：22 级",
+      "url": "https://note.jiepeng.tech/?"
+    }
+  ]
+}
